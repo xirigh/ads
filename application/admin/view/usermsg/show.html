@@ -1,0 +1,230 @@
+<include file="Public/Base" />
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+
+<script src='__CONTENT__/js/bootbox.min.js' language='JavaScript'></script>
+
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			window.onload = function() {
+
+			}
+
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+
+			} catch(e) {}
+		</script>
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;新闻信息管理&nbsp;&nbsp;>&nbsp;&nbsp;系统留言管理
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+
+			<div class="form-group profile-user-info profile-user-info-striped">
+				<!--<div class="profile-info-row">-->
+					<!--<div class="profile-info-name">留言编号</div>-->
+
+					<!--<div class="profile-info-value">-->
+
+						<!--<span class="editable"><{$data.um_code}></span>-->
+					<!--</div>-->
+				<!--</div>-->
+				<div class="profile-info-row">
+					<div class="profile-info-name">留言会员</div>
+
+					<div class="profile-info-value">
+
+						<span class="editable"><{$data.v_vip_id}></span>
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">留言类型</div>
+
+					<div class="profile-info-value">
+
+						<span class="editable"><{$data.um_type}></span>
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">标题</div>
+
+					<div class="profile-info-value">
+
+						<span class="editable"><{$data.um_title}></span>
+					</div>
+				</div>
+
+				<div class="profile-info-row">
+					<div class="profile-info-name">描述</div>
+
+					<div class="profile-info-value">
+						<span class="editable"><{$data.um_desc}></span>
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">内容</div>
+
+					<div class="profile-info-value">
+						<span class="editable"><{$data.um_content|nl2br}></layer></span>
+					</div>
+				</div>
+
+				<div class="profile-info-row">
+					<div class="profile-info-name">附件下载</div>
+
+					<div class="profile-info-value">
+<empty name="data.um_file">
+						<span class="editable"> <a href="JavaScript:;"> 无附件 </a></span>
+<else />
+						<span class="editable"> <a href="__UPLOADS__/msg/<{$data.um_file}>" target="_blank"> 点击下载 </a></span>
+</empty>
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">投诉时间</div>
+
+					<div class="profile-info-value">
+						<span class="editable"><{$data.create_time}></span>
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">投诉状态</div>
+
+					<div class="profile-info-value">
+
+						<span class="editable"><{$data.um_state}></span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="clearfix form-actions">
+				<div class="col-md-offset-3 col-md-9">
+
+					<button type="button" class="btn btn-primary" onclick="HandleComplain();" data-dismiss="modal">
+						<i class="icon-user bigger-110"></i> 回复
+					</button> &nbsp;&nbsp;&nbsp;
+					<button type="button" class="btn btn-info" onclick="javascript:history.back(-1);" data-dismiss="modal">
+						<i class="icon-circle-arrow-left bigger-110"></i> 返回
+					</button>
+				</div>
+			</div>
+
+			<div class="modal fade" tabindex="-1" role="dialog" id="editModel">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">
+								<span id="span_InfoTitle">回复</span>
+							</h4>
+						</div>
+						<div class="modal-body">
+
+							<form id="Form1" class="form-horizontal" role="form" method="post">
+								<div class="form-group">
+
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1">留言编号</label>
+									<div class="col-sm-9">
+										<input type="text" id="txtMessageNo" name="MessageNo" placeholder="" value='<{$data.um_code}>' class="col-xs-12 col-sm-9 uneditable-input" disabled /> <label class="middle red">*</label>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 回复结果 </label>
+
+									<div class="col-sm-9">
+										<textarea id="txtReplyResult" name="ReplyResult" class="col-xs-12 col-sm-9"></textarea>
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" id="btn_Save" class="btn btn-primary" onclick="SaveForm();">保存</button>
+						</div>
+						</form>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	var FormStatus = "";
+
+	$(function() {
+
+		$('#Form1').bootstrapValidator({　　　
+			message: 'This value is not valid',
+			　feedbackIcons: {　　　　　　　　 //valid: 'glyphicon glyphicon-ok',
+				　　　　　　　　 //invalid: 'glyphicon glyphicon-remove',
+				　　　　　　　　 //validating: 'glyphicon glyphicon-refresh'
+				　　　　　　　　},
+			fields: {
+				ReplyResult: {
+					validators: {
+						notEmpty: {
+							message: '处理结果不能为空'
+						}
+					}
+				}
+			},
+			submitHandler: function(validator, form, submitButton) {
+
+			}
+		})
+	});
+	window.onload = function() {
+
+		$('#editModel').on('show.bs.modal', function() {
+
+		});
+		$('#editModel').on('shown.bs.modal', function() {
+			$("#txtReplyResult").val('');
+		});
+		$('#editModel').on('hide.bs.modal', function() {
+
+		});
+		$('#editModel').on('hidden.bs.modal', function() {
+
+		});
+
+	}
+
+
+	function HandleComplain() {
+		$("#editModel").modal({
+			keyboard: true
+		});
+
+	}
+
+	function SaveForm() {
+		var msgid = "<{$data.um_id}>";
+		var retext = $("#txtReplyResult").val();
+		var _url = "<{:url('Usermsg/re')}>";
+		$.post(_url,{"um_id": msgid,"um_re_content":retext},function(e){
+			if(e.code != 1){
+				ShowMsg("E"+e.msg);
+			}else{
+				ShowMsg("S"+e.msg);
+			}
+		},"json");
+	}
+</script>

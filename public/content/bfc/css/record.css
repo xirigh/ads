@@ -1,0 +1,175 @@
+body {
+  font-size:12px;
+}
+.record{
+    width:100%;
+    padding:3%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    margin:5% 0;
+    border-top:1px solid #f1edd2;
+    border-bottom:1px solid #f1edd2;
+}
+.record-img{
+    width: 25%;
+    padding:1%;
+    border-radius:50px;
+}
+.record-img img{
+    width:80%;
+}
+.message{
+    width: 53%;
+    padding:2%;
+}
+.message i{
+    font-style: normal;
+}
+.sure{
+    width:27%;
+    text-align: center;
+}
+.sure button{
+    background:#158947;
+    color: white;
+    border-radius:5px;
+    border:none;
+    width:83%;
+    padding:5%;
+}
+/*交易BFC*/
+.buy{
+    width:96%;
+    margin: 1%;
+    padding:1%;
+    display:flex;
+    flex-direction:row;
+}
+.purchase{
+    width: 50%;
+    padding:1%;
+}
+.purchase p{
+    width:100%;
+    background:#3498db;
+    color:#fff;
+    text-align: center;
+    font-size: 16px;
+    border-radius:5px;
+    padding:3%;
+}
+.purchase input{
+    width:100%;
+    padding:3%;
+    border-radius:5px;
+    margin:5% 0;
+    border:none;
+    border:1px solid #cccccc;
+}
+.purchase .submit{
+    background:#34c3d6;
+    color:#fff;
+}
+.sell{
+    width:50%;
+    padding: 1%;
+}
+.sell p{
+    width:100%;
+    background:#ff9500;
+    color:#fff;
+    text-align: center;
+    font-size: 16px;
+    border-radius:5px;
+    padding:3%;
+}
+.sell-records{
+    width:100%;
+    padding:1%;
+    border-left:1px solid #cccccc;
+}
+.sell-records span{
+    width:100%;
+    display: inline-block;
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    font-size:15px;
+    overflow: hidden;
+}
+.sell-records i{
+    font-style: normal;
+    width:25%;
+    color:green;
+    text-align: center;
+    margin:1%;
+    overflow: hidden;
+}
+.sell-records em{
+    font-style: normal;
+    text-align: center;
+    width: 40%;
+    color: #666666;
+    padding: 1%;
+    margin:1%;
+    overflow: hidden;
+}
+.sell-records strong{
+    width:30%;
+    text-align: center;
+    padding: 1%;
+    margin:2%;
+    overflow: hidden;
+}
+.information{
+    width:100%;
+    border-left:1px solid #cccccc;
+}
+.information h5{
+    background: red;
+    padding: 2%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+.information span{
+    width:100%;
+    display: inline-block;
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    font-size:15px;
+    overflow: hidden;
+}
+.information i{
+    font-style: normal;
+    width:25%;
+    color:red;
+    text-align: center;
+    margin:1%;
+    overflow: hidden;
+}
+.information em{
+    font-style: normal;
+    text-align: center;
+    width: 40%;
+    color: #666666;
+    padding: 1%;
+    margin:1%;
+    overflow: hidden;
+}
+.information strong{
+    width:30%;
+    text-align: center;
+    padding: 1%;
+    margin:2%;
+    overflow: hidden;
+}
+
+
+
+
+
+
+

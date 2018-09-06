@@ -1,0 +1,99 @@
+<include file="Public/base" />
+<script src='__CONTENT__/js/bootbox.min.js' language='JavaScript'></script>
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;系统管理&nbsp;&nbsp;>&nbsp;&nbsp;清空数据
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+			<div class="tabbable">
+				<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+					<li class="active">
+						<a data-toggle="tab" href="#ClearDataBase">清空数据</a>
+					</li>
+				</ul>
+
+				<div class="tab-content">
+					<div id="ClearDataBase" class="tab-pane in active">
+
+						<form id="Form1" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> </label>
+								<div class="col-sm-9">
+									<button class="btn btn-sm btn-warning" type="button" onclick="clearAll();">
+										<span class="bigger-110 no-text-shadow">清空所有数据</span>
+									</button>
+									<button class="btn btn-sm btn-warning" type="button" onclick="jiesuan();">
+										<span class="bigger-110 no-text-shadow">结算</span>
+									</button>
+
+								</div>
+
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__CONTENT__/layer_mobile/layer.js"></script>
+<script type='text/javascript'>
+	function clearAll(){
+		layer.open({
+            content: '您确定要清空数据吗？清空后数据不可恢复！'
+            ,btn: ['确定', '不要']
+            ,yes: function(index){
+                layer.open({
+                    type:2,
+                    content: "清理中",
+                });
+                $.post("<{:url('System/clearact')}>",{},function(e){
+                    layer.closeAll();
+                    layer.open({
+						content:e.msg,
+						btn:"我知道了",
+					});
+                    window.location.reload();
+				},"json");
+            }
+		});
+	}
+</script>
+<script type='text/javascript'>
+	function jiesuan(){
+		layer.open({
+            content: '您确定要结算吗？请勿重复结算！'
+            ,btn: ['确定', '不要']
+            ,yes: function(index){
+                layer.open({
+                    type:2,
+                    content: "结算中",
+                });
+                $.post("/index.php/auto/index/pwd/111",{},function(e){
+                    layer.closeAll();
+                    layer.open({
+						content:"结算成功",
+						btn:"我知道了",
+						yes:function(){
+							window.location.reload();
+						}
+					});
+                  
+				},"json");
+            }
+		});
+	}
+</script>

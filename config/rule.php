@@ -1,0 +1,59 @@
+<?php 
+ return array (
+     "jihuoma_num"=>1, //激活消耗激活码
+     "jihuoma_name"=>"激活码", //激活码别称
+     "jihuoren_num"=>10, //每天可激活人数
+     "jihuotime_begin"=>"10", //激活时间开始
+     "jihuotime_end"=>"24",  //激活时间结束
+     "paidan_money"=>"2000;4000;6000",  //拍单额度
+     "paidanbi_name"=>"排单币",  //排单币别称
+     "paidanbi_num"=>"2;4;6",  //消耗排单币数量
+     "zhuanzeng_num"=>5,  //排单币最小转赠额度
+     "paidan_day"=>"2;4;7",  //排单间隔
+     "dongjie_day"=>3,  //新会员不排单冻结
+     "zhitui_num"=>1,  //直推几个人可以抢多大的单
+     "zhitui_money"=>3000,  //直推几个人可以抢多大的单
+     "meitianlixi"=>"1;2;3;4;5;6;7",  //周一至周日每天利息
+     "dakuan_time"=>1,  //打款时间
+     "shoukuan_time"=>1,  //收款确认时间
+     "jingtai_beishu"=>10,  //静态钱包提现倍数
+     "jingtai_min"=>100,  //静态钱包最低提现额度
+     "dongtai_beishu"=>20,  //动态钱包提现倍数
+     "dongtai_min"=>200,  //动态钱包最低提现额度
+     "tixian_time"=>1,  //匹配后多长时间可以提现
+     "tixian_num"=>32,  //每天可提现多少次
+     "tixian_max"=>5000,  //每天提现额度
+     "tixian_time_begin"=>9,  //提现开始时间
+     "tixian_time_end"=>23,  //提现结束时间
+     "jingtai_lixi"=>10,  //静态利息
+     "jingtai_max_day"=>60,  //利息衰减天数
+     "jingtai_min_lixi"=>5,  //衰减后利息
+     "dongtai_people"=>"1;3;5",  //直推多少人
+     "dongtai_tuandui"=>"1;3;5",  //团队拥有多少人
+     "dongtai_lev"=>"1;2;3",  //可以拿多少代奖金
+     "dongtai_money"=>"5;3;1",  //多少奖金
+     "dongtai_max_day"=>2,  //几天不发展直推，减半
+     "paidui_time"=>0,  //排队期
+     "yufu_money"=>20,  //预付金额度
+     "dongjie_time"=>0,  //冻结期
+     "dongjie_exp"=>"2018-01-01",  //冻结排除日期
+     "paidanjiange"=>0,  //最小排单间隔时间
+     "auto_paidan"=>24,  //强制为会员排单时间
+     "auto_time_begin"=>"07",  //自动匹配执行开始时间
+     "auto_time_end"=>"18",  //自动匹配执行结束时间
+     "auto_time_over"=>"20",  //每天超过几点未打款系统封号
+     "dakuai_jiangli"=>2,  //几小时内打款平台奖励
+     "dakuan_jiangli_money"=>1,  //奖励额度
+     "shoukuanchaoshi"=>14,  //不确定封号时间
+     "fanbu"=>"10",  //反哺奖额度
+     /*
+     "jingtai_tixian_int"=>100,
+     "jingtai_tixian_min"=>100,
+     "dongtai_yixian_int"=>100,
+     "dongtai_yixian_min"=>100,
+     "dongtai_dongjie"=>1,
+     "tixian_paidan"=>0.5,
+     "tixian_yu_e"=>5,
+     "tixian_cishu"=>1,
+     */
+ );

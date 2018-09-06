@@ -1,0 +1,222 @@
+<include file="Public/head" />
+<style>
+    .data span{
+        width: 33.3%;
+    }
+    .item{
+        margin-bottom: 0px;
+    }
+</style>
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="javascript:history.go(-1);"> <i
+                class="iconfont icon-fanhui"></i>
+        </a> <i>财务管理</i>
+    </div>
+    <div class="item" style="height: 100%">
+        <volist name="list" id="v">
+            <div class="item-list">
+                <h4>
+                    <img src="__UPLOADS__/core/<{$v.cg_img}>"> <{$v.cg_title}>
+                </h4>
+                <div class="data">
+                <span>
+                    <i style="color:#ff4646;"><{$v.cg_money}> (USD)</i><br /><br />
+                    单价
+                </span>
+                    <span>
+                    <i><{$v.cg_money*$v.user.cz_num+$v.user.cz_count_money|round=6}></i> <br /><br />
+                    持有值
+                </span>
+                    <span>
+                    <i style="color:#158947;"><{$v.user.cz_day_money|default="0.00"|round=6}></i><br /><br />
+                    昨日收益
+                </span>
+                </div>
+                <hr />
+                <div class="text-right">
+                    <button type="button" id="<{$v.cg_id}>" class="btn btn-primary give">转赠</button>
+                    <button type="button" onclick="submitend('<{$v.cg_id}>');" class="btn btn-primary">结束</button>
+                </div>
+            </div>
+        </volist>
+    </div>
+</div>
+<input type="hidden" id="hid_footactivity" value="2" />
+<include file="Public/footer" />
+
+<load href="__ASSETS__/js/vue.js"></load>
+<load href="__ASSETS__/js/jquery.form.min.js"></load>
+
+
+<script>
+    function getuname(){
+        var email = $("input[name=email]").val();
+        $.post("<{:url('User/getuname')}>", {"email": email}, function (e) {
+            if(e.code != 1){
+                $("#sendzhuanzeng").attr("disabled","disabled");
+            }else{
+                $("#sendzhuanzeng").removeAttr("disabled");
+            }
+            $("#help").html(e.msg);
+        }, "json");
+    }
+
+    $(".give").click(function () {
+        var id = $(this).attr("id");
+        layer.open({
+            content:"<form class=\"form-horizontal\">" +
+                "  <div class=\"form-group\">" +
+                "    <div class=\"col-sm-10\">" +
+                "      <input type=\"email\" name='email' class=\"form-control\" id=\"inputEmail3\" placeholder=\"请输入接受者邮箱\" onblur='getuname();'> <br />" +
+                "      <input type=\"text\" name='num' class=\"form-control\" id=\"inputEmail3\" placeholder=\"请输入转出数量\">" +
+                "<p class=\"help-block\" id='help'></p>" +
+                "    </div>" +
+                "  </div>" +
+                "  <div class=\"form-group\">" +
+                "    <div class=\"col-sm-offset-2 col-sm-10\">" +
+                "      <button type=\"button\" onclick='submitgive("+id+");' class=\"btn btn-default\" id='sendzhuanzeng' disabled>确定转赠</button>" +
+                "    </div>" +
+                "  </div>" +
+                "</form>"
+        })
+    });
+
+
+
+    function submitgive(id){
+        var email = $("input[name=email]").val();
+        var num = $("input[name=num]").val();
+        layer.open({
+            content: '您确定要转赠吗？'
+            ,btn: ['确定', '算了']
+            ,yes: function(index){
+                layer.open({
+                    type:2,
+                    content: "提交中",
+                });
+                $.post("<{:url('index/give')}>",{"id":id,"email":email,"num":num},function(e){
+                    layer.closeAll();
+                    if(e.code != 1){
+                        layer.open({
+                            content:e.msg,
+                            btn:"确定",
+                            yes:function(){
+                                window.location.reload();
+                            }
+                        });
+                    }else{
+                        layer.open({
+                            content: e.msg,
+                            btn: "确定",
+                            yes: function () {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                },"json");
+            }
+        });
+    }
+
+
+    function submitend(id){
+        layer.open({
+            content: '您确定要结束分红吗，结束后无法恢复？'
+            ,btn: ['确定', '算了']
+            ,yes: function(index){
+                layer.open({
+                    type:2,
+                    content: "提交中",
+                });
+                $.post("<{:url('index/end')}>",{"id":id,},function(e){
+                    layer.closeAll();
+                    if(e.code != 1){
+                        layer.open({
+                            content: e.msg,
+                            btn: "确定",
+                            yes: function () {
+                                window.location.reload();
+                            }
+                        });
+                    }else{
+                        layer.open({
+                            content:e.msg,
+                            btn: "确定",
+                            yes: function () {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                },"json");
+            }
+        });
+    }
+</script>
+
+<script>
+    function sendform() {
+        function beforeCheck(){
+            layer.open({
+                type:2,
+                content: "提交中",
+            });
+        }
+        function successfun(res){
+            layer.closeAll();
+            if(res.code != 1){
+                layer.open({
+                    content: res.msg,
+                    btn:'我知道了',
+                });
+                return false;
+            }else{
+                layer.open({
+                    content: res.msg,
+                    skin:'msg',
+                });
+                window.location.reload();
+            }
+        }
+        var options = {
+            beforeSubmit: beforeCheck, //提交前的回调函数
+            success: successfun,  //提交成功后的回调函数
+            dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+            clearForm: false,  //成功提交后，是否清除所有表单元素的值
+            resetForm: true,  //成功提交后，是否重置所有表单元素的值
+            timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
+        };
+        $('#form1').ajaxSubmit(options);
+    };
+</script>
+<script>
+    var huilv = "<{:config('mydefind.eth2usd')}>";
+    var app = new Vue({
+        el:"#app",
+        data:{usd:"",eth:""}
+    });
+    $("input[name=ba_money]").keyup(function(){
+        var num = $(this).val();
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (!re.test(num)){
+            app.usd = "";
+            app.eth = "";
+            return false;
+        }
+        var eth = parseFloat((num / huilv).toFixed(8));
+        $("input[name=ba_num]").val(eth);
+
+    });
+    $("input[name=ba_num]").keyup(function(){
+        var num = $(this).val();
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (!re.test(num)){
+            app.usd = "";
+            app.eth = "";
+            return false;
+        }
+        var eth = parseFloat((num * huilv).toFixed(8));
+        $("input[name=ba_money]").val(eth);
+
+    });
+</script>

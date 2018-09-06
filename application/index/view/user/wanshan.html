@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__CONTENT__/bfc/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/index.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/bootstrap.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/main.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/record.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/login.css">
+    <title>完善用户信息</title>
+</head>
+<body>
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="<{:url('User/home')}>">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <i>完善用户信息</i>
+    </div>
+    <form method="post" action="<{:url('User/wanshanact')}>" id="form1">
+    <div class="find">
+        <p>
+            邮箱*
+            <br>
+            <input name="v_email" type="text" placeholder="请输入邮箱" value="<{$data.v_email}>" disabled>
+        </p>
+        <p>
+            手机*
+            <br>
+            <input name="v_tel" type="text" placeholder="请输入手机号" value="<{$data.v_tel}>" disabled>
+        </p>
+        <p>
+            性别*<br>
+            <select class="form-control" name="v_sex">
+                <volist name="sex" id="v" key="k">
+                    <option <eq name="data.v_sex" value="$k-1">selected</eq> value="<{$k-1}>"><{$v}></option>
+                </volist>
+            </select>
+        </p>
+
+        <p>
+            真实姓名*
+            <br>
+            <input name="v_name" type="text" placeholder="请输入真实姓名" value="<{$data.v_name}>">
+        </p>
+        <p>
+            ETH地址<br>
+            <input name="v_alipay" type="text" placeholder="请输入ETH地址" value="<{$data.v_alipay}>">
+        </p>
+
+        <p>
+            身份证号<br>
+            <input name="v_card_id" type="text" placeholder="请输入身份证号" value="<{$data.v_card_id}>">
+        </p>
+
+        <p>
+            开户行<br>
+            <input name="v_bank" type="text" placeholder="请输入开户行" value="<{$data.v_bank}>">
+        </p>
+
+        <p>
+            银行卡号<br>
+            <input name="v_card_num" type="text" placeholder="请输入银行卡号" value="<{$data.v_card_num}>">
+        </p>
+
+        <p>
+            开户名<br>
+            <input name="v_bank_name" type="text" placeholder="请输入开户名" value="<{$data.v_bank_name}>">
+        </p>
+
+        <p>
+            开户行地址<br>
+            <input name="v_bank_address" type="text" placeholder="请输入开户行地址" value="<{$data.v_bank_address}>">
+        </p>
+
+        <p class="refer">
+            <input type="button" value="确认" onclick="sendform();return false;">
+        </p>
+    </div>
+   </form>
+
+</div>
+</body>
+</html>
+
+
+
+
+<script src='__CONTENT__/ace/js/jquery-2.0.3.min.js' language='JavaScript'></script>
+<script src="__CONTENT__/layer_mobile/layer.js"></script>
+<load href="__ASSETS__/js/jquery.form.min.js"></load>
+<script>
+    function sendform() {
+        function beforeCheck(){
+            layer.open({
+                type:2,
+                content: "提交中",
+            });
+        }
+        function successfun(res){
+            layer.closeAll();
+            if(res.code != 1){
+                layer.open({
+                    content: res.msg,
+                    btn:'我知道了',
+                    yes:function(){
+                        window.location.reload();
+                    }
+                });
+                return false;
+            }else{
+                layer.open({
+                    content: res.msg,
+                    btn:"我知道了",
+                    yes:function(){
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+        var options = {
+            beforeSubmit: beforeCheck, //提交前的回调函数
+            success: successfun,  //提交成功后的回调函数
+            dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+            clearForm: false,  //成功提交后，是否清除所有表单元素的值
+            resetForm: true,  //成功提交后，是否重置所有表单元素的值
+            timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
+        };
+        $('#form1').ajaxSubmit(options);
+    };
+</script>

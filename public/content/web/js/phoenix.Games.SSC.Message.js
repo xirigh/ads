@@ -1,0 +1,1 @@
+(function(G,B,I,A){var C={},H=G.Games,E;var D={init:function(K){var J=this;H.setCurrentGameMessage(J)}};var F=G.Class(D,I);F.defConfig=C;F.getInstance=function(J){return E||(E=new F(J))};G.Games.SSC[B]=F})(phoenix,"Message",phoenix.GameMessage);

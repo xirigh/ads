@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>自动充值－充值提现－金富汇</title>
+<link href="/david.ico" rel="shortcut icon" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="./css/base.css">
+<link rel="stylesheet" type="text/css" href="./css/all.css">
+<link rel="stylesheet" type="text/css" href="./css/dialog.css">
+<link rel="stylesheet" type="text/css" href="./css/modal.css">
+<link rel="stylesheet" type="text/css" href="./css/icon.css">
+<script language="javascript" type="text/javascript" src="./js/jquery-1.8.0.min.js"></script>
+<!--[if IE 9]>
+<script language="javascript" type="text/javascript" src="/template/js/base/html5.js"></script>
+<![endif]-->
+<!--<script language="javascript" type="text/javascript" src="/template/js/base/keyboard.js"></script>-->
+<link type="text/css" rel="stylesheet" href="./css/jquery-ui-1.8.21.custom.css" />
+<script language="javascript" type="text/javascript" src="./js/jquery-ui-1.8.23.custom.min.js"></script>
+<script language="javascript" type="text/javascript" src="./js/gamecommon.js"></script>
+<script language="javascript" type="text/javascript" src="./js/modal.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.cookie.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.messager.js"></script>
+<!--<script language="javascript" type="text/javascript" src="/template/js/base/Array.ext.js"></script>-->
+<script language="javascript" type="text/javascript" src="./js/jquery.ui.datepicker-zh-CN.js"></script>
+<script language="javascript" type="text/javascript" src="./js/load.js"></script>
+<script language="javascript" type="text/javascript" src="./js/Confrim.js"></script>
+<!-- <script type="text/javascript">
+$(function(){
+	$('form').trigger('reset');
+	$(':radio').click(function(){
+		var data=$(this).data('bank'),
+		box=$('#display-dom');
+		
+		$('#bank-type-icon', box).attr('src', '/'+data.logo);
+		
+		if($.cookie('rechargeBank')!=data.id) $.cookie('rechargeBank', data.id, 360*24);
+	});
+	
+	var bankId=$.cookie('rechargeBank')||$(':radio').attr('value');
+	$(':radio[value='+bankId+']').click();
+	
+	$('.copy').click(function(){
+		var text=document.getElementById($(this).attr('for')).value;
+		if(!CopyToClipboard(text, function(){
+			davidOk('复制成功');
+		}));
+	});
+	
+	$('.example2').click(function(){
+		var src='/'+$(this).attr('rel');
+		if(src) $('<div>').append($('<img>',{src:src,width:'640px',height:'480px'})).dialog({width:630,height:500,title:'充值演示'});
+	});
+});
+
+function checkRecharge(){
+	if(!this.amount.value) throw('请填写充值金额');
+	showPaymentFee();
+	//if(isNaN(amount)) throw('充值金额错误');
+	//if(!this.amount.value.match(/^\d+(\.\d{0,2})?$/)) throw('充值金额错误');
+	showPaymentFee();
+	var amount=parseInt(this.amount.value),
+	$this=$('input[name=amount]',this),
+	min=parseInt($this.attr('min')),
+	max=parseInt($this.attr('max'));
+	min1=parseInt($this.attr('min1')),
+	max1=parseInt($this.attr('max1'));
+	
+	if($('input[name=mBankId]').val()==2||$('input[name=mBankId]').val()==3){
+		if(amount<min1) throw('支付宝/财付通充值金额最小为'+min1+'元');
+		if(amount>max1) throw('支付宝/财付通充值金额最多限额为'+max1+'元');
+		showPaymentFee();
+	}else{
+		if(amount<min) throw('充值金额最小为'+min+'元');
+		if(amount>max) throw('充值金额最多限额为'+max+'元');
+		showPaymentFee();
+	}
+	if(!this.vcode.value) throw('请输入验证码');
+	if(this.vcode.value<4) throw('验证码至少4位');
+	showPaymentFee();
+}
+function toCash(err, data){
+	if(err){
+		davidError(err);
+		$("#vcode").trigger("click");
+	}else{
+		$(':password').val('');
+		$('input[name=amount]').val('');
+		$('#page_list').html(data);
+	}
+}
+$(function(){
+	$('input[name=amount]').keypress(function(event){
+		//console.log(event);
+		event.keyCode=event.keyCode || event.charCode;
+		return !!(
+			// 数字键
+			(event.keyCode>=48 && event.keyCode<=57)
+			|| event.keyCode==13
+			|| event.keyCode==8
+			|| event.keyCode==9
+			|| event.keyCode==46
+		)
+	});
+});
+</script> -->
+<!--
+<script type="text/javascript">
+$(function(){
+	$('.example2').click(function(){
+		var src='/'+$(this).attr('rel');
+		if(src) $('<img>',{src:src}).css({width:'640px',height:'480px'}).dialog({width:660,height:500,title:'充值演示'});
+	});
+});
+</script>
+-->
+
+<!--//复制程序 flash+js-->
+<!-- <script language="JavaScript">
+function Alert(msg) {
+	davidOk(msg);
+}
+function thisMovie(movieName) {
+	 if (navigator.appName.indexOf("Microsoft") != -1) {   
+		 return window[movieName];   
+	 } else {   
+		 return document[movieName];   
+	 }   
+ } 
+function copyFun(ID) {
+	thisMovie(ID[0]).getASVars($("#"+ID[1]).attr('value'));
+}
+</script>
+<script type="text/javascript" src="/skin/js/swfobject.js"></script>
+<script type="text/javascript">
+function showPaymentFee() {
+   $("#ContentPlaceHolder1_txtMoney").val($("#ContentPlaceHolder1_txtMoney").val().replace(/\D+/g, ''));
+   jQuery("#chineseMoney").html(changeMoneyToChinese($("#ContentPlaceHolder1_txtMoney").val()));
+}
+</script> -->
+</head> 
+<body>
+<header class="header" style=" margin-bottom:38px;">
+<script type="text/javascript">
+function indexSign(err, data){
+	// if(err){
+	// 	davidError(err);
+	// }else{
+	// 	reloadMemberInfo();
+	// 	davidOk(data);
+	// }
+	alert('签到成功');
+} 
+</script>
+<div class="header-top-wapper">
+      <ul class="top-user userInfo">
+          <li>您好，<a href="nine_one.html" id="nickname" title="点击修改昵称">abc123</a></li>
+          <li>金额: <span class="color-1 font-weight" id="usermoney">￥12133.0000</span>&nbsp;&nbsp;<a style=" cursor: pointer;" href="javascript:void(0)" onclick="reloadMemberInfo();" class="fa fa-refresh fa-lg color-0"></a></li>
+		  <li>冻结购彩金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+		  <li>证券金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+          <li>金币: <span class="color-1 font-weight" id="usermoney">＄86</span>&nbsp;&nbsp;</li>
+          <li><a class="color-0" href="/index.php?tnt=ds"  dataType="json" call="indexSign" target="ajax" >签到就送</a></li>
+          <li><a class="color-0" href="login.html" target="_top">安全退出</a></li>
+      </ul>
+</div>                        <div class="header-navbg">
+                              <div class="wrapper">
+                                <a href="index.html" ><div class="logo"></div></a>
+                                <div id="dd" class="header-nav-game" tabindex="1">全部游戏
+                                    <ul class="dropdown"> 
+										<li><a href="four.html"><span class='fa fa-chevron-circle-right fa-lg'></span>重庆时时彩</a></li>
+          								<li><a href="five.html"><span class='fa fa-chevron-circle-right fa-lg'></span>北京PK拾</a></li>
+				      
+                         </ul>
+                     </div>
+                      <ul class="header-nav-user">                
+                              <li><a class="default_home" href="index.html" ><div class="fa fa-home fa-2x"></div>网站首页</a></li>
+                              <li><a class="account_autosave" href="six_one.html" ><div class="fa fa-cny fa-2x"></div>充值提现</a></li>
+                              <li><a class="history_playlist" href="seven_one.html" ><div class="fa fa-gamepad fa-2x"></div>游戏报表</a></li>
+                              <li><a class="users_list" href="eight_one.html" ><div class="fa fa-users fa-2x"></div>代理中心</a></li>
+                              <img src="./images/5-130H21SH5.gif" alt="/" style="position:absolute;z-index:1001;margin-left:-40px;margin-top:-6px;"></li></li>
+                              <li><a class="users_info" href="nine_one.html" ><div class="fa fa-cogs fa-2x"></div>账户中心</a></li>
+                              <li><a class="promotion_center" href="one_one.html" ><div class="fa fa-bullhorn  fa-2x"></div>证券中心</a></li>
+                              <li><a class="account_autosave" href="eleven_one.html" ><div class="fa fa-fire  fa-2x"></div>金币兑换</a></li>
+                              <li><a class="csonline_list" href="#000" ><div class="fa fa-wechat fa-2x"></div>在线客服</a></li>
+                              <li><a class="help_general" href="thirteen_one.html" ><div class="fa fa-question fa-2x"></div>常见问题</a></li>
+                         </ul>
+                            </div>
+                        </div>
+                    </header>
+<!-- <script type='text/javascript'>
+function kf(){
+ //客服是否开启 个人客服是否开启
+	var iTop = (window.screen.availHeight-30-570)/2; //获得窗口的垂直位置;
+	var iLeft = (window.screen.availWidth-10-750)/2; //获得窗口的水平位置;
+	var url = 'http://api1.pop800.com/web800/c.do?l=cn&type=0&n=262889&w=0';
+	var winOption = "height=570,width=750,top="+iTop+",left="+iLeft+",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,fullscreen=1";
+	var newWin = window.open(url,window, winOption);
+		return false;
+}
+function down(){
+    window.location="/template/down/inst.php";
+}
+</script> -->
+<div id="rightcon">
+            <div class="head-box">
+                <div class="haed-box-wrapper">
+                    <div class="head-box-bg1" id="transform"></div>
+                    <div class="head-box-bg2" id="transform"></div>
+                    <div class="head-box-bg3"></div>
+                </div>
+            </div>
+            <div class="wrapper bigbox">
+<div class="page-wrapper">
+    <p id="page-title"><span class="fa fa-cny"></span>自动充值</p>
+    <div class="top_menu">
+        <a href="six_four.html">充值记录</a>
+        <a href="six_three.html">提现记录</a>
+        <a href="six_two.html">平台提现</a>
+        <a class="act"  href="six_one.html">自动充值</a>
+    </div>
+    <div class="page-info">
+            <div class="help">
+                <h4 class="fa fa-exclamation-circle"><span>自动充值使用需知</span></h4>
+                <p>1.每天的充值处理时间为：<span class="redts redtsb">早上 10:30 至 次日凌晨01:30</span>;</p>
+                <p>2.在线充值是24小时即充即到 <span class="redts redtsb">如无到账请在服务时间内</span>&nbsp;与客服人员联系处理;</p>
+                <p>3.充值后, <span class="redts">请手动刷新您的余额</span>及查看相关帐变信息,若超过3分钟未上分,请与客服联系;</p>
+                <p>4.选择充值银行, 填写充值金额, 点击 <span class="yellowts">[下一步]</span> 后, 将有详细文字说明及<span class="redts">充值演示</span>;</p>
+                <p>5.充值卡号会频繁更换，<span class="redts redtsb">请一定要复制最新卡号信息</span>,不可直接用上次充值的卡号信息,<span class="redts redtsb">否则充到错误的卡号而产生的损失平台一律不负责！</span>。</p>
+            </div>
+        <div class="page_list" id="page_list">
+			<form action="/index.php?tnt=cir" method="post" target="ajax" onajax="checkRecharge" call="toCash" dataType="html">
+						 <table><tr><td>由于系统原因，官方暂时关闭充值通道！如有疑问请联系在线客服！</td></tr></table>
+                			</form>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+</div>
+</div><footer class="footer">
+    <div class="wrapper">
+        <div class="footer-box1">
+            <h2><span class="fa fa-question fa-2x"></span>帮助</h2>
+            <ul>
+                                <li><a href="thirteen_three.html" title="平台功能介绍">功能介绍</a></li>
+                                <li><a href="thirteen_one.html" title="常见问题说明">常见问题</a></li>
+          </ul>
+        </div>
+        <div class="footer-box1 footer-box2">
+            <h2><span class="fa fa-gamepad fa-2x"></span>玩法介绍</h2>
+            <ul>                               
+                                <li><a href="thirteen_two.html" title="时时彩">时时彩</a></li>
+                                <li><a href="thirteen_two.html" title="11选5">11选5</a></li>
+                                <li><a href="thirteen_two.html" title="快三">快三</a></li>
+                                <li><a href="thirteen_two.html" title="排列三/五">排列三/五</a></li>
+                                <li><a href="thirteen_two.html" title="3D">3D</a></li>
+          </ul>
+        </div>
+        <div class="footer-box1">
+            <h2><span class="fa fa-credit-card fa-2x"></span>支持主流银行</h2>
+            <img src="./images/yh.png" alt="主流银行">        </div>
+        <a href="/app.apk" class="fa fa-cloud-download fa-3x footer-bt" onclick="down()"> <span class="footer-bt-style">下载手机APP</span></a>    </div>
+    <div class="footnotice">充值卡号会频繁更换，请一定要复制最新卡号信息,不可直接用上次充值的卡号信息,否则充到错误的卡号而产生的损失平台一律不负责！</div>
+</footer>
+<div id="wanjinDialog"></div></body>
+</html>

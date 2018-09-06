@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    background: #ffffff;
+    font-family: "Microsoft YaHei", simsun, Arial;
+    font-size: 12px;
+}
+
+.download-pc-wrap {
+    margin: 0px auto;
+    width: 100%
+}
+
+.download-pc-wrap .logo {
+    margin: 0 auto;
+    display: block;
+    width: 181px;
+    height: 60px
+}
+
+.download-pc-wrap .logo a {
+    display: block;
+    width: 181px;
+    height: 60px;
+    background: url(../img/logo.png) no-repeat;
+    text-indent: -10000px;
+    outline: 0
+}
+
+.download-pc-wrap .download-box {
+    width: 100%;
+    margin-top: 0px
+}
+
+.download-pc-wrap .download-box .head-part {
+    padding: 5%;
+    background:url(images/lba_03.jpg) #98d8fd no-repeat center;
+    overflow: hidden;
+    background-size: contain
+}
+
+.download-pc-wrap .download-box .head-part .app-head .app-icon {
+    margin-right: 15px;
+    float: left
+}
+
+.download-pc-wrap .download-box .head-part .app-head .app-icon img {
+    width: 60px;
+    height: 60px;
+    display: block;
+    border-radius: 70px
+}
+
+.download-pc-wrap .download-box .head-part .app-head .app-content {
+    padding-top: 20px
+}
+
+.download-pc-wrap .download-box .head-part .app-head .app-content .app-title {
+    font: bold 14px "å¾®è½¯é›…é»‘";
+    color: #fff;
+}
+
+.app-releasetime p {
+    color: #fff;
+}
+
+.download-pc-wrap .download-box .head-part .app-neck {
+    margin-top: 20px;
+}
+
+.download-pc-wrap .download-box .head-part .app-neck .app-install {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.download-pc-wrap .download-box .head-part .app-neck .app-install .btn {
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: block
+}
+
+.download-pc-wrap .download-box .head-part .app-neck .app-install .warn {
+    color: #fff;
+    line-height: 32px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 10px
+}
+
+ .tail-part {
+    height: 334px;
+    background: #fff
+}
+
+.tail-part .app-qrcode {
+    padding-top: 33px;
+    margin-bottom: 32px
+}
+
+ .tail-part .app-qrcode .qr-img {
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: 0 auto
+}
+
+ .tail-part .app-qrcode .pc-tip {
+    margin-top: 10px;
+    color: #999;
+    text-align: center
+}
+
+.tail-part .share {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-top: 1px solid #e3e3e3
+}
+
+.tail-part .share p {
+    line-height: 25px;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #999;
+    margin-left: 5%;
+    width: 90%
+}
+
+ .tail-part .share .share-list {
+    margin-top: 12px;
+    text-align: center
+}
+
+ .tail-part .share .share-list .item {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    margin-right: 20px
+}
+
+ .tail-part .share .share-list .item a {
+    width: 38px;
+    height: 38px;
+    display: inline-block
+}
+
+ .tail-part .share .share-list .item.weibo {
+    background: url(../img/share-weibo.png)
+}
+.tail-part .share .share-list .item.qzone {
+    background: url(../img/share-qq.png)
+}
+ .tail-part .share .share-list .item.tweibo {
+    background: url(../img/share-tweibo.png);
+    margin-right: 0
+}

@@ -1,0 +1,152 @@
+<include file="Public/head" />
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="javascript:history.go(-1);">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <i>市场管理</i>
+    </div>
+    <div class="minute">
+        <div class="common">
+            直推人数<br />
+            <i><{$count}></i>
+        </div>
+
+        <div class="common">
+            团队收益<br />
+            <i><{$teamcount}></i>
+        </div>
+
+        <div class="common" style="border:none;">
+            团队总入金<br />
+            <i><{$zongrujin}></i>
+        </div>
+    </div>
+
+    <div class="widget-body" style="margin: 0 10%;overflow-x: auto">
+        <div class="widget-main padding-8">
+            <div id="tree1" class=""></div>
+        </div>
+    </div>
+    <input type="hidden" id="hid_footactivity" value="1" />
+
+    <include file="public/footer"/>
+    <script src="__CONTENT__/ace/js/jstree/src/jstree.js"></script>
+    <link href="__CONTENT__/ace/js/jstree/src/themes/default/style.css" rel="stylesheet" />
+    <script>
+        function BindTree() {
+            //$("#tree1").jstree("uncheck_all");
+            $('#tree1').data('jstree', false).empty(); //清空
+            var TreeData = [];
+
+            var _url = "<{:url('User/getUserLevTree')}>";
+
+            $.ajax({
+                type: "POST", // 用POST方式传输
+                dataType: "json", // 数据格式:JSON
+                url: _url, // 目标地址
+                data: {
+                    "ClientID": "<{$uid}>",
+                },
+                error: function(msg) {
+                    console.info(msg);
+                },
+                success: function(objs) {
+                    for(var key in objs) {
+                        var temp = "<i class='icon-user red'></i>";
+                        if(objs[key]['parent'] != "#") {
+                            temp += "【" + (objs[key]['parentcount']+1) + "代】";
+                        }
+                        temp += " (" + objs[key]['count'] + "人) ";
+                        temp += " (" + objs[key]['fullname'] +
+                            ") &nbsp;&nbsp;&nbsp;";
+                        temp += objs[key]['clientlevel'] +
+                            "&nbsp;&nbsp;&nbsp;";
+                        temp += " <span style='color:red'> 注册日期：" + objs[key]['createdata'] +
+                            "</span> &nbsp;&nbsp;&nbsp;";
+                        if(objs[key]['jihuo'] == 0){
+                            temp += "<a onclick='jihuo("+objs[key]['id']+")' v_id='"+ objs[key]['id'] +"'>激活</a>"
+                        }else{
+                            temp += "<a>已激活</a>"
+                        }
+                        var obj = {
+                            id: objs[key]['id'],
+                            parent: objs[key]['parent'],
+                            text: temp
+                        };
+                        TreeData.push(obj);
+                    }
+
+                    $("#tree1").jstree({
+                        "plugins": ["checkbox"],
+                        "core": {
+                            "themes": {
+                                "theme": "classic",
+                                "dots": true,
+                                "icons": false
+                            },
+                            'data': TreeData
+                        }
+                    });
+                    // $("#span_SumCountUser")[0].innerText = TreeData.length;
+                }
+            });
+
+            // 展开节点
+            $("#tree1").on("loaded.jstree", function(event, data) {
+                // 展开所有节点
+                $('#tree1').jstree('open_all');
+                // 展开指定节点
+                // data.instance.open_node('1002');     // 单个节点 （1 是顶层的id）
+                //data.instance.open_node([1, 10]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行）
+            });
+        }
+
+        function DevelopTree() {
+            $('#tree1').jstree('open_all');
+        }
+
+        function MergeTree() {
+            $('#tree1').jstree('close_all');
+        }
+        BindTree();
+    </script>
+    <!-- 功能 -->
+    <script>
+        function jihuo (id) {
+            var url1 = "<{:url('User/jihuo')}>";
+            // var id = $(this).attr("v-id");
+            layer.open({
+                content: '当前用户未激活，激活消耗<{:config("mydefind.kaihujin")}>开户金,请保证开户金充足！'
+                , btn: ['激活', '再看看']
+                , yes: function (index) {
+                    layer.open({
+                        type: 2,
+                        content: "提交中",
+                    });
+                    $.post(url1, {"id": id}, function (e) {
+                        layer.closeAll();
+                        if (e.code != 1) {
+                            layer.open({
+                                content: e.msg,
+                                btn: ["确定"],
+                                yes: function () {
+                                    window.location.href = e.url;
+                                }
+                            });
+                        } else {
+                            layer.open({
+                                content: e.msg,
+                                skin: "msg",
+                            });
+                            window.location.href = e.url;
+                        }
+                    }, "json");
+                    layer.close(index);
+                },
+                no: function (index) {
+                    layer.close(index);
+                }
+            });
+        };
+    </script>

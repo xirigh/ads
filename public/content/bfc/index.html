@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>BFC</title>
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <img src="img/logo.png" alt="">B F C
+        </div>
+        <!-- 头部 -->
+        <div class="lunbo">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                      <img src="img/banner1.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                      <img src="img/banner2.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                      <img src="img/banner3.jpg" alt="">
+                  </div>
+                  
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+        <!-- 轮播 -->
+        <div class="minute">
+            <div class="common">
+                通用积分<br>
+                <i>0</i>
+            </div>
+            <div class="common" style="border:none;">
+                积分<br>
+                <i>2000</i>
+            </div>
+        </div>
+        <!-- 通用积分 -->
+        <div class="scan">
+            <a href="#">
+                <i class="iconfont icon-saomiao"></i>
+            </a>
+        </div>
+        <!-- 扫描 -->
+        <div class="sort">
+            <div class="sotr-cont">
+                <a href="#" class="out">
+                <i class="iconfont icon-zhuanchu"></i><br>
+                转出
+            </a>
+            <a href="#" class="out">
+                <i class="iconfont icon-zhuanru"></i><br>
+                转入
+            </a>
+            <a href="#" class="out" style="border:none">
+                <i class="iconfont icon-maichu"></i><br>
+                卖出
+            </a>
+            </div>
+            <div class="sotr-cont">
+                <a href="#" class="out">
+                <i class="iconfont icon-mairu"></i><br>
+                买入
+            </a>
+            <a href="#" class="out">
+                <i class="iconfont icon-zichanguanli"></i><br>
+                数字资产
+            </a>
+            <a href="#" class="out" style="border:none">
+                <i class="iconfont icon-rizhi"></i><br>
+                财务日志
+            </a>
+            </div>
+            <div class="sotr-cont" style="border:none">
+                <a href="#" class="out">
+                <i class="iconfont icon-qipai"></i><br>
+                娱乐游戏
+            </a>
+            <a href="#" class="out">
+                <i class="iconfont icon-ditumoshi"></i><br>
+                藏宝图
+            </a>
+            <a href="#" class="out" style="border:none">
+                <i class="iconfont icon-shangcheng"></i><br>
+                商城
+            </a>
+            </div>
+            
+        </div>
+        <!-- 功能 -->
+        <div class="footer">
+            <a href="#">
+                <i class="iconfont icon-shouye-copy"></i><br>
+                主页
+            </a>
+            <a href="#">
+                <i class="iconfont icon-wodetouzi"></i><br>
+                行情
+            </a>
+            <a href="#">
+                <i class="iconfont icon-wo" ></i><br>
+                我
+            </a>
+            <a href="#">
+                <i class="iconfont icon-gengduo"></i><br>
+                更多
+            </a>
+        </div>
+        <!-- 底部 -->
+    </div>
+
+
+    <script src="js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+          spaceBetween: 30,
+          centeredSlides: true,
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+    </script>
+</body>
+</html>

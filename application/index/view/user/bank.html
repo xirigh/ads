@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__CONTENT__/bfc/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/index.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/bootstrap.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/main.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/record.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/login.css">
+    <title>充值资金</title>
+</head>
+<body>
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="<{:url('User/home')}>">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <i>充值资金</i>
+    </div>
+    <form method="post" id="form1" action="<{:url('User/bankact')}>" enctype="multipart/form-data">
+    <div class="find" id="app">
+        <p>
+            充值地址
+            <br>
+            <input type="text" name="ba_address" value="<{:config('mydefind.ethaddress')}>" readonly>
+        </p>
+        <p>
+            今日汇率
+            <br>
+            <input  type="text" name="ba_huilv" value="<{:config('mydefind.eth2usd')}>" readonly />
+        </p>
+        <p>
+            备注码
+            <br>
+            <input  name="ba_code" type="text" value="<{$code}>" readonly>
+        </p>
+        <hr>
+        <p style="display: none">
+            充值钱包<br>
+            <select class="form-control" name="ba_type">
+                <option value="1" selected>开户金</option>
+                <option value="2">余额</option>
+            </select>
+        </p>
+        <p>
+            充值金额(USD)
+            <br>
+            <input name="ba_money" type="text" v-model="usd" placeholder="请输入充值金额">
+        </p>
+        <p>
+            充值数量(ETH)
+            <br>
+            <input name="ba_num" type="text" v-model="eth" placeholder="请输入充值数量">
+        </p>
+        <p style="display: none">
+            充值凭证
+            <br>
+            <input name="ba_file" id="uploadfile" type="file" accept="image/*">
+        </p>
+
+        <p class="refer">
+            <eq name="state" value="1">
+            <input type="button" onclick="sendform();" value="提交">
+                <else />
+                <input type="button" disabled value="额度已满，充值通道已关闭">
+            </eq>
+        </p>
+    </div>
+    </form>
+        <h3 style="text-align: center">我的充值列表</h3>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>id</th>
+                <th>充值金额</th>
+                <th>充值数量</th>
+                <th>充值地址</th>
+                <th>充值时间</th>
+                <th>充值状态</th>
+                <th>备注码</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="v" key="k">
+            <tr>
+                <td><{$k}></td>
+                <td><{$v.ba_money}></td>
+                <td><{$v.ba_num}></td>
+                <td><{$v.ba_address}></td>
+                <td><{$v.ba_create_time}></td>
+                <td><{$v.ba_state_text}></td>
+                <td><{$v.ba_code}></td>
+                <td><button class="btn btn-default" onclick="uppingzheng('<{$v.ba_id}>');" <neq name="v.ba_state" value="3">disabled</neq> >上传凭证</button></td>
+            </tr>
+            </volist>
+        </table>
+    <div><{$list|raw}></div>
+    </div>
+</div>
+</body>
+</html>
+
+
+<script src='__CONTENT__/ace/js/jquery-2.0.3.min.js' language='JavaScript'></script>
+<script src="__CONTENT__/layer-v3.1.1/layer/layer.js"></script>
+<script src="__CONTENT__/js/Common.js"></script>
+<script src="__CONTENT__/layer_mobile/layer.js"></script>
+<load href="__ASSETS__/js/vue.js"></load>
+<load href="__ASSETS__/js/jquery.form.min.js"></load>
+
+
+<script>
+function uppingzheng(id){
+    layer.open({
+        content:"<form method='post' enctype='multipart/form-data' action='"+"<{:url('User/upimgfile')}>"+"' id='form3'>\n" +
+            "    <div class=\"form-group\">\n" +
+            "        <label for=\"exampleInputFile\">上传有效凭证(jpg/png格式，1M以内)</label>\n" +
+            "        <input type=\"file\" name='ba_file' id=\"exampleInputFile\">\n" +
+            "        <input type=\"hidden\" name='id' value='"+id+"'>\n" +
+            "    </div>\n" +
+            "    <button type=\"button\" class=\"btn btn-default\" onclick='sendform2();'>提交</button>\n" +
+            "</form>",
+    });
+
+}
+</script>
+
+<script>
+    function beforeCheck(){
+        layer.open({
+            type:2,
+            content: "提交中",
+        });
+    }
+    function successfun(res){
+        layer.closeAll();
+        if(res.code != 1){
+            layer.open({
+                content: res.msg,
+                btn:'我知道了',
+                yes:function(){
+                    window.location.reload();
+                }
+            });
+        }else{
+            layer.open({
+                content: res.msg,
+                btn:"我知道了",
+                yes:function(){
+                    window.location.reload();
+                }
+            });
+        }
+    }
+    var options = {
+        beforeSubmit: beforeCheck, //提交前的回调函数
+        success: successfun,  //提交成功后的回调函数
+        dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+        clearForm: false,  //成功提交后，是否清除所有表单元素的值
+        resetForm: true,  //成功提交后，是否重置所有表单元素的值
+        timeout: 10000     //限制请求的时间，当请求大于3秒后，跳出请求
+    };
+    function sendform() {
+        $('#form1').ajaxSubmit(options);
+    };
+    function sendform2() {
+        $('#form3').ajaxSubmit(options);
+    };
+</script>
+<script>
+    var huilv = "<{:config('mydefind.eth2usd')}>";
+    var app = new Vue({
+        el:"#app",
+        data:{usd:"",eth:""}
+    });
+    $("input[name=ba_money]").change(function(){
+        var num = $(this).val();
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (!re.test(num)){
+            app.usd = "";
+            app.eth = "";
+            return false;
+        }
+        var eth = parseFloat((num / huilv).toFixed(8));
+        $("input[name=ba_num]").val(eth);
+
+    });
+    $("input[name=ba_num]").keyup(function(){
+        var num = $(this).val();
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (!re.test(num)){
+            app.usd = "";
+            app.eth = "";
+            return false;
+        }
+        var eth = parseFloat((num * huilv).toFixed(8));
+        $("input[name=ba_money]").val(eth);
+
+    });
+</script>

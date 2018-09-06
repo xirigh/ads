@@ -1,0 +1,427 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>密码管理</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="renderer" content="webkit">
+
+    
+<link href="./css/jquery-ui.css" rel="stylesheet"/>
+<link href="./css/jquery-ui.structure.css" rel="stylesheet"/>
+<link href="./css/jquery-ui.theme.css" rel="stylesheet"/>
+<link href="./css/base.css" rel="stylesheet"/>
+<link href="./css/funds.css" rel="stylesheet"/>
+<link href="./css/safe.css" rel="stylesheet"/>
+<link href="./css/s-ui.css" rel="stylesheet"/>
+<script src="./js/jquery-1.9.1.min.js"></script>
+
+<!-- <script src="/Scripts/static/jquery-1.9.1.min.js"></script>
+<script src="/Scripts/static/jquery-ui-1.10.2.js"></script>
+<script src="/Scripts/static/jquery.easing.1.3.js"></script>
+<script src="/Scripts/static/jquery.tmpl.min.js"></script>
+<script src="/Scripts/static/jquery.flot.js"></script>
+<script src="/Scripts/static/jquery.flot.crosshair.js"></script>
+<script src="/Scripts/static/jquery.cookie.js"></script>
+<script src="/Scripts/static/phoenix.base.js"></script>
+<script src="/Scripts/static/phoenix.Class.js"></script>
+<script src="/Scripts/static/phoenix.Event.js"></script>
+<script src="/Scripts/static/phoenix.util.js"></script>
+<script src="/Scripts/static/phoenix.Timer.js"></script>
+<script src="/Scripts/static/phoenix.Input.js"></script>
+<script src="/Scripts/static/phoenix.Tab.js"></script>
+<script src="/Scripts/static/phoenix.Slider.js"></script>
+<script src="/Scripts/static/phoenix.Hover.js"></script>
+<script src="/Scripts/static/phoenix.Tip.js"></script>
+<script src="/Scripts/static/phoenix.Mask.js"></script>
+<script src="/Scripts/static/phoenix.MiniWindow.js"></script>
+<script src="/Scripts/static/phoenix.Validator.js"></script>
+<script src="/Scripts/static/phoenix.DatePicker.js"></script>
+<script src="/Scripts/static/phoenix.BASE64.js"></script>
+<script src="/Scripts/static/dateUtil.js"></script>
+<script src="/Scripts/static/datePicker.js"></script>
+<script src="/Scripts/static/page.js"></script>  
+<script src="/Scripts/static/phoenix.Verification.js"></script>
+<script src="/Scripts/static/phoenix.Common.js"></script>
+ -->
+    
+<style>
+    .ui-check-tip {
+        color: #999;
+    }
+
+    .ui-check-right {
+        padding-left: 24px;
+        color: green;
+    }
+     .help-block {
+      width: 170px;
+      display: block;
+      margin-left: 21%;
+      height: 10px;
+      padding-top: 10px;
+      color: red;
+}
+</style>
+</style>
+
+
+    <script type="text/javascript">
+        global_params_notice = "all,ad_top",
+        global_userName = 'dang037';
+        global_userID = '23006';
+        _logOut = 'http://www.play688.com';
+    </script>
+
+    <script type="text/javascript">
+        var baseUrl = 'http://www.play688.com';
+        var staticFileContextPath = 'http://www.play688.com';
+    </script>
+
+  
+</head>
+<body class="user-body">
+
+    <!-- toolbar start -->
+<div class="bg-toolbar"></div>
+<div class="toolbar">
+    <div class="g_33">
+        <div class="game-menu" id="J-top-game-menu">
+            <span class="game-menu-text dropdown-menu-btn">游戏选择</span>
+            <div class="game-menu-panel">
+                <span class="triangle game-menu-triangle"><span></span></span>
+                <div class="game-menu-inner">
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">时时彩</div>
+                        <div class="game-menu-list">
+                                    <a class="hot-game" href="/GameBet/GameBetPage?lotteryCode=10001">重庆时时彩<i></i></a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10003">新疆时时彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10004">天津时时彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10005">五分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10007">二分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10006">分分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10008">韩国1.5分</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10009">东京1.5分彩</a>
+                           
+                        </div>
+                    </div>
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">11选5</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=20001">十一运夺金</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20002">广东11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20004">江西11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20003">上海11选5</a>
+                        </div>
+                    </div>
+                   
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">低频</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=30001">福利彩票3D</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=30002">体彩排列三</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=70001">上海时时乐</a>
+                                <a href="/GameBet/GameBetPagePK10?lotteryCode=60002">北京 PK10</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <a href="index.html" class="back-top-home">返回首页</a>
+        <ul class="menu">
+            <li class="username">您好，dang037</li>
+            <li class="user hover" id="J-top-userinfo">
+                <a href="javascript:void(0);" class="dropdown-menu-btn">我的账户<i class="tri"></i></a>
+                 <div class="simazhao" style="width: 100%;height: 120px;">
+                <div class="menu-nav">
+                    <i class="tri"></i>
+
+                  <a href="touzhu.html">投注记录</a>
+                    <a href="zhanghu.html">账户明细</a>
+                    <a href="geren.html">个人报表</a>
+                    <!--  -->
+                    <a href="zhanghu.html">账户中心</a>
+                       <a href="daili.html">代理中心</a>
+                    
+                    
+                    <!--  -->
+                    </div>
+             </div>
+            </li>
+            
+            <li class="balance">
+                <span id="hiddBall" style="display:none">余额：<span id="spanBall" name="spanBall">0.5200</span>
+                    &nbsp;积分:<span id="spanBallIntegral" name="spanBallIntegral">0</span>   <a href="/ChargeWithdrawal/ExchangeIntegralIndex" >[兑换]</a>             
+                <i class="refreshBall"></i></span>
+                <span id="hiddenBall">余额已隐藏 <a href="#" id="showAllBall">显示</a></span>
+            </li>
+            <li class="recharge"><a href="woyaochongzhi.html">充值</a></li>
+            <li class="withdrawals"><a href="tixian.html">提现</a></li>
+            <li class="quit"><a href="login.html">退出</a></li>
+        </ul>
+    </div>
+</div>
+
+   
+    <!-- toolbar end -->
+    <!-- header start -->
+    <!-- toolbar end -->
+    <!-- header start -->
+<div class="header">
+        <div class="g_33">
+            <a href="/home/index/" class="logo" name="Page_firefrog_index"></a>
+<div class="user-tools">
+            
+                <div class="user-info clearfix">
+                    <!--  -->
+                    <a class="user-head user-head-normal" target="_blank"></a>
+                    <!--  -->
+                    <div class="user-balance">
+    				<h2 class="user-name">欢迎你,<strong>dang037</strong></h2>
+                        <div class="user-balance-title">可用  余额</div>
+                        <div class="user-balance-number" name="spanBall">0.5200</div>
+                    </div>
+                </div>
+ 			
+                <div class="safe-info">
+
+                    <div class="safe-info-progress ">
+                        <div class="progress-wapper progress-low"><div class="progress-inner" style="width:0%"></div></div>
+                    </div>
+                   <div class="safe-info-ip">
+                        上次登录:
+                        <!--  -->
+                        2017/6/21 16:02:50
+                        <!--  -->
+                        </br>
+                    </div>
+                </div>
+				<div class="account-info">
+                    <div class="account-info-btn clearfix">
+                          <a target="_blank" href="woyaochongzhi.html" class="btn-withdrawals">我要充值</a>
+                        <a target="_blank" href="tixian.html" class="btn-transfer">我要提现</a>
+                        <a href="" target="_blank" class="link-service" title="客服" id="custom-service">联系客服</a>
+                    </div>
+									
+                </div>
+          	</div>
+          
+         
+        </div>
+    </div>    
+    <!-- header end -->
+    <div class="g_33 common-main">
+
+
+
+        <div class="g_5">
+            <div class="common-side">
+                 <div class="nav-side">
+                    <dl class="side-bet">
+                        <dt class="title">投注管理</dt>
+                        <dd><a href="touzhu.html">投注记录</a></dd>
+                        <dd><a href="zhuihao.html">追号记录</a></dd>
+                        <dd><a href="zhanghu.html">账户明细</a></dd>
+                        <dd><a href="geren.html">个人报表</a></dd>
+                    </dl>
+                    <dl class="side-safe">
+                        <dt class="title">账户安全</dt>
+                        <dd><a href="zhanghuxinxi.html">账户信息</a></dd>
+                        <dd><a href="yonghumima.html">用户密码</a></dd>
+                        <dd><a href="zijinmima.html">资金密码</a></dd>
+                        <dd><a href="ziliaoxiugai.html">资料修改</a></dd>
+                    </dl>
+                    <dl class="side-service">
+                        <dt class="title">服务</dt>
+                        
+                        <dd><a href="wangzhangonggao.html">网站公告</a></dd>
+                        <dd><a href="remenhuodong.html">热门活动</a></dd>
+                                                                    </dl>
+
+                    
+                    <dl class="side-proxy">
+
+                        <dt class="title">代理中心</dt>
+
+                        <dd><a href="daili.html">代理首页</a></dd>
+                        <dd><a href="kaihuzhongxin.html">开户中心</a></dd>
+                        <dd><a href="huiyuanliebiao.html">会员列表</a></dd>
+
+                        <dd><a href="tuanduibaobiao.html">团队报表</a></dd>
+                        <dd><a href="tuanduizhangbian.html">团队帐变</a></dd>
+                        <dd><a href="tuanduitouzhu.html">团队投注</a></dd>
+
+                        <dd><a href="xiajichongzhi.html">下级充值</a></dd>
+                        
+
+                    </dl>
+                    <dl class="side-funds">
+                        <dt class="title">资金</dt>
+                        <dd><a href="woyaochongzhi.html">我要充值</a></dd>
+                        <dd><a href="woyaotixian.html">我要提现</a></dd>
+                        <dd><a href="jifenduihuan.html">积分兑换</a></dd>
+                        
+                     
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+<div class="g_28 g_last">
+    <div class="common-content content-password-edit">
+        <div class="title">用户密码</div>
+        <div class="content">
+            <!-- ucenter-safe-password-edit start -->
+            <div class="ui-tab tab-change-pswd">
+                <ul class="ui-tab-title tab-title-from clearfix">
+                    <li class="current">修改登录密码</li>
+                  
+                </ul>
+
+
+                <form id="J-form-password" class="defaultForm">
+
+                    <ul class="ui-form ui-tab-content ui-tab-content-current">
+
+
+                        <li>
+                          <div class="user-info clearfix form-group" style="margin-top: 30px;">
+                            <label class="ui-label" for="info">当前登录密码：</label>
+                            <input type="password" name="password" class="input form-control" id="J-password" value="">
+                            <span class="ui-check"></span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="user-info clearfix form-group" style="margin-top: 30px;">
+                            <label class="ui-label" for="checkInfo">新登录密码：</label>
+                            <input type="password" name="password_new" class="input  form-control" id="J-password-new" value="">
+                            <span class="ui-check"></span>
+                          </div>
+                        </li>
+                        <li>
+                           <div class="user-info clearfix form-group" style="margin-top: 30px;">
+                                <label class="ui-label" for="checkInfo">确认新密码：</label>
+                                <input type="password" class="input form-control" name="password_new2" id="J-password-new2" value="">
+                                <span class="ui-check"></span>
+                           </div>
+                        </li>
+                       
+                        <li class="ui-btn">
+                            <a href="javascript:void(0);" class="btn" id="J-button-submit-password">
+
+                          <button name="submit " id="J-button-submit-password" type="submit" class=" btn-primary submit-btn" value="Enter 登录" style="outline: none;border: none;background:none;">修改</button>
+                            <b class="btn-inner"></b></a>
+                        
+                        </li>
+                    </ul>
+                </form>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="J-ui-mask-msg" style="position:absolute;display:none;z-index:601;width:360px;" class="pop pop-success w-6">
+    <i class="ico-success"></i>
+    <h4 class="pop-text">操作成功</h4>
+</div>
+<div class="pop pop-search" id="Idivs" style="position:absolute;z-index:2;display:none ">
+    <div class="hd"><i id="CloseDiv"></i>温馨提示</div>
+
+    <div class="bd">
+        <div class="bd text-center">
+            <i class="ico-success"></i>
+            <h4 class="pop-text">恭喜您密码修改成功，请重新登录。</h4>
+        </div><br>
+
+
+    </div>
+    <a class="btn closeTip" id="closeTip1" style="" href="javascript:void(0);">确定</a>
+</div>
+
+        
+
+
+    </div>
+
+<div class="footer">
+    <div class="quality"></div>
+    <p>2007-2017@永利国际娱乐 <br>提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票！</p>
+</div>
+<script src="./js/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="./js/bootstrapValidator.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.defaultForm')
+        .bootstrapValidator({
+            message: '此值无效',
+            //live: 'submitted',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                 password: {
+                    message: '标题无效',
+                    validators: {
+                        notEmpty: {
+                            message: '当前登录密码不能是空的!'
+                        },
+                         stringLength: {
+                            min: 5,
+                            max: 20,
+                            message: '密码长度必须在5到20之间!'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: '请输入正确的登陆密码!'
+                        }
+                    }
+                },
+                password_new: {
+                   validators: {
+                        notEmpty: {
+                            message: '新登陆密码不能是空的!'
+                        },
+                          stringLength: {
+                            min: 5,
+                            max: 20,
+                            message: '新密码长度必须在5到20之间!'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: '请输入正确的登陆密码!'
+                        }
+                    }
+                },
+                password_new2: {
+                      validators: {
+                      notEmpty: {
+                      message: '确认密码不能为空!'
+                      },
+                      identical: {
+                      field: 'password_new',
+                      message: '两次输入密码不一致!'
+                  }
+              }
+            }
+        }
+    })
+});
+</script>    
+
+    
+

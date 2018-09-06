@@ -1,0 +1,397 @@
+<include file="Public/base" />
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+<script src="__CONTENT__/ace/js/jstree/src/jstree.js"></script>
+<link href="__CONTENT__/ace/js/jstree/src/themes/default/style.css" rel="stylesheet" />
+<script src="__CONTENT__/ace/js/jstree/src/jstree.checkbox.js"></script>
+<script src='__CONTENT__/js/bootbox.min.js' language='JavaScript'></script>
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+			} catch(e) {}
+		</script>
+		<style>
+			#tabList th {
+				background: #FFF;
+				vertical-align: middle;
+			}
+			
+			#tabList td {
+				vertical-align: middle;
+			}
+		</style>
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;权限管理&nbsp;&nbsp;>&nbsp;&nbsp;角色管理
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+		<div class="row">
+
+			<div class="col-xs-12 widget-main ">
+				<div class="">
+
+					<h4 class="lighter">
+						<button id="btnAdd" class="btn btn-primary btn-info " onclick="ShowEditInfo('Add');">
+							<i class="icon-plus bigger-120"> 新建角色</i>
+						</button>
+					</h4>
+
+				</div>
+
+				<div class="table-responsive">
+					<table id="tabList" class="table table-striped table-bordered table-hover datatable">
+						<thead>
+							<tr>
+								<th class="center">#</th>
+								<th class="center">角色编号</th>
+								<th class="center">角色名称</th>
+								<th class="center">备注</th>
+								<th class="center">更新人</th>
+								<th class="center">更新时间</th>
+								<th class="center">操作</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<volist name="rolelist" id="v">
+							<tr>
+								<td class="center col-xs-0 col-sm-0"><{$v.ur_id}></td>
+								<td class="center col-xs-1 col-sm-1"><{$v.role_code}></td>
+								<td class="center col-xs-2  col-sm-2"><{$v.role_name}></td>
+								<td class="center col-xs-4 col-sm-4"><{$v.ur_remark}></td>
+								<td class="center col-xs-1 col-sm-1"><{$v.create_user|uid2uname}></td>
+								<td class="center col-xs-2 col-sm-2"><{$v.create_time}></td>
+								<td class="center col-xs-2 col-sm-2">
+
+									<div class="btn-group">
+										<button class="btn btn-xs btn-info" onclick="ShowEditInfo('Read','<{$v.ur_id}>')">
+											<i class="icon-zoom-in bigger-120"></i>查看
+										</button>
+										<button class="btn btn-xs btn-success" onclick="ShowEditInfo('Edit','<{$v.ur_id}>')">
+											<i class="icon-edit bigger-120"></i>修改
+										</button>
+										<button class="btn btn-xs btn-warning" onclick="DeleteRole('<{$v.ur_id}>')">
+											<i class="icon-remove bigger-120"></i>删除
+										</button>
+									</div>
+								</td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+
+					<div>
+						<ul class="pagination">
+							<li>
+								<!--<a>当前1/1 每页10条 共2条</a>-->
+								<{$rolelist|raw}>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /.table-responsive -->
+
+				<div class="modal   fade" tabindex="-1" role="dialog" id="editModel">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title"><span id="span_InfoTitle"></span></h4>
+							</div>
+							<div class="modal-body">
+
+								<form id="Form1" class="form-horizontal" role="form" method="post" action="SaveSystemMessageDo">
+									<div class="form-group">
+
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 角色编号</label>
+										<div class="col-sm-9">
+											<input type="text" id="txtRoleCode" name="RoleCode" placeholder="" class="col-xs-12 col-sm-9 uneditable-input" value="<{$nowid}>"  disabled /> <label class="middle red">*</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 角色名称</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="txtRoleName" name="RoleName" placeholder="" class="col-xs-12 col-sm-9" /> <label class="middle red">*</label>
+										</div>
+
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 备注 </label>
+
+										<div class="col-sm-9">
+											<textarea id="txtRemark" name="Remark" class="col-xs-12 col-sm-9"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 权限 </label>
+
+										<div class="col-sm-9">
+											<div id="tree1" class=""></div>
+										</div>
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="button" id="btn_Save" class="btn btn-primary" onclick="SaveForm();">保存</button>
+							</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script type='text/javascript'>
+	$(function() {
+		$('#Form1').bootstrapValidator({　　　
+			message: 'This value is not valid',
+			　feedbackIcons: {　　　　　　　　 //valid: 'glyphicon glyphicon-ok',
+				　　　　　　　　 //invalid: 'glyphicon glyphicon-remove',
+				　　　　　　　　 //validating: 'glyphicon glyphicon-refresh'
+				　　　　　　　　},
+			fields: {
+				RoleCode: {
+					validators: {
+						notEmpty: {
+							message: '角色编号不能为空'
+						}
+					}
+				},
+				RoleName: {
+					validators: {
+						notEmpty: {
+							message: '角色名称不能为空'
+						}
+					}
+				}
+			},
+			submitHandler: function(validator, form, submitButton) {
+
+			}
+		})
+
+		$("#btn_Save").attr('disabled', false);
+	});
+</script>
+<script type="text/javascript">
+	var FormStatus;
+	var RoleCode;
+
+	function ShowEditInfo(type, roleCode) {
+
+		FormStatus = type;
+		RoleCode = roleCode;
+
+		$('#Form1')[0].reset();
+
+		BindTree();
+		$('#tree1').jstree('deselect_all');
+
+		$("#editModel").modal({
+			keyboard: true
+		});
+
+	}
+	window.onload = function() {
+
+		$('#editModel').on('show.bs.modal', function() {
+
+		});
+		$('#editModel').on('shown.bs.modal', function() {
+
+			if(FormStatus == "Add") {
+				$('#span_InfoTitle')[0].innerText = "添加角色信息";
+				$("#btn_Save")[0].style.display = "inline";
+
+			} else if(FormStatus == "Edit") {
+				$('#span_InfoTitle')[0].innerText = "修改角色信息";
+
+				BindEditForm();
+				SetFormDisabled(false);
+				$("#btn_Save")[0].style.display = "inline";
+
+			} else if(FormStatus == "Read") {
+				$('#span_InfoTitle')[0].innerText = "查看角色信息";
+				BindEditForm();
+				SetFormDisabled(true);
+				$("#btn_Save")[0].style.display = "none";
+
+			}
+		});
+		$('#editModel').on('hide.bs.modal', function() {
+
+		});
+		$('#editModel').on('hidden.bs.modal', function() {
+
+		});
+
+		$("#btn_Save").attr('disabled', false);
+	}
+
+	function SetFormDisabled(flag) {
+		$('#txtRoleName').attr("disabled", flag);
+		$('#txtRemark').attr("disabled", flag);
+
+		/* var tree=$('#tree1');
+		console.info(tree.jstree().get_node(tree));
+		tree.jstree().disable_checkbox(tree.jstree().get_node(tree).children);
+		tree.jstree().disable_checkbox(tree.jstree().get_node(tree).children_d); */
+	}
+
+	function BindEditForm(){
+		//弹出窗体之前先清空
+		$('#Form1')[0].reset();
+		var _url="<{:url('User/GetRoleInfo')}>";
+		//默认添加模式 获取自动生成的留言编号
+		$.ajax({
+			 type: "POST", // 用POST方式传输    
+			 dataType: "json",
+			 url: _url, // 目标地址    
+			 data: { "RoleCode": RoleCode},
+			 success: function (obj) {
+				 $('#txtRoleCode').val(obj.RoleCode);
+				 $('#txtRoleName').val(obj.RoleName);
+				 $('#txtRemark').val(obj.Remark);
+				 if(obj.TreeData.length>0){
+					 for(var i=0;i<obj.TreeData.length;i++){
+						 $('#tree1').jstree('select_node',obj.TreeData[i].FunctionCode);
+					 }  
+				 }
+			 }
+		}); 
+		$("#Form1").data('bootstrapValidator').resetForm();
+	}
+
+
+	function SaveForm() {
+		$('#Form1').data('bootstrapValidator').validate();
+		var IsValid = $("#Form1").data('bootstrapValidator').isValid();
+		if(IsValid) {
+
+			$("#btn_Save").attr('disabled', true);
+
+			var TreeData = $('#tree1').jstree().get_checked();
+			//先保存 
+			var SavaData = {
+				RoleCode: $("#txtRoleCode").val(),
+				RoleName: $("#txtRoleName").val(),
+				Remark: $("#txtRemark").val(),
+				Tree: TreeData
+			};
+			var _url = "<{:url('User/addroleact')}>";
+			if(FormStatus == "Edit") {
+				_url = "<{:url('User/editroleact')}>";
+			}
+			$.ajax({
+				type: "POST", // 用POST方式传输    
+				dataType: "json",
+				url: _url, // 目标地址    
+				data: SavaData,
+				success: function(data) {
+					if(data.code != 1) {
+						$("#btn_Save").attr('disabled', false);
+					}
+					ShowMsg(data.msg);
+				},
+				error: function(data) {
+					console.log(data);
+					$("#btn_Save").attr('disabled', false);
+				}
+			});
+
+		}
+	}
+
+	function DeleteRole(roleCode) {
+		bootbox.confirm("确认删除？", function(r) {
+			if(r) {
+
+				var _url = "<{:url('User/delroleact')}>";
+				$.ajax({
+					type: "POST", // 用POST方式传输    
+					dataType: "json",
+					url: _url, // 目标地址    
+					data: {
+						"RoleCode": roleCode
+					},
+					success: function(data) {
+						ShowMsg(data.msg);
+					},
+					error: function(data) {
+						console.log(data);
+					}
+				});
+
+			}
+		});
+	}
+
+	function BindTree() {
+		var TreeData = [];
+
+		var _url = "<{:url('User/getModuleTree')}>";
+
+		$.ajax({
+			type: "POST", // 用POST方式传输    
+			dataType: "json", // 数据格式:JSON    
+			url: _url, // 目标地址    
+			error: function(msg) {
+				console.log(msg);
+			},
+			success: function(data) {
+
+				var objs = data;
+
+				for(var key in objs) {
+
+					var obj = {
+						id: objs[key]['ID'],
+						parent: objs[key]['PID'],
+						text: objs[key]['NAME']
+					};
+					TreeData.push(obj);
+				}
+
+				$("#tree1").jstree({
+					"plugins": ["checkbox"],
+					"core": {
+						"themes": {
+							"theme": "classic",
+							"dots": true,
+							"icons": false
+						},
+						'data': TreeData
+					}
+				});
+
+			}
+		});
+
+		// 展开节点
+		$("#tree1").on("loaded.jstree", function(event, data) {
+			// 展开所有节点
+			$('#tree1').jstree('open_all');
+			// 展开指定节点
+			// data.instance.open_node('1002');     // 单个节点 （1 是顶层的id）
+			//data.instance.open_node([1, 10]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行）
+		});
+	}
+</script>

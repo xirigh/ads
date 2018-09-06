@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <title>永利国际娱乐用户登录</title>
+    <link href="./css/base.css" rel="stylesheet"/>
+<link href="./css/new-login.css" rel="stylesheet"/>
+<script src="./js/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="./js/bootstrapValidator.js"></script>
+<style type="text/css">
+     .help-block {
+      width: 210px;
+      display: block;
+      margin: 0 auto;
+      color: red;
+}
+</style>
+</head>
+<body class="bg-content new-login">
+    <div class="wrap-login">
+        <div class="logo">
+            <a herf=""></a>
+        </div>
+        <div class="nav-wrap clearfix">
+
+            <ul class="nav">
+               
+                <li class="current">
+                    <a href="#">永利国际娱乐 登陆</a><a id="J-question-button" href="#" class="question"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="info-panel clearfix">
+            <div class="left-shadow"></div>
+            <div class="login-info-area">
+                <form action="index.html" method="post" id="logFrm" class="defaultForm">
+                    <div class="user-info clearfix form-group" style="margin-top: 30px;">
+                        <input type="text" id="J-user-name" data-name="name" name="username" class="user-name form-control" placeholder="用户名" value="">
+                    
+                    </div>
+                     <div class="user-info clearfix form-group" style="margin-top: -15px;">
+                         <input type="password" id="J-user-password" data-name="password" name="password" placeholder="密码" class="user-password form-control" value="">                    
+                    </div>    
+ 
+                     <div class="form-group" style="margin-top: 0px;">
+
+                     <button name="submit " id="J-form-submit" type="submit" class=" btn-primary submit-btn" value="Enter 登录">登录</button>
+                   </div>
+                  
+                   
+                </form>
+            </div>
+		 	<div class="banner-area">
+		 		<div id="focus" class="cycle-slideshow"
+					data-cycle-slides="> .item"
+					data-cycle-pager="> .cycle-pager-wrap .cycle-pager"
+					data-cycle-fx="scrollHorz"
+					data-cycle-timeout="4000"
+					data-cycle-loader="wait"
+					data-cycle-speed="800"
+					data-pause-on-hover="true"
+				>
+                  
+
+                   <div class="item cycle-slide cycle-slide-active" style="visibility: visible; position: absolute; top: 0px; left: 0px; z-index: 99; opacity: 1; display: block; "><a ><img src="/images/login/scro1.jpg" title="全面升级" alt="全面升级"></a></div>
+                   <div class="item cycle-slide cycle-slide-active" style="visibility: visible; position: absolute; top: 0px; left: 0px; z-index: 99; opacity: 1; display: block; "><a ><img src="/images/login/scro2.jpg" title="全面升级" alt="全面升级"></a></div>
+
+                   <div class="cycle-pager-wrap">
+                       <div class="cycle-pager"></div>
+                   </div>
+                </div>
+            </div>
+            <div class="right-shadow"></div>
+        </div>
+        <div class="shadow-bottom"></div>
+        <div class="login-tips">永利国际娱乐 版权所有 <br><span>Copyright ⓒ All Rights Reserved.</span></div>    </div>
+
+
+  <div class="barcode" style="top:0px;display:none">
+        <!--二维码-->
+
+
+</body>
+   
+    
+</html>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.defaultForm')
+        .bootstrapValidator({
+            message: '此值无效',
+            //live: 'submitted',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                username: {
+                    message: '标题无效',
+                    validators: {
+                        notEmpty: {
+                            message: '用户名不能是空的'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 20,
+                            message: '账号内容必须大于2和小于20个字符长'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: '只能由字母、数字、点和下划线组成'
+                        }
+                    }
+                },
+                password: {
+                   validators: {
+                        notEmpty: {
+                            message: '登陆密码不能是空的'
+                        },
+                          stringLength: {
+                            min: 5,
+                            max: 20,
+                            message: '密码长度必须在5到20之间'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_\.]+$/,
+                            message: '请输入正确的登陆密码'
+                        }
+                    }
+                }
+            }
+        })
+});
+</script>

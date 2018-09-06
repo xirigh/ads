@@ -1,0 +1,468 @@
+<include file="Public/base" />
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+<script src='__CONTENT__/js/bootbox.min.js' language='JavaScript'></script>
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+
+			} catch(e) {}
+		</script>
+		<style>
+			#tabList th {
+				background: #FFF;
+				vertical-align: middle;
+			}
+			
+			#tabList td {
+				vertical-align: middle;
+			}
+		</style>
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;权限管理&nbsp;&nbsp;>&nbsp;&nbsp;用户信息管理
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+		<div class="row">
+
+			<div class="col-xs-12 widget-main ">
+				<div class="">
+
+					<h4 class="lighter">
+						<button id="btnAdd" class="btn btn-primary btn-info " onclick="ShowEditInfo('Add');">
+							<i class="icon-plus bigger-120"> 新建用户</i>
+						</button>
+					</h4>
+
+				</div>
+
+				<div class="table-responsive">
+					<table id="tabList" class="table table-striped table-bordered table-hover datatable">
+						<thead>
+							<tr>
+								<th class="center">#</th>
+								<th class="center">用户名</th>
+								<th class="center">用户名称</th>
+								<th class="center">所属角色</th>
+								<th class="center">联系方式</th>
+								<th class="center">启用状态</th>
+								<th class="center">更新人</th>
+								<th class="center">更新时间</th>
+								<th class="center">操作</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<volist name="userlist" id="v">
+							<tr>
+								<td class="center col-xs-0 col-sm-0"><{$v.u_id}></td>
+								<td class="center col-xs-2 col-sm-2"><{$v.user_id}></td>
+								<td class="center col-xs-2 col-sm-2"><{$v.user_name}></td>
+								<td class="center col-xs-1 col-sm-1"><{$v.role_name}></td>
+								<td class="center col-xs-1 col-sm-1"><{$v.user_tel}></td>
+								<neq name="v.enable_flag" value="0">
+									<td class="center col-xs-1 col-sm-1">
+										<a href="#" style="cursor:hand" onclick="SetEnabled('0','<{$v.u_id}>');"><span class="label label-success arrowed-in arrowed-in-right">可用</span></a>
+									</td>
+								<else />
+									<td class="center col-xs-1 col-sm-1">
+										<a href="#" style="cursor:hand" onclick="SetEnabled('1','<{$v.u_id}>');"><span class="label label-danger arrowed">已停用</span></a>
+									</td>
+								</neq>
+								<td class="center col-xs-1 col-sm-1"><{$v.update_user|uid2uname}></td>
+								<td class="center col-xs-2 col-sm-2"><{$v.update_time}>
+								</td>
+								<td class="center col-xs-2 col-sm-2">
+									<div class="btn-group">
+										<button class="btn btn-xs btn-info" onclick="ShowEditInfo('Read','<{$v.u_id}>')">
+											<i class="icon-zoom-in bigger-120"></i>查看
+										</button>
+										<button class="btn btn-xs btn-success" onclick="ShowEditInfo('Edit','<{$v.u_id}>')">
+											<i class="icon-edit bigger-120"></i>修改
+										</button>
+										<button class="btn btn-xs btn-warning" onclick="DeleteUser('<{$v.u_id}>')">
+											<i class="icon-remove bigger-120"></i>删除
+										</button>
+									</div>
+								</td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+
+					<div>
+						<ul class="pagination">
+							<li>
+								<!--<a>当前1/1 每页10条 共6条</a>-->
+								<{$userlist|raw}>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /.table-responsive -->
+
+				<div class="modal   fade" tabindex="-1" role="dialog" id="editModel">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title"><span id="span_InfoTitle"></span></h4>
+							</div>
+							<div class="modal-body">
+
+								<form id="Form1" class="form-horizontal" role="form" method="post" action="">
+									<div class="form-group">
+
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名</label>
+										<div class="col-sm-9">
+											<input type="text" id="txtUserID" name="UserID" placeholder="" class="col-xs-12 col-sm-9 uneditable-input" disabled /> <label class="middle red">*</label>
+											<input type="hidden" name="txtUid" id="txtUid" value="">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 用户姓名</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="txtUserName" name="UserName" placeholder="" class="col-xs-12 col-sm-9" /> <label class="middle red">*</label>
+										</div>
+
+									</div>
+									<div class="form-group" id="div_Password1">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 密码1</label>
+
+										<div class="col-sm-9">
+											<input type="password" id="txtPassword1" name="Password1" placeholder="6-12位数字与字母组合" class="col-xs-12 col-sm-9" /> <label class="middle red">*</label>
+										</div>
+
+									</div>
+									<div class="form-group" id="div_Password2">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 密码2</label>
+
+										<div class="col-sm-9">
+											<input type="password" id="txtPassword2" name="Password2" placeholder="6-12位数字与字母组合" class="col-xs-12 col-sm-9" /> <label class="middle red">*</label>
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 所属角色</label>
+
+										<div class="col-sm-9">
+											<select class="col-xs-12 col-sm-9 " id="txtRoleCode" name="RoleCode">
+												<volist name="rolelist" id="v">
+												<option value="<{$v['ur_id']}>"><{$v['role_name']}></option>
+												</volist>
+											</select> <label class="middle red">*</label>
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 联系方式</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="txtTel" name="Tel" placeholder="" class="col-xs-12 col-sm-9" />
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 邮箱</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="txtEmail" name="Email" placeholder="" class="col-xs-12 col-sm-9" />
+										</div>
+
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 备注 </label>
+
+										<div class="col-sm-9">
+											<textarea id="txtRemark" name="Remark" class="col-xs-12 col-sm-9"></textarea>
+										</div>
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="button" id="btn_Save" class="btn btn-primary" onclick="SaveForm();">保存</button>
+							</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script type='text/javascript'>
+	$(function() {
+		$('#Form1').bootstrapValidator({　　　
+			message: 'This value is not valid',
+			　feedbackIcons: {　　　　　　　　 //valid: 'glyphicon glyphicon-ok',
+				　　　　　　　　 //invalid: 'glyphicon glyphicon-remove',
+				　　　　　　　　 //validating: 'glyphicon glyphicon-refresh'
+				　　　　　　　　},
+			fields: {
+				UserID: {
+					validators: {
+						notEmpty: {
+							message: '用户名不能为空'
+						}
+					}
+				},
+				UserName: {
+					validators: {
+						notEmpty: {
+							message: '用户姓名不能为空'
+						}
+					}
+				},
+				Password1: {
+					validators: {
+						notEmpty: {
+							message: '密码1不能为空'
+						},
+						regexp: {
+							regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+							message: '6-12位数字与字母组合'
+						},
+						different: {
+							field: 'Password2',
+							message: '与密码2不能相同'
+						}
+					}
+				},
+				Password2: {
+					validators: {
+						notEmpty: {
+							message: '密码2不能为空'
+						},
+						regexp: {
+							regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+							message: '6-12位数字与字母组合'
+						},
+						different: {
+							field: 'Password1',
+							message: '与密码1不能相同'
+						}
+					}
+				},
+				RoleCode: {
+					validators: {
+						notEmpty: {
+							message: '所属角色不能为空'
+						}
+					}
+				},
+				Email: {
+					validators: {
+						emailAddress: {
+							message: '邮箱格式不正确'
+						}
+					}
+				},
+				Tel: {
+					validators: {
+						regexp: {
+							regexp: /((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/,
+							message: '请输入正确的联系方式'
+						}
+					}
+				}
+			},
+			submitHandler: function(validator, form, submitButton) {
+
+			}
+		})
+	});
+</script>
+<script type="text/javascript">
+	var FormStatus;
+	var UserID;
+
+	function ShowEditInfo(type, userID) {
+
+		FormStatus = type;
+		UserID = userID;
+
+		$('#Form1')[0].reset();
+
+		$("#editModel").modal({
+			keyboard: true
+		});
+
+	}
+	window.onload = function() {
+
+		$('#editModel').on('show.bs.modal', function() {
+
+		});
+		$('#editModel').on('shown.bs.modal', function() {
+			if(FormStatus == "Add") {
+				$('#span_InfoTitle')[0].innerText = "添加用户信息";
+
+				SetFormDisabled(false);
+				$("#btn_Save")[0].style.display = "inline";
+				$("#div_Password1")[0].style.display = "block";
+				$("#div_Password2")[0].style.display = "block";
+
+			} else if(FormStatus == "Edit") {
+				$('#span_InfoTitle')[0].innerText = "修改用户信息";
+
+				BindEditForm();
+				SetFormDisabled(false);
+				$("#btn_Save")[0].style.display = "inline";
+				$("#div_Password1")[0].style.display = "none";
+				$("#div_Password2")[0].style.display = "none";
+				$('#txtUserID').attr("disabled", true);
+
+			} else if(FormStatus == "Read") {
+				$('#span_InfoTitle')[0].innerText = "查看用户信息";
+				BindEditForm();
+				SetFormDisabled(true);
+				$("#btn_Save")[0].style.display = "none";
+				$("#div_Password1")[0].style.display = "none";
+				$("#div_Password2")[0].style.display = "none";
+			}
+		});
+		$('#editModel').on('hide.bs.modal', function() {
+
+		});
+		$('#editModel').on('hidden.bs.modal', function() {
+
+		});
+
+	}
+
+	function SetFormDisabled(flag) {
+		$('#txtUserID').attr("disabled", flag);
+		$('#txtUserName').attr("disabled", flag);
+		$('#txtTel').attr("disabled", flag);
+		$('#txtEmail').attr("disabled", flag);
+		$('#txtRoleCode').attr("disabled", flag);
+		$('#txtRemark').attr("disabled", flag);
+	}
+
+	function BindEditForm() {
+		//弹出窗体之前先清空
+		$('#Form1')[0].reset();
+		var _url = "<{:url('user/getadmininfo')}>";
+		$.ajax({
+			type: "POST", // 用POST方式传输    
+			dataType: "json",
+			url: _url, // 目标地址    
+			data: {
+				"UserID": UserID
+			},
+			success: function(obj) {
+				$('#txtUserID').val(obj.UserID);
+				$('#txtUserName').val(obj.UserName);
+				$('#txtPassword1').val(obj.Password1);
+				$('#txtPassword2').val(obj.Password2);
+				$('#txtTel').val(obj.Tel);
+				$('#txtEmail').val(obj.Email);
+				$('#txtRoleCode').val(obj.RoleCode);
+                $('#txtRemark').val(obj.Remark);
+                $('#txtUid').val(obj.Uid);
+
+			}
+		});
+		$("#Form1").data('bootstrapValidator').resetForm();
+	}
+
+	function SaveForm() {
+		$('#Form1').data('bootstrapValidator').validate();
+		var IsValid = $("#Form1").data('bootstrapValidator').isValid();
+		if(IsValid) {
+			var SavaData = {
+				UserID: $("#txtUserID").val(),
+				UserName: $("#txtUserName").val(),
+				Password1: $("#txtPassword1").val(),
+				Password2: $("#txtPassword2").val(),
+				Tel: $("#txtTel").val(),
+				Email: $("#txtEmail").val(),
+				RoleCode: $("#txtRoleCode").val(),
+				Remark: $("#txtRemark").val(),
+				Uid : $("#txtUid").val(),
+			};
+			var _url = "<{:url('user/addadminact')}>";
+			if(FormStatus == "Edit") {
+				_url = "<{:url('user/editadminact')}>";
+			}
+			$.ajax({
+				type: "POST", // 用POST方式传输    
+				dataType: "json",
+				url: _url, // 目标地址    
+				data: SavaData,
+				success: function(data) {
+					ShowMsg(data.msg);
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			});
+
+		}
+	}
+
+	function DeleteUser(userId) {
+		if(userId == "1") {
+			ShowMsg("W超级管理员不允许删除！");
+			return;
+		}
+		bootbox.confirm("确认删除？", function(r) {
+			if(r) {
+				var _url = "<{:url('user/deladminact')}>";
+				$.ajax({
+					type: "POST", // 用POST方式传输    
+					dataType: "json",
+					url: _url, // 目标地址    
+					data: {
+						"UserID": userId
+					},
+					success: function(data) {
+						ShowMsg(data.msg);
+					},
+					error: function(data) {
+						console.log(data);
+					}
+				});
+			}
+		});
+	}
+
+	function SetEnabled(value, userID) {
+		if(!value) {
+			return;
+		}
+		var _url = "<{:url('user/setadminable')}>";
+		$.ajax({
+			type: "POST", // 用POST方式传输    
+			dataType: "json",
+			url: _url, // 目标地址    
+			data: {
+				"EnableFlag": value,
+				"UserID": userID
+			},
+			success: function(data) {
+				ShowMsg(data.msg);
+			},
+			error: function(data) {
+				console.log(data);
+			}
+		});
+	}
+</script>

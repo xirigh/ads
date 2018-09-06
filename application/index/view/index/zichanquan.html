@@ -1,0 +1,158 @@
+<include file="Public/head" />
+<style>
+    .data span{
+        width: 33.3%;
+    }
+    .item{
+      margin-bottom: 0px;
+    }
+</style>
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="javascript:history.go(-1);"> <i
+                class="iconfont icon-fanhui"></i>
+        </a> <i>财务管理</i>
+    </div>
+    <!-- 轮播 -->
+    <div class="minute">
+        <div class="common">
+            USD <br />
+            <i><{$data.v_money2|round=6}></i>
+        </div>
+        <div class="common">
+            总资产<br />
+            <i><{$zongzichancount|round=6}></i>
+        </div>
+        <div class="common">
+            累计收益（总）<br />
+            <i><{$bankcount|round=6}></i>
+        </div>
+        <div class="common" style="border: none;">
+            昨日收益<br />
+            <i><{$daycount|round=6}></i>
+        </div>
+    </div>
+
+    <div class="item">
+        <volist name="list" id="v">
+            <div class="item-list">
+                <h4>
+                    <img src="__UPLOADS__/core/<{$v.cg_img}>"> <{$v.cg_title}>
+                </h4>
+                <div class="data">
+                <span>
+                    <i style="color:#ff4646;"><{$v.cg_money}> (USD)</i><br /><br />
+                    单价
+                </span>
+                    <span>
+                    <i><{$v.cg_money*$v.user.cz_num+$v.user.cz_count_money}></i> <br /><br />
+                    持有值
+                </span>
+                    <span>
+                    <i style="color:#158947;"><{$v.user.cz_day_money}></i><br /><br />
+                    昨日收益
+                </span>
+                </div>
+                <hr />
+                <div class="text-right">
+                    <button type="button" onclick="submitbuy('<{$v.cg_id}>');" class="btn btn-primary">转赠</button>
+                    <button type="button" onclick="submitbuy('<{$v.cg_id}>');" class="btn btn-primary">结束</button>
+                </div>
+            </div>
+        </volist>
+    </div>
+
+
+    <div class="sort">
+        <div class="sotr-cont">
+
+            <a href="<{:url('User/give')}>" class="out">
+                <i class="iconfont icon-zhuanchu"></i>
+                <br> 资金转账
+            </a>
+            <a href="<{:url('Index/buylist')}>" class="out">
+                <i class="iconfont icon-zichanguanli"></i>
+                <br> 数字资产
+            </a>
+            <a href="<{:url('Index/shouyi')}>" class="out" style="border: none">
+                <i class="iconfont icon-rizhi"></i>
+                <br> 我的交易明细
+            </a>
+        </div>
+        <div class="sotr-cont" style="border-bottom:none;">
+
+            <a href="<{:url('User/yinghangka')}>" class="out">
+                <i class="iconfont icon-yinhangqia"></i>
+                <br> 绑定银行卡
+            </a>
+            <a href="<{:url('User/moneyout')}>" class="out">
+                <i class="iconfont icon-shangcheng"></i>
+                <br> 提现
+            </a>
+            <a href="<{:url('User/bank')}>" id="addmoney" class="out" style="border: none">
+                <i class="iconfont icon-zhuanru"></i>
+                <br> 充值资金
+            </a>
+        </div>
+    </div>
+</div>
+    <!-- 功能 -->
+    <include file="Public/footer" />
+    <load href="__ASSETS__/js/jquery.form.min.js" />
+    <script>
+        function submitbuy(id){
+            function beforeCheck(res){
+                var type="^[0-9]*[1-9][0-9]*$";
+                var r=new RegExp(type);
+                var flag=r.test(res[0].value);
+                if(!flag){
+                    layer.open({
+                        content: "请输入正整数",
+                        btn:'我知道了',
+                    });
+                    return false;
+                }
+            }
+            function successfun(res){
+                layer.closeAll();
+                if(res.code != 1){
+                    layer.open({
+                        content: res.msg,
+                        btn:'我知道了',
+                    });
+                    return false;
+                }else{
+                    layer.open({
+                        content: res.msg,
+                        skin:'msg',
+                    });
+                    location.reload();
+                }
+            }
+            var options = {
+                beforeSubmit: beforeCheck, //提交前的回调函数
+                success: successfun,  //提交成功后的回调函数
+                dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+                clearForm: false,  //成功提交后，是否清除所有表单元素的值
+                resetForm: true,  //成功提交后，是否重置所有表单元素的值
+                timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
+            };
+            layer.open({
+                content: '您确定要购买吗？'
+                ,btn: ['购买', '再看看']
+                ,yes: function(index){
+                    layer.open({
+                        type:2,
+                        content: "购买中",
+                    });
+                    $("#form"+id).ajaxSubmit(options);
+                    layer.close(index);
+                }
+                ,no:function(){
+                    return false;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>下级充值</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="renderer" content="webkit">
+
+    
+<link href="./css/base.css" rel="stylesheet"/>
+<link href="./css/funds.css" rel="stylesheet"/>
+<link href="./css/safe.css" rel="stylesheet"/>
+<link href="./css/js-ui.css" rel="stylesheet"/>
+
+
+<script src="./js/jquery-1.9.1.min.js"></script>
+<script src="./js/jquery-ui-1.10.2.js"></script>
+<script src="./js/jquery.easing.1.3.js"></script>
+<script src="./js/jquery.tmpl.min.js"></script>
+<script src="./js/jquery.flot.js"></script>
+<script src="./js/jquery.flot.crosshair.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="./js/phoenix.base.js"></script>
+<script src="./js/phoenix.Class.js"></script>
+<script src="./js/phoenix.Event.js"></script>
+<script src="./js/phoenix.util.js"></script>
+<script src="./js/phoenix.Timer.js"></script>
+<script src="./js/phoenix.Input.js"></script>
+<script src="./js/phoenix.Tab.js"></script>
+<script src="./js/phoenix.Slider.js"></script>
+<script src="./js/phoenix.Hover.js"></script>
+<script src="./js/phoenix.Tip.js"></script>
+<script src="./js/phoenix.Mask.js"></script>
+<script src="./js/phoenix.MiniWindow.js"></script>
+<script src="./js/phoenix.Validator.js"></script>
+<script src="./js/phoenix.DatePicker.js"></script>
+<script src="./js/phoenix.BASE64.js"></script>
+<script src="./js/dateUtil.js"></script>
+<script src="./js/datePicker.js"></script>
+<script src="./js/page.js"></script>
+<script src="./js/phoenix.Common.js"></script>
+
+
+    
+
+    <!-- <script type="text/javascript">
+        global_params_notice = "all,ad_top",
+        global_userName = 'a123456';
+        global_userID = '26051';
+        _logOut = 'http://www.play688.com';
+    </script>
+
+    <script type="text/javascript">
+        var baseUrl = 'http://www.play688.com';
+        var staticFileContextPath = 'http://www.play688.com';
+    </script> -->
+
+  
+</head>
+<body class="user-body">
+
+    <!-- toolbar start -->
+<div class="bg-toolbar"></div>
+<div class="toolbar">
+    <div class="g_33">
+        <div class="game-menu" id="J-top-game-menu">
+            <span class="game-menu-text dropdown-menu-btn">游戏选择</span>
+            <div class="game-menu-panel">
+                <span class="triangle game-menu-triangle"><span></span></span>
+                <div class="game-menu-inner">
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">时时彩</div>
+                        <div class="game-menu-list">
+                                    <a class="hot-game" href="/GameBet/GameBetPage?lotteryCode=10001">重庆时时彩<i></i></a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10003">新疆时时彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10004">天津时时彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10005">五分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10007">二分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10006">分分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10008">韩国1.5分</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10009">东京1.5分彩</a>
+                           
+                        </div>
+                    </div>
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">11选5</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=20001">十一运夺金</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20002">广东11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20004">江西11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20003">上海11选5</a>
+                        </div>
+                    </div>
+                   
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">低频</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=30001">福利彩票3D</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=30002">体彩排列三</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=70001">上海时时乐</a>
+                                                            <a href="/GameBet/GameBetPagePK10?lotteryCode=60002">北京 PK10</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <a href="index.html" class="back-top-home">返回首页</a>
+        <ul class="menu">
+            <li class="username">您好，dang037</li>
+            <li class="user hover" id="J-top-userinfo">
+                <a href="javascript:void(0);" class="dropdown-menu-btn">我的账户<i class="tri"></i></a>
+                 <div class="simazhao" style="width: 100%;height: 120px;">
+                <div class="menu-nav">
+                    <i class="tri"></i>
+
+                  <a href="touzhu.html">投注记录</a>
+                    <a href="zhanghu.html">账户明细</a>
+                    <a href="geren.html">个人报表</a>
+                    <!--  -->
+                    <a href="zhanghu.html">账户中心</a>
+                       <a href="daili.html">代理中心</a>
+                    
+                    
+                    <!--  -->
+                    </div>
+             </div>
+            </li>
+            
+            <li class="balance">
+                <span id="hiddBall" style="display:none">余额：<span id="spanBall" name="spanBall">0.0000</span>
+                    &nbsp;积分:<span id="spanBallIntegral" name="spanBallIntegral">0</span>   <a href="/ChargeWithdrawal/ExchangeIntegralIndex" >[兑换]</a>             
+                <i class="refreshBall"></i></span>
+                <span id="hiddenBall">余额已隐藏 <a href="#" id="showAllBall">显示</a></span>
+            </li>
+            <li class="recharge"><a href="woyaochongzhi.html">充值</a></li>
+            <li class="withdrawals"><a href="tixian.html">提现</a></li>
+            <li class="quit"><a href="login.html">退出</a></li>
+        </ul>
+    </div>
+</div>
+
+   
+    <!-- toolbar end -->
+    <!-- header start -->
+    <!-- toolbar end -->
+    <!-- header start -->
+<div class="header">
+        <div class="g_33">
+            <a href="/home/index/" class="logo" name="Page_firefrog_index"></a>
+<div class="user-tools">
+            
+                <div class="user-info clearfix">
+                    <!--  -->
+                    <a class="user-head user-head-normal" target="_blank"></a>
+                    <!--  -->
+                    <div class="user-balance">
+    				<h2 class="user-name">欢迎你,<strong>a123456</strong></h2>
+                        <div class="user-balance-title">可用  余额</div>
+                        <div class="user-balance-number" name="spanBall">0.0000</div>
+                    </div>
+                </div>
+ 			
+                <div class="safe-info">
+
+                    <div class="safe-info-progress ">
+                        <div class="progress-wapper progress-low"><div class="progress-inner" style="width:0%"></div></div>
+                    </div>
+                   <div class="safe-info-ip">
+                        上次登录:
+                        <!--  -->
+                        2017/6/22 17:37:19
+                        <!--  -->
+                        </br>
+                    </div>
+                </div>
+				<div class="account-info">
+                    <div class="account-info-btn clearfix">
+                          <a target="_blank" href="woyaochongzhi.html" class="btn-withdrawals">我要充值</a>
+                        <a target="_blank" href="tixian.html" class="btn-transfer">我要提现</a>
+                        <a href="" target="_blank" class="link-service" title="客服" id="custom-service">联系客服</a>
+                    </div>
+									
+                </div>
+          	</div>
+          
+         
+        </div>
+    </div>    
+    <!-- header end -->
+    <div class="g_33 common-main">
+
+
+<div class="g_5">
+            <div class="common-side">
+                <div class="nav-side">
+                   <dl class="side-bet">
+                        <dt class="title">投注管理</dt>
+                        <dd><a href="touzhu.html">投注记录</a></dd>
+                        <dd><a href="zhuihao.html">追号记录</a></dd>
+                        <dd><a href="zhanghu.html">账户明细</a></dd>
+                        <dd><a href="geren.html">个人报表</a></dd>
+                    </dl>
+                    <dl class="side-safe">
+                        <dt class="title">账户安全</dt>
+                        <dd><a href="zhanghuxinxi.html">账户信息</a></dd>
+                        <dd><a href="yonghumima.html">用户密码</a></dd>
+                        <dd><a href="zijinmima.html">资金密码</a></dd>
+                        <dd><a href="ziliaoxiugai.html">资料修改</a></dd>
+                    </dl>
+                    <dl class="side-service">
+                        <dt class="title">服务</dt>
+                        
+                        <dd><a href="wangzhangonggao.html">网站公告</a></dd>
+                        <dd><a href="remenhuodong.html">热门活动</a></dd>
+                    </dl>
+
+                     <dl class="side-proxy">
+
+                        <dt class="title">代理中心</dt>
+
+                        <dd><a href="daili.html">代理首页</a></dd>
+                        <dd><a href="kaihuzhongxin.html">开户中心</a></dd>
+                        <dd><a href="huiyuanliebiao.html">会员列表</a></dd>
+
+                        <dd><a href="tuanduibaobiao.html">团队报表</a></dd>
+                        <dd><a href="tuanduizhangbian.html">团队帐变</a></dd>
+                        <dd><a href="tuanduitouzhu.html">团队投注</a></dd>
+
+                        <dd><a href="xiajichongzhi.html">下级充值</a></dd>
+                        
+
+                    </dl>
+
+
+
+                    <dl class="side-funds">
+                        <dt class="title">资金</dt>
+                        <dd><a href="woyaochongzhi.html">我要充值</a></dd>
+                        <dd><a href="woyaotixian.html">我要提现</a></dd>
+                        <dd><a href="jifenduihuan.html">积分兑换</a></dd>
+                        
+                     
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+<form action="/ChargeWithdrawal/WithdrawalIndex/" method="post" id="J-form">
+
+    <div class="g_28 g_last">
+        <div class="common-content">
+            <div class="title">下级充值</div>
+            <div class="content bank-cash">
+              <ul class="ui-form">
+                   
+                    <li>
+                        <label class="ui-label">可用余额：</label>
+                        <span class="ui-singleline">
+
+                            <strong class="bighigh" style="width:150px;"><span id="freeMoeny">0.00</span> 元</strong>
+                        </span>
+                    </li>
+                   
+                  <li>
+                      <label class="ui-label" for="name">下级账号：</label>
+                      <input type="text" class="input w-4" value="" id="subUserName" name="subUserName" autocomplete="off"> 
+                      <i class="check-right" style="display: none;"></i>
+                      <div class="ui-text-prompt" style="display: none;">清核对下级账户名称是否正确</div>
+                      <div class="ui-check" style="display: none;"><i class="error"></i><span id="errors">下级账户名称不可为空</span></div>
+
+                  </li>
+
+                    <li>
+                        <label class="ui-label" for="name">下级充值金额：</label>
+                        <input type="text" class="input w-4" value="" id="money" name="drawalMoney" autocomplete="off"> 元
+                        <i class="check-right" style="display: none;"></i>
+                        <div class="ui-check" style="display: none;"><i class="error"></i><span id="errors">金额必须为整数或小数，小数点后不超过2位。</span></div>
+
+                    </li>
+                    <li>
+                        <label class="ui-label">资金密码：</label>
+                        <input type="password" class="input w-4" value="" id="bankPassword" name="bankPassword" autocomplete="off">
+                        <div class="ui-check" style="display: none;"><i class="error"></i><span>用户资金密码不可为空。</span></div>
+                    </li>
+                    <li class="ui-text">
+                        <span class="ui-singleline" id="chineseMoney"></span>
+                    </li>
+                    <li class="ui-btn"><a href="javascript:void(0);" class="btn btn-important" id="J-Submit">下级充值<b class="btn-inner"></b></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="pop pop-search" id="Idivs" style="position: absolute; z-index: 1001; display: none;">
+    <div class="hd"><i id="CloseDiv"></i>温馨提示</div>
+
+    <div class="bd">
+        <div class="bd text-center">
+            <i class="ico-success"></i>
+            <h4 class="pop-text">下级充值成功。</h4>
+        </div><br>
+
+
+    </div>
+    <a class="btn closeTip" id="closeTip1" style="" href="javascript:void(0);">确定</a>
+</div>
+<div id="J-ui-mask-msg" style="position:absolute;display:none;z-index:601;width:360px;" class="pop pop-success w-6">
+    <i class="ico-success"></i>
+    <h4 class="pop-text">操作成功</h4>
+</div>
+
+        
+
+
+    </div>
+
+<div class="footer">
+    <div class="quality"></div>
+    <p>2007-2017@永利国际娱乐 <br>提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票！</p>
+</div>
+<script language="JavaScript" src="http://code.54kefu.net/kefu/js/b142/1006942.js" type="text/javascript" charset="utf-8"></script>
+    
+
+    
+    <script>
+        (function () {
+            var minWindow = new phoenix.MiniWindow({ cls: 'ui-alert-custom' }),
+            mask = phoenix.Mask.getInstance();
+            minWindow.addEvent('beforeShow', function () {
+                mask.show();
+            });
+            minWindow.addEvent('afterHide', function () {
+                mask.hide();
+            });
+            var formatMoney = function (num) {
+                if (num == '') {
+                    num = '0';
+                }
+                var num = num.replace(/,/g, ''),
+                    num = parseFloat(num),
+                    re = /(-?\d+)(\d{3})/;
+
+                if (Number.prototype.toFixed) {
+                    num = (num).toFixed(2);
+                } else {
+                    num = Math.round(num * 100) / 100
+                }
+                num = '' + num;
+                while (re.test(num)) {
+                    num = num.replace(re, "$1,$2");
+                }
+                return num;
+            };
+            //输入金额的状态提示,参照《资金表单交互文档》
+            var form = $('#J-form'), money, moneyPar,
+              
+                moeys = ($.trim($('#freeMoeny').html().replace(/,/g, '')) == '' ? 0 : parseFloat($('#freeMoeny').html().replace(/,/g, ''))),
+                withdrawaLimit,
+                //表单检测错误数量
+                errorTypes = ['money'],
+                errorHas = {},
+                setErrorNum = function (name, num) {
+                    if (typeof errorHas[name] != 'undefined') {
+                        errorHas[name] += num;
+                        errorHas[name] = errorHas[name] < 0 ? 0 : (errorHas[name] > 1 ? 1 : errorHas[name]);
+                    }
+                };
+            $.each(errorTypes, function () {
+                errorHas[this] = 0;
+            });
+          
+
+            var getClolor = function (obj) {
+                var v = obj.value;
+                if (v.indexOf(".") == -1) {
+
+                    if (v.length == 4) {
+                        $(obj).attr("style", "color:green");
+                    } else if (v.length == 5) {
+                        $(obj).attr("style", "color:red");
+                    } else if (v.length >= 6) {
+                        $(obj).attr("style", "color:#6B238E");
+                    } else {
+                        $(obj).attr("style", "color:#BDBDBD");
+                    }
+                } else if (v.indexOf(".") > 0) {
+                    var vlist = v.split(".");
+                    if (vlist[0].length == 4) {
+                        $(obj).attr("style", "color:green");
+                    } else if (vlist[0].length == 5) {
+                        $(obj).attr("style", "color:red");
+                    } else if (vlist[0].length >= 6) {
+                        $(obj).attr("style", "color:#6B238E");
+                    } else {
+                        $(obj).attr("style", "color:#BDBDBD");
+                    }
+                }
+            }
+
+            $('#closeTip1').click(function () {
+                box.Close();
+                location.reload();
+
+            });
+
+
+            //提示消息
+            var maskMsg = {
+                el: $('#J-ui-mask-msg'),
+                show: function (isSuccess, msg) {
+                    var me = this;
+                    if (isSuccess) {
+                        me.el.find('i').removeClass().addClass('ico-success');
+                        me.el.removeClass().addClass('pop pop-success w-4');
+                    } else {
+                        me.el.find('i').removeClass().addClass('ico-error');
+                        me.el.removeClass().addClass('pop pop-error w-6');
+                    }
+                    me.el.find('.pop-text').html(msg);
+                    phoenix.util.toViewCenter(me.el);
+                    me.el.show();
+                    mask.show();
+                },
+                hide: function () {
+                    var me = this;
+                    me.el.hide();
+                    mask.hide();
+                }
+            };
+
+            var checkFn2 = function (obj) {
+                var me = obj, v = me.value, index;
+                me.value = v = v.replace(/^\.$/g, '');
+                index = v.indexOf('.');
+                if (index > 0) {
+                    me.value = v = v.replace(/(.+\..*)(\.)/g, '$1');
+                    if (v.substring(index + 1, v.length).length > 2) {
+                        me.value = v = v.substring(0, v.indexOf(".") + 3);
+                    }
+                } else {
+                    me.value = v = v.replace(/^0/g, '');
+                }
+                me.value = v = v.replace(/[^\d|^\.]/g, '');
+                me.value = v = v.replace(/^00/g, '0');
+            };
+
+            //标题验证(最低金额跟最高金额将动态带入)
+            money = $('#money');
+            moneyPar = money.parent();
+            money.blur(function () {
+                $('#errors').html("金额必须为整数或小数，小数点后不超过2位。");
+                var me = this, v = $.trim($('#money')[0].value.replace(/,/g, '')) == '' ? 0 : Number($.trim($('#money')[0].value.replace(/,/g, '')));
+                if (v == 0) {
+                    moneyPar.find('.ui-check').css('display', 'inline');
+                    moneyPar.find('.ui-text-prompt').css('display', 'none');
+                    moneyPar.parent().find('.check-right').css('display', 'none');
+                    setErrorNum('money', 1);
+                } else {
+                    checkFn2(this);
+                    moneyPar.find('.ui-check').css('display', 'none');
+                    moneyPar.parent().find('.check-right').css('display', 'inline-block');
+                    setErrorNum('money', -1);
+                }
+                me.value = formatMoney(me.value);
+            }).keyup(function () {
+                var v = this.value;
+                var moeys = ($.trim($('#freeMoeny').html().replace(/,/g, '')) == '' ? 0 : parseFloat($('#freeMoeny').html().replace(/,/g, '')));
+                checkWithdraw(this, 'chineseMoney', Number(moeys));
+                getClolor(this);
+
+            });
+            $('.bank-more-content').css("display", "none");
+            $('.bank-more').css("min-height", "45px");
+            $('#div_pro').css("display", "inline");
+
+            $('#wlimits').html(withdrawaLimit);
+
+            //表单检测
+            checkform = function () {
+                var v = $.trim($('#money')[0].value.replace(/,/g, '')) == '' ? 0 : Number($.trim($('#money')[0].value.replace(/,/g, '')));
+                if (v == 0) {
+                    moneyPar.find('.ui-check').css('display', 'inline');
+                    moneyPar.find('.ui-text-prompt').css('display', 'none');
+                    setErrorNum('money', 1);
+                }else {
+                    moneyPar.find('.ui-check').css('display', 'none');
+                    setErrorNum('money', -1);
+                }
+
+                bankPassPar = $('#bankPassword').parent();
+                if ($("#bankPassword").val() == '') {
+                    bankPassPar.find('.ui-check').css('display', 'inline');
+                    setErrorNum('money', 1);
+                }
+                else {
+                    bankPassPar.find('.ui-check').css('display', 'none');
+                    setErrorNum('money', -1);
+                }
+
+                subUserNamePar = $('#subUserName').parent();
+                if ($("#subUserName").val() == '') {
+                    subUserNamePar.find('.ui-check').css('display', 'inline');
+                    setErrorNum('money', 1);
+                }
+                else {
+                    subUserNamePar.find('.ui-check').css('display', 'none');
+                    setErrorNum('money', -1);
+                }
+
+            }
+            box = new LightBox("Idivs"),
+            $('#J-Submit').click(function (e) {
+
+                if ($('[name="id"]').val() == '') {
+                    $('#errorBank').css("display", "inline");
+                    return false;
+                }
+                checkform();
+                var err = 0;
+                $.each(errorTypes, function () {
+                    if (typeof errorHas[this] != 'undefined') {
+                        err += errorHas[this];
+                    }
+                });
+                if (err > 0) { return false; }
+                else {
+
+                    try {
+
+                        $.ajax({
+                            url: '/TeamInformation/SubRechargePost',
+                            method: 'post',
+                            cache: false,
+                            dataType: 'json',
+                            data: { 'subUserName': $.trim($("#subUserName").val()), 'pwd': $.trim($("#bankPassword").val()), 'changeMoney': $.trim($("#money").val()) },
+                            beforeSend: function () {
+                                var button = $('#J-button-submit-text'), list = ['提交中   ', '提交中.  ', '提交中.. ', '提交中...'], i = 0;
+                                interval = setInterval(function () {
+                                    button.text(list[i]);
+                                    i += 1;
+                                    if (i >= list.length) {
+                                        i = 0;
+                                    }
+                                }, 300);
+                            },
+                            success: function (data) {
+                                clearInterval(interval);
+                                if (Number(data['isSuccess']) == 1) {
+                                    if (Sys.ie != null) { fn("Idivs"); }
+                                    else {
+                                        box.OverLay.Color = "rgb(51, 51, 51)";
+                                        box.Over = true;
+                                        box.OverLay.Opacity = 50;
+                                        box.Fixed = true;
+                                        box.Center = true; box.Show();
+                                    }
+                                } else {
+                                    maskMsg.show(false, data['msg']);
+                                    setTimeout(function () {
+                                        maskMsg.hide();
+                                        location.href = location.href;
+                                    }, 2000);
+                                }
+                            }
+                        });
+                    } catch (err) {
+                        clearInterval(interval);
+                    }
+                }
+            });
+
+            //操作后提示
+            function fn(obj) {
+                var Idivdok = document.getElementById(obj);
+                Idivdok.style.display = "block";
+                Idivdok.style.left = (document.documentElement.clientWidth - Idivdok.clientWidth) / 2 + document.documentElement.scrollLeft + "px";
+                Idivdok.style.top = (document.documentElement.clientHeight - Idivdok.clientHeight) / 2 + document.documentElement.scrollTop - 40 + "px";
+            }
+
+
+        })(jQuery);
+    </script>
+    <div class="j-ui-miniwindow ui-alert-custom" style="z-index:700;position:fixed;"><div class="hd"><i class="close closeBtn"></i><span class="title">提示</span></div><div class="bd"></div><a href="javascript:void(0);" style="display:none" class="btn confirm">确 认<b class="btn-inner"></b></a><a href="javascript:void(0);" style="display:none" class="btn cancel">取 消<b class="btn-inner"></b></a><a href="javascript:void(0);" class="btn closeTip" style="display:none">关 闭<b class="btn-inner"></b></a></div>
+    <div class="j-ui-mask" style="display: none; position: absolute; left: 0px; top: 0px; opacity: 0.5; background-color: rgb(51, 51, 51); z-index: 600;"></div>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    (function ($) {
+        //读取，修改余额可见状态值
+        var noreadmsg2 = "0",
+            cookieAllball = $.cookie("showAllBall"),
+            arrys,
+            userContextPath = 'http://www.fh885.com';
+        //alert(cookieAllball);
+        if (cookieAllball == "1") {
+            $('#hiddBall').css("display", "inline");
+            $('#hiddenBall').css("display", "none");
+        }
+        else {
+            $('#hiddBall').css("display", "none");
+            $('#hiddenBall').css("display", "inline");
+        }
+        //显示余额
+        $('#showAllBall').click(function () {
+            $.cookie("showAllBall", "1", { expires: 7, path: '/' });
+            $('#hiddBall').css("display", "inline");
+            $('#hiddenBall').css("display", "none");
+        });
+        //隐藏余额
+        $('#hiddBall').click(function () {
+            $.cookie("showAllBall", "0", { expires: 7, path: '/' });
+            $('#hiddBall').css("display", "none");
+            $('#hiddenBall').css("display", "inline");
+        });
+
+
+        new phoenix.Hover({ triggers: '#J-top-user-message', panels: '.msg-box', currClass: 'msg-trigger', hoverDelayOut: 300 });
+        new phoenix.Hover({ triggers: '#J-top-userinfo', panels: '.menu-nav', currClass: 'menu-trigger', hoverDelayOut: 300 });
+        //顶部彩种菜单
+        new phoenix.Hover({ triggers: '#J-top-game-menu', panels: '#J-top-game-menu .game-menu-panel', hoverDelayOut: 300, currClass: 'game-menu-current' });
+
+        //金额刷新
+        $('.refreshBall').click(function (event) {
+            var spanBalls = $('#spanBall');
+            try {
+                //用户余额接口
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    cache: false,
+                    url: '/Home/getuserMoney',
+                    data: '',
+                    beforeSend: function () {
+                        spanBalls.css('font-size', '11px').html('查询中...');
+                        $('.refreshBall').hide();
+                    },
+                    success: function (data) {
+                        if (data['status'] == "ok") {
+                            var _userBall = data["UserMoney"] == '' ? 0 : data["UserMoney"]
+                            spanBalls.removeAttr('style').text(_userBall);
+                            $('.refreshBall').show();
+
+                        }
+                    },
+                    complete: function () {
+                        $('.refreshBall').show();
+                    }
+                });
+            } catch (err) {
+                console.log("网络异常，读取信件信息失败");
+            }
+            event.stopPropagation();
+        });
+        //余额读取
+        try {
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                cache: false,
+                url: '/Home/getuserMoney',
+                data: '',
+                success: function (data) {
+                    if (data['status'] == "ok") {
+                        var _userBall = data["UserMoney"] == '' ? 0 : data["UserMoney"]
+                        $('#spanBall').html(_userBall);
+                    }
+
+                },
+                error: function (xhr, type) {
+
+                }
+            });
+
+        } catch (err) {
+            alert("网络异常，读取信息失败");
+        }
+        //try {
+        //    //自动查询此用户未读信件(四处)
+        //    $.ajax({
+        //        type: 'post',
+        //        dataType: 'json',
+        //        cache: false,
+        //        url: '/service/queryunreadmessage',
+        //        data: '',
+        //        success: function (json) {
+        //            if (json.unreadCnt != 0) {
+        //                var html = "";
+        //                $.each(json.receives, function (i) {
+        //                    if (i == 4) {
+        //                        html += "<a href= \"http://www.fh885.com/Service/sysmessages?id=" + json.receives[i].id + "&msgTpye=uMsg&unread=1&pro=" + json.unreadCnt + "\">" + json.receives[i].title + "..." + "</a>";
+        //                    }
+        //                    else {
+        //                        html += "<a href= \"http://www.fh885.com/Service/sysmessages?id=" + json.receives[i].id + "&msgTpye=uMsg&unread=1&pro=" + json.unreadCnt + "\">" + json.receives[i].title + "</a>";
+        //                    }
+        //                });
+        //                $("#readmsg").html(html);
+        //                $("#msgcount,#msg-title,#noreadmsg,#msgcount2,#noreadmsg2").html(parseInt(json.unreadCnt));
+        //                $('#radiuscount').show();
+        //            }
+        //            else {
+        //                $("#readmsg").html("暂未收到新消息");
+        //                $('#radiuscount').hide();//没有信件事，左菜单小图标隐藏
+        //                $('#msg-title,#noreadmsg,#msgcount2,#noreadmsg2').html("0");
+        //                $('#readmsg').attr("style", "text-align:center; color:black;");
+        //            }
+        //        },
+        //        error: function (xhr, type) {
+
+        //        },
+        //        complete: function () { }
+        //    });
+        //} catch (err) {
+        //    alert("网络异常，读取信件信息失败");
+        //}
+
+    })(jQuery);
+
+</script>
+<script type="text/javascript">
+   $(function(){
+    
+   $('#J-top-userinfo').hover(function(){
+     
+                $(this).find('.menu-nav').css('display','block');
+                 $(this).find('.simazhao').css('display','block');
+            },function(){
+                $(this).find('.menu-nav').css('display','none');
+                 $(this).find('.simazhao').css('display','none');
+        })
+   }) 
+</script>
+
+

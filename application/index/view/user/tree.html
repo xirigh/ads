@@ -1,0 +1,90 @@
+<include file="public/head"/>
+
+<div class="widget-body">
+    <div class="widget-main padding-8">
+        <div id="tree1" class=""></div>
+    </div>
+</div>
+
+<include file="public/footer"/>
+<script src="__CONTENT__/ace/js/jstree/src/jstree.js"></script>
+<link href="__CONTENT__/ace/js/jstree/src/themes/default/style.css" rel="stylesheet" />
+<script>
+    function BindTree() {
+        //$("#tree1").jstree("uncheck_all");
+        $('#tree1').data('jstree', false).empty(); //清空
+        var TreeData = [];
+
+        var _url = "<{:url('User/getUserLevTree')}>";
+
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            dataType: "json", // 数据格式:JSON
+            url: _url, // 目标地址
+            data: {
+                "ClientID": "<{$uid}>",
+            },
+            error: function(msg) {
+                console.info(msg);
+            },
+            success: function(objs) {
+                for(var key in objs) {
+                    var temp = "<i class='icon-user red'></i>";
+                    if(objs[key]['parent'] != "#") {
+                        temp += "【" + objs[key]['parentcount'] + "代】";
+                    }
+                    temp += " (" + objs[key]['count'] + "人) ";
+                    temp += objs[key]['id'];
+                    temp += " (" + objs[key]['fullname'] +
+                        ") &nbsp;&nbsp;&nbsp;";
+                    temp += objs[key]['clientlevel'] +
+                        "&nbsp;&nbsp;&nbsp;";
+                    temp += " <span style='color:red'> 注册日期：" + objs[key]['createdata'] +
+                        "</span> &nbsp;&nbsp;&nbsp;";
+                    if(objs[key]['jihuo'] == 0){
+                        temp += "<a class='yonghujihuo' v_id='"+ objs[key]['id'] +"'>激活</a>"
+                    }else{
+                        temp += "<a>已激活</a>"
+                    }
+                    var obj = {
+                        id: objs[key]['id'],
+                        parent: objs[key]['parent'],
+                        text: temp
+                    };
+                    TreeData.push(obj);
+                }
+
+                $("#tree1").jstree({
+                    "plugins": ["checkbox"],
+                    "core": {
+                        "themes": {
+                            "theme": "classic",
+                            "dots": true,
+                            "icons": false
+                        },
+                        'data': TreeData
+                    }
+                });
+                $("#span_SumCountUser")[0].innerText = TreeData.length;
+            }
+        });
+
+        // 展开节点
+        $("#tree1").on("loaded.jstree", function(event, data) {
+            // 展开所有节点
+            $('#tree1').jstree('open_all');
+            // 展开指定节点
+            // data.instance.open_node('1002');     // 单个节点 （1 是顶层的id）
+            //data.instance.open_node([1, 10]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行）
+        });
+    }
+
+    function DevelopTree() {
+        $('#tree1').jstree('open_all');
+    }
+
+    function MergeTree() {
+        $('#tree1').jstree('close_all');
+    }
+    BindTree();
+</script>

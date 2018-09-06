@@ -1,0 +1,116 @@
+.navContent {
+  float: left;
+}
+.infoBox {
+  float: left;
+  width: 920px;
+  margin-left: 30px;
+  margin-top: 40px;
+}
+.logo {
+  width: 200px;
+  height: 120px;
+}
+.logobox {
+  margin-left: 40px;
+  padding-top: 38px;
+}
+.book {
+  padding-left: 83px;
+  padding-right: 44px;
+  display: block;
+  background-color: #78bcaf;
+  background-image: url(images/logo_2.png);
+  background-repeat: no-repeat;
+  background-position: 25px center;
+}
+.box {
+  padding-left: 83px;
+  padding-right: 44px;
+  display: block;
+  background-color: #adca7a;
+  background-image: url(images/logo_4.png);
+  background-repeat: no-repeat;
+  background-position: 25px center;
+}
+.box01 {
+  padding-left: 83px;
+  padding-right: 44px;
+  display: block;
+  background-color: #67affb;
+  background-image: url(images/logo_3.png);
+  background-repeat: no-repeat;
+  background-position: 25px center;
+}
+.contact {
+  padding-left: 83px;
+  padding-right: 44px;
+  display: block;
+  background-color: #f87678;
+  background-image: url(images/logo_1.png);
+  background-repeat: no-repeat;
+  background-position: 25px center;
+}
+.img{
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  /*width: 70%;*/
+  float: left;
+  right: 10px;
+  text-align: center;
+}
+.img li{
+  color: #fff;
+}
+.header-nav-game{
+  top: -120px;
+}
+.header-nav-img{
+   position: absolute;
+    text-align: center;
+}
+
+.header-nav-img a{
+  color:#fff;
+}
+.header-nav-img li {
+  width: 170px;
+  background: #cdc08c;
+  height: 3rem;
+  line-height: 3rem;
+  border: 1px solid #e3e3e3;
+}
+
+.header-nav-img li div {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #844515;
+  border-radius: 40px;
+  background: #ea721a;
+  text-align: center;
+  line-height: 1.7em;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
+}
+
+
+.fa-2x {
+    font-size: 1rem;
+}
+.header-nav-img li:hover div {
+  border: 3px solid #29653e;
+  background: #12b35e;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+}
+
+.header-nav-img li:hover a {
+  color: #fff;
+}

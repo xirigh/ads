@@ -1,0 +1,439 @@
+<include file="Public/base" />
+<link rel="stylesheet" href="__CONTENT__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+<script src='__CONTENT__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' language='JavaScript'></script>
+<script src='__CONTENT__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' language='JavaScript'></script>
+<script src='__CONTENT__/js/bootbox.min.js' language='JavaScript'></script>
+<script type="text/javascript">
+</script>
+<style>
+	#tabList th {
+		background: #FFF;
+		vertical-align: middle;
+	}
+
+	#tabList td {
+		vertical-align: middle;
+	}
+</style>
+
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;会员管理&nbsp;&nbsp;>&nbsp;&nbsp;会员信息管理
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+		<div class="row">
+
+			<div class="col-xs-12 widget-main ">
+				<div class="">
+
+					<h4 class="lighter">
+						<form id="formSearch" name="formSearch" class="form-horizontal" method="post" action="<{:url('user/list')}>">
+							<div class="form-group">
+								<div>
+									<label class=" control-label col-sm-1">会员ID</label>
+								</div>
+								<div class="col-sm-2">
+									<span class="input-icon input-icon-right"> <input
+											type="text" class="form-control" id="txtClientID"
+											name="v_vip_id" value="" placeholder="模糊查询">
+
+									</span>
+								</div>
+								<div>
+									<label class="control-label col-sm-1">真实姓名</label>
+								</div>
+
+								<div class="col-sm-2">
+									<span class="input-icon input-icon-right"> <input
+											type="text" class="form-control" id="txtFullName"
+											name="v_name" value="" placeholder="模糊查询">
+
+									</span>
+								</div>
+
+								<!--<div>-->
+									<!--<label class=" control-label col-sm-1">推荐人</label>-->
+								<!--</div>-->
+								<!--<div class="col-sm-2">-->
+									<!--<span class="input-icon input-icon-right"> <input-->
+											<!--type="text" class="form-control" id="txtRecommendID"-->
+											<!--name="RecommendID" value="" placeholder="模糊查询">-->
+
+									<!--</span>-->
+								<!--</div>-->
+
+								<div class="col-sm-3" style="text-align: center;">
+									<button class="btn btn-primary" type="button"
+											id="btn_SubmitSearch"
+											onclick="search();">
+										<i class="icon-search align-top bigger-125"></i> 查询
+									</button>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<button class="btn" type="button" onclick="ResetSearchForm();">
+										<i class="icon-refresh align-top bigger-125"></i> 重置
+									</button>
+								</div>
+							</div>
+						</form>
+					</h4>
+
+				</div>
+
+				<div class="table-responsive">
+					<table id="tabList" class="table table-striped table-bordered table-hover datatable table-condensed">
+						<thead>
+						<tr>
+							<th class="center">#</th>
+							<th class="center">会员ID</th>
+							<th class="center">真实姓名</th>
+							<th class="center">钱包</th>
+							<!--<th class="center">代理信息</th>-->
+							<th class="center">推荐人</th>
+							<th class="center">审核状态</th>
+							<th class="center">注册时间</th>
+							<th class="center">操作</th>
+						</tr>
+						</thead>
+
+						<tbody>
+						<volist name="userlist" id="v">
+							<tr>
+								<td class="center col-xs-1 col-sm-1"><{$v.v_id}></td>
+								<td class="center col-xs-2 col-sm-2">
+									<a href="#" style="cursor: hand" title="进入<{$v.v_vip_id}>的系统" onclick="RedirectClientWeb('<{$v.v_id}>');"> <span class=" "><{$v.v_vip_id}></span></a> <br /> 登录密码：
+
+									<a href="#" style="cursor: hand" title="点击进行重置" onclick="SetResetPwd('<{$v.v_id}>','<{$v.v_vip_id}>','1');">
+
+										<span class=""><{$v.v_pwd1}></span></a>
+
+									<br /> 资金密码：
+									<a href="#" style="cursor: hand" title="点击进行重置" onclick="SetResetPwd('<{$v.v_id}>','<{$v.v_vip_id}>','2');">
+
+										<span class=""><{$v.v_pwd2}></span></a>
+								</td>
+
+								<td class="center col-xs-2 col-sm-2"><{$v.v_name}>
+									<!--<br />-->
+
+									<!--<a href="javascript:;" style="cursor: hand" title="点击进行修改" onclick="SetClientLevel('<{$v.v_id}>','<{$v.v_vip_id}>','<{$v.v_type}>');">-->
+
+										<!--<span class=""><{$v.v_type}></span></a>-->
+
+								</td>
+								<td class="center col-xs-2 col-sm-2">
+									开户金：<{$v.v_money1|default="0.00"|round=5}><br /> 总资产：<{$v.zongzichan|default="0.00"|round=6}> </td>
+								<!--<td class="center col-xs-2 col-sm-2">1111</td>-->
+
+								<td class="center col-xs-1 col-sm-1">
+									<a href="javascript:;" style="cursor: hand" title="查看<{$v.v_recomm}>" onclick="RedirectRecommendID('<{$v.v_recomm}>');"> <span class=" "><{$v.v_recomm}></span></a>
+                                    <!--<br /> 县级运营中心-->
+								<!--</td>-->
+								<eq name="v.enable_flag" value="1">
+								<td class="center col-xs-1 col-sm-1">
+									<a href="#" style="cursor: hand" title="点击驳回重审  会员不能登录" onclick="SetActivation('1','<{$v.v_id}>');"><span class="label label-success arrowed-in arrowed-in-right">已审核</span></a>
+								</td>
+									<else />
+								<td class="center col-xs-1 col-sm-1"> <a href="#" style="cursor: hand" title="点击审核通过" onclick="SetActivation('0','<{$v.v_id}>');"><span class="label label-danger arrowed">未审核</span></a></td>
+								</eq>
+								<td class="center col-xs-2 col-sm-2"><{$v.update_time}>
+								</td>
+								<td class="center col-xs-3 col-sm-3">
+									<div class="btn-group">
+
+										<button class="btn btn-xs btn-info" onclick="ShowEditInfo('Read','<{$v.v_id}>')">
+											<i class="icon-zoom-in bigger-120"></i>查看
+										</button>
+										<button class="btn btn-xs btn-success" onclick="ShowEditInfo('Edit','<{$v.v_id}>')">
+											<i class="icon-edit bigger-120"></i>修改
+										</button>
+										<button class="btn btn-xs btn-warning" onclick="DeleteClient('<{$v.v_id}>')">
+											<i class="icon-remove bigger-120"></i>删除
+										</button>
+									</div>
+								</td>
+							</tr>
+						</volist>
+						</tbody>
+					</table>
+
+					<div>
+						<{$userlist|raw}>
+					</div>
+				</div>
+				<!-- /.table-responsive -->
+
+				<div class="modal   fade" tabindex="-1" role="dialog" id="editModel">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title">修改会员等级</h4>
+							</div>
+							<div class="modal-body">
+
+								<form id="Form1" class="form-horizontal" role="form" method="post" action="">
+									<div class="form-group">
+
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 会员 </label>
+										<div class="col-sm-9">
+											<input type="text" id="txtClientIDLevel" name="ClientIDLevel" placeholder="" class="col-xs-12 col-sm-9 uneditable-input" disabled /> <label class="middle red"></label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择级别</label>
+
+										<div class="col-sm-7">
+											<select name="ClientLevelLevel" class="form-control" id='txtClientLevelLevel'>
+                                                <volist name="usertype" id="u" key="key">
+												<option value="<{$key-1}>"><{$u}> </option>
+                                                </volist>
+											</select>
+                                            <input type="hidden" id="txtClientIDlevelHide">
+										</div>
+
+									</div>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-primary" onclick="SaveClientLevel();">保存</button>
+							</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+
+				<div class="modal   fade" tabindex="-1" role="dialog" id="editModel2">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title">重置会员密码</h4>
+							</div>
+							<div class="modal-body">
+
+								<form id="Form2" class="form-horizontal" role="form" method="post" action="">
+									<div class="form-group">
+
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 会员 </label>
+										<div class="col-sm-9">
+											<input type="text" id="txtClientIDLevel1" name="ClientIDLevel1" placeholder="" class="col-xs-12 col-sm-9 uneditable-input" disabled /> <label class="middle red"></label>
+                                            <input type="hidden" id="txtClientIDlevelHide" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 密码</label>
+
+										<div class="col-sm-7">
+
+											<input type="text" id="txtPwd" name="ResetPwd" placeholder="" class="col-xs-12 col-sm-9 uneditable-input" /> <label class="middle red"></label>
+
+										</div>
+
+									</div>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-primary" onclick="SaveResetPwd();">保存</button>
+							</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script type='text/javascript'>
+    function search(){
+        $("#formSearch").submit();
+	}
+
+    function ResetSearchForm() {
+        $("#txtClientID").val('');
+        $("#txtFullName").val('');
+        $("#txtRecommendID").val('');
+    }
+
+    function ShowEditInfo(FormStatus, ClientID) {
+        if(!ClientID || !FormStatus) {
+            return;
+        }
+        var _url = "<{:url('User/listact','','')}>";
+        window.location.href = _url + '/type/' + FormStatus +
+            '/uid/' + ClientID;
+    }
+
+    function DeleteClient(ClientID) {
+        bootbox.confirm("确认删除？", function(r) {
+            if(r) {
+                var _url = "<{:url('user/deluser')}>";
+                $.ajax({
+                    type: "POST", // 用POST方式传输
+                    dataType: "json",
+                    url: _url, // 目标地址
+                    data: {
+                        "uid": ClientID
+                    },
+                    success: function(e) {
+                        ShowMsg(e.msg);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+        });
+    }
+
+    function SetActivation(value, ClientID) {
+        if(!value) {
+            return;
+        }
+        var _url = "<{:url('user/able')}>";
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            dataType: "json",
+            url: _url, // 目标地址
+            data: {
+                "type": value,
+                "uid": ClientID
+            },
+            success: function(e) {
+                ShowMsg(e.msg)
+            },
+            error: function(data) {
+                console.info(data);
+            }
+        });
+    }
+
+    function RedirectClientWeb(ClientID) {
+        if(!ClientID) {
+            return;
+        }
+        var _url = "<{:url('User/home')}>";
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            dataType: "json",
+            url: _url, // 目标地址
+            data: {
+                "id": ClientID
+            },
+            success: function(e) {
+                if(e.code == 1){
+                    window.open(e.url);
+                }else{
+                    ShowMsg(e.msg);
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+    }
+
+    function RedirectRecommendID(RecommendID) {
+        if(!RecommendID) {
+            return;
+        }
+        $('#txtClientID').val(RecommendID);
+
+        document.formSearch.submit();
+
+    }
+
+    function SetClientLevel(ClientID,cname,ClientLevel) {
+        if(!ClientID || !ClientLevel) {
+            return;
+        }
+        //弹出窗体之前先清空
+        $('#Form1')[0].reset();
+
+        $("#editModel").modal({
+            keyboard: true
+        });
+
+        $("#txtClientIDLevel").val(cname);
+        $("#txtClientIDlevelHide").val(ClientID);
+        $("#txtClientLevelLevel").val(ClientLevel);
+
+    }
+
+    function SaveClientLevel() {
+        var _url = "<{:url('user/edittype')}>";
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            dataType: "json",
+            url: _url, // 目标地址
+            data: {
+                "ClientID": $("#txtClientIDlevelHide").val(),
+                "ClientLevel": $("#txtClientLevelLevel").val()
+            },
+            success: function(data) {
+                ShowMsg(data.msg);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+    var ResetPwdType = "";
+
+    function SetResetPwd(ClientID,cname,type) {
+        if(!ClientID || !type) {
+            return;
+        }
+        //弹出窗体之前先清空
+        $('#Form2')[0].reset();
+
+        $("#editModel2").modal({
+            keyboard: true
+        });
+
+        $("#txtClientIDLevel1").val(cname);
+        $("#txtClientIDlevelHide").val(ClientID);
+        ResetPwdType = type;
+
+    }
+
+    function SaveResetPwd() {
+        var _url = "<{:url('User/editpwd')}>";
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            dataType: "json",
+            url: _url, // 目标地址
+            data: {
+                "ClientID": $("#txtClientIDlevelHide").val(),
+                "Pwd": $("#txtPwd").val(),
+                "Type": ResetPwdType
+            },
+            success: function(data) {
+                ShowMsg(data.msg);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+</script>

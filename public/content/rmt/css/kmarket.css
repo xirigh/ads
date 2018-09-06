@@ -1,0 +1,99 @@
+body{ background:#fff;}
+
+.kblist{ margin-top:30px;}
+.kblist ul li{float:left; margin-left:80px; margin-bottom:20px; }
+
+#plans,#plans ul,#plans ul li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#pricePlans:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+#pricePlans {
+	zoom: 1;
+}
+#pricePlans #plans .plan 
+{
+    background: #fff;
+	float: left;
+	text-align: center;
+	border-radius: 10px 10px 0px 0px;
+	-webkit-transition: all .25s;
+	   -moz-transition: all .25s;
+	    -ms-transition: all .25s;
+	     -o-transition: all .25s;
+	        transition: all .25s;
+}
+#pricePlans #plans .plan:hover {
+	-webkit-transform: scale(1.04);
+	   -moz-transform: scale(1.04);
+	    -ms-transform: scale(1.04);
+	     -o-transform: scale(1.04);
+	        transform: scale(1.04);
+}
+
+.planContainer .price p {
+	background: #9D8AFF;
+	color: #fff;
+	font-size: 14px;
+	height: 2.6em;
+	line-height: 2.6em;
+	border-radius: 10px 10px 0px 0px;
+}
+.planContainer .options img
+{
+   
+    border:none;
+    }
+.planContainer .button,.planContainer .button2 {
+    background: #e86e5f;
+    font-size:16px;
+	color: #fff;
+	border: none;
+	width: 50%;
+	height:30px;
+    cursor:pointer;
+    margin-bottom:10px;
+    margin-top:10px;
+	border-radius: 8px 0px 0px 8px;
+	-webkit-transition: all .25s;
+	   -moz-transition: all .25s;
+	    -ms-transition: all .25s;
+	     -o-transition: all .25s;
+	        transition: all .25s;
+}
+.planContainer .button2{
+	background: #132e49;
+	border-radius: 0px 8px 8px 0px;
+}
+.planContainer .button:hover {
+	background: #db3f2c;
+	color: #fff;
+	font-weight:bold;
+}
+.planContainer .button2:hover {
+	background: #2b67a3;
+	color: #fff;font-weight:bold;
+}
+.planContainer {
+	border:1px #cdcccc solid;
+	width:407px;
+	height:207px;
+	border-radius:15px;
+}
+
+
+
+
+
+
+
+
+
+
+

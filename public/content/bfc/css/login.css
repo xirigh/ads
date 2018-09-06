@@ -1,0 +1,112 @@
+.login{
+    width:100%;
+    padding:5%;
+}
+.login p{
+    background:green;
+    text-align:center;
+    color: #fff;
+    width:10%;
+    float:right;
+}
+.logo{
+    width:100%;
+    text-align: center;
+    padding:2%;
+}
+.logo img{
+    width:30%;
+}
+.login-input{
+    width:100%;
+    margin-top:10%;
+}
+.login-input ul{
+    list-style: none;
+    width:100%;
+    padding: 0;
+    margin:0;
+}
+.login-input li{
+    width: 100%;
+    border-bottom:1px solid #158947;
+    margin-bottom:4%;
+}
+.login-input .iconfont{
+    font-size:26px;
+    color:#c0c0c0;
+}
+.login-input li input{
+    border:none;
+    padding:2%;
+    width: 69%;
+    outline: none;
+}
+.login-input .enter{
+    width: 100%;
+    background: #158947;
+    color:#fff;
+    border-radius: 5px;
+    border:none;
+}
+/*找回密码*/
+.find{
+    width:100%;
+    padding: 2%;
+}
+.find p{
+    font-weight: bold;
+    font-size: 16px;
+    margin: 5% 0;
+}
+.find p input{
+    font-weight: normal;
+    margin:1%;
+    width: 98%;
+    border-radius:5px;
+    border:none;
+    border:1px solid #cccccc;
+    padding:2%;
+}
+.find .code{
+    width:60%;
+}
+/*.code button{
+    background: 
+    color:#fff;
+}*/
+.find p button{
+    background:#158947;
+    border:none;
+    color: #fff;
+    width:30%;
+    padding:2%;
+    border-radius: 5px;
+}
+.refer input{
+    background:#158947;
+    color:#fff;
+}
+
+
+
+
+
+
+
+
+
+body {
+  font-size:12px;
+}
+
+
+
+
+
+
+
+
+
+
+

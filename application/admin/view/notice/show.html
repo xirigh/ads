@@ -1,0 +1,130 @@
+<include file='Public:base' />
+
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+
+<script src='__CONTENT__/summernote/summernote.min.js' language='JavaScript'></script>
+<script src='__CONTENT__/summernote/lang/summernote-zh-CN.js' language='JavaScript'></script>
+
+<link rel="stylesheet" href="__CONTENT__/summernote/summernote.css" />
+<link rel="stylesheet" href="__CONTENT__/js/Common.css" />
+
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+		
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+			} catch (e) {
+			}
+		</script>
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;新闻信息管理&nbsp;&nbsp;>&nbsp;&nbsp;系统公告管理
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+			
+			<form id="Form1" class="form-horizontal" role="form" method="post" >
+									<div class="form-group">
+										 
+										<label class="col-sm-1 control-label no-padding-right"
+											for="form-field-1"> 公告编号</label>
+										<div class="col-sm-9">
+											<input type="text" id="txtNewsNo"  name="n_code"
+												placeholder="" class="col-xs-12 col-sm-9 uneditable-input"
+												readonly value="<{$data.n_code}>" /> <label class="middle red">*</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right"
+											for="form-field-2"> 级别</label>
+
+										<div class="col-sm-9">
+											<select class="col-xs-12 col-sm-9 " id="txtNewsIco" name="n_lev" disabled>
+												<option class="icon-ok"><{$data.n_lev}></option>
+											</select> <label
+												class="middle red">*</label>
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right"
+											for="form-field-2"> 标题</label>
+
+										<div class="col-sm-9">
+											 <input type="text" id="txtTitle" name="n_title"
+												placeholder="" class="col-xs-12 col-sm-9" value="<{$data.n_title}>" disabled/>
+												<label class="middle red">*</label>
+										</div>
+
+									</div>
+								
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right"
+											for="form-field-1"> 描述 </label>
+
+										<div class="col-sm-9">
+											<textarea id="txtDescription" name="n_desc" class="col-xs-12 col-sm-9" disabled ><{$data.n_desc}></textarea>
+										</div>
+									</div>
+									<div class="form-group" disabled>
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 内容 </label>
+										<div class="col-sm-10">
+											<div id="div_Content" name="n_content"><{$data.n_content|raw}></div>
+										</div>
+									</div>
+							
+							<div class="clearfix form-actions">
+					<div class="col-md-offset-3 col-md-9">
+						&nbsp; &nbsp; &nbsp;
+						<button type="button" class="btn btn-info"
+							onclick="javascript:history.back(-1);" data-dismiss="modal">
+							<i class="icon-circle-arrow-left bigger-110"></i> 返回
+						</button>
+					</div>
+		</div>
+		</form>
+	</div>
+</div>
+</div>
+<script type='text/javascript'>
+$(function () {
+    //注册编辑器
+    $('#div_Content').summernote({
+    	height:300,
+    	lang:"zh-CN",
+    	callbacks : {
+	    		onImageUpload : function(files, editor, welEditable) {
+	            sendFile(files[0], editor, welEditable);
+	        }
+    	},
+    });
+    $("#btnSubmit").attr('disabled',false);
+    
+});
+
+
+function SetFormDisabled(flag){
+	$('#txtNewsIco').attr("disabled",flag);
+	$('#txtTitle').attr("disabled",flag);
+	$('#txtDescription').attr("disabled",flag);
+	
+	if(flag){
+		  $('#div_Content').summernote("disable");
+	}
+}
+
+</script>
+</body>
+</html>

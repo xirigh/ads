@@ -1,0 +1,169 @@
+<include file="Public/base" />
+<link rel="stylesheet" href="__CONTENT__/font-awesome-4.5.0/css/font-awesome.min.css">
+<script src="__CONTENT__/Charts/Chart.min.js"></script>
+<style>
+    #tabList th {
+        background: #FFF;
+        vertical-align: middle;
+    }
+
+    #tabList td {
+        vertical-align: middle;
+    }
+</style>
+<div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('breadcrumbs', 'fixed')
+            } catch (e) {
+            }
+        </script>
+
+        <ul class="breadcrumb">
+            <li><i class="icon-home home-icon"></i>后台管理</li>
+            <span id="span_dh">&nbsp;>&nbsp;&nbsp;首页 </span>
+        </ul>
+        <!-- .breadcrumb -->
+
+    </div>
+
+    <!-- 内容 -->
+    <div class="page-content">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 widget-container-span ">
+                <div class="widget-box  ">
+                    <div class="widget-header header-color-blue">
+                        <h5>
+                            <i class="icon-signal"></i>今日概况
+                        </h5>
+                    </div>
+
+                    <div class="widget-body" style="height: 150px; overflow: hidden">
+                        <div class="widget-main col-xs-6 col-sm-6 ">
+
+                            <div class="profile-user-info profile-user-info-striped">
+
+
+
+                                <div class="row">
+
+                                    <div class="profile-info-row col-xs-12 ">
+                                        <div class="profile-info-name"
+                                             style="border-top: 1px solid #f7fbff;">本日新增会员</div>
+
+                                        <div class="profile-info-value"
+                                             style="border-top: 1px dotted #dcebf7;">
+                                            <span class="editable"><{$daynum}></span> <i
+                                                class="icon-arrow-up red "></i>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="profile-info-row col-xs-12 ">
+                                        <div class="profile-info-name"
+                                             style="border-top: 1px solid #f7fbff;">本月新增会员</div>
+
+                                        <div class="profile-info-value"
+                                             style="border-top: 1px dotted #dcebf7;">
+                                            <span class="editable"><{$mounum}></span>
+                                            <i class="icon-arrow-up red "></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="profile-info-row col-xs-12 ">
+                                        <div class="profile-info-name"
+                                             style="border-top: 1px solid #f7fbff;">待激活会员</div>
+
+                                        <div class="profile-info-value"
+                                             style="border-top: 1px dotted #dcebf7;">
+                                            <span class="editable"><{$jihuonum}></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="widget-main col-xs-6 col-sm-6 ">
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="widget-box  ">
+                    <div class="widget-header header-color-blue">
+                        <h5>
+                            <i class="icon-signal"></i>近期概况
+                        </h5>
+                    </div>
+
+                    <div class="widget-body" style="height: 600px; overflow: auto">
+                        <div class="widget-main ">
+
+
+
+
+
+                            <canvas id="myLineChart"  style="display: block; height:200px;"></canvas>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        $.post("<{:url('Index/getlineimg')}>",{},function(e){
+            var myLineChart = new Chart(document.getElementById("myLineChart").getContext("2d"),{
+                type: 'line',
+                data: e,
+                options: {
+                }
+            });
+        },"json");
+    });
+
+</script>

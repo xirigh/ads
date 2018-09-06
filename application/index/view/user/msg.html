@@ -1,0 +1,208 @@
+<include file="Public/head" />
+<link rel="stylesheet" href="__WEB__/css/record.css">
+<link rel="stylesheet" href="__WEB__/css/table.css">
+<link rel="stylesheet" href="__WEB__/css/page.css">
+<link rel="stylesheet" href=__CONTENT__/bootstrap-fileinput/css/fileinput.min.css" />
+<link rel="stylesheet" href=__CONTENT__/ace/css/font-awesome.min.css" />
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="javascript:history.go(-1);">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <i>我的消息</i>
+    </div>
+
+
+
+    <style type="text/css">
+        .help-block {
+            width: 300px;
+            display: block;
+            color: red;
+        }
+        .sel{
+            background: url(__WEB__/images/input.gif) 0 0 repeat-x;
+            background-color: #fbfbfb;
+            margin-bottom:5px;
+            margin-top:2px;
+            border:1px solid #ddd;
+            height:35px;
+            line-height:35px;
+            color:#333;
+            font-size:14px;
+            width:99%;
+        }
+        #submit{
+            width:99%;
+            height:35px;
+            line-height:35px;
+            overflow:hidden;
+            border:0 none;
+            cursor:pointer;
+            color:#fff;
+            font-size:14px;
+            font-weight:700;
+            text-align:center;
+            background:#158947;
+            border-radius:1px;
+        }
+
+        .center{
+            text-align:center;
+        }
+        .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+            border: 1px solid #ccc;
+        }
+        .table{
+            border-collapse:collapse;
+            border-spacing:0;
+            border: 1px solid #ddd;
+        }
+        .table td, th{
+            text-align: center;
+            padding: 7px 20px;
+        }
+        .table button{
+            padding: 2px 10px;
+        }
+        .form-horizontal .form-group {
+
+            margin-left: 0px;
+        }
+
+    </style>
+    <style>
+
+        .ends p {
+            margin-top: 20px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+        .jiaduobao p{
+            margin-top: 10px;
+        }
+        .price_four {
+            margin-top: 0px;
+        }
+        .barbox dd.barline{
+            margin-top:0px;
+        }
+        .price_two {
+            height:2.0rem;
+        }
+
+        .price_one{
+            margin-top:10px;
+        }
+    </style>
+    <div class="ui-form mt10" style="padding:10px">
+        <form id="form1" class="form-horizontal margin-none" action="<{:url('Usermsg/addact')}>" method="post" enctype="multipart/form-data">
+            <div style="display:none;">
+                <img src="__WEB__/images/qMUjOdv.png" width="20"> 客服微信：          </div>
+
+            <div class="ui-form-item fn-clear">
+                <p class="ui-message-clear2">类型 *</p>
+                <select name="um_type" id="type" class="sel">
+                    <option value="0">----请选择类型----</option>
+                    <volist name="typelist" key="k" id="v">
+                    <option value="<{$k}>" ><{$v}></option>
+                    </volist>
+                </select>
+            </div>
+            <p class="ui-message-clear2" style="padding-top: -50px"> 信息标题 *</p>
+            <div class="ui-form-item fn-clear form-group">
+                <input type="text"  name="um_title" id="title" class="ui-input wb99 form-control" style="width:96%;">
+            </div>
+            <p class="ui-message-clear2">描述 *</p>
+            <div class="ui-form-item fn-clear form-group">
+                <textarea name="um_desc" id="desrciption" class="ui-input ui-textarea form-control" style="width:96%"></textarea>
+            </div>
+            <p class="ui-message-clear2">信息内容*</p>
+            <div class="ui-form-item fn-clear form-group">
+                <textarea name="um_content" id="content" class="ui-input ui-textarea form-control" style="width:96%"></textarea>
+            </div>
+            <p class="ui-message-clear2">上传截图</p>
+            <div class="ui-form-item fn-clear form-group">
+                <input id="PayVoucher" name="um_file" type="file" >
+            </div>
+
+            <div class="ui-form-item fn-clear form-group">
+                <button  style=" width: 95%" id="submit" type="button" class="ui-button wb99 btn btn-primary" onclick="sendform();">发送消息</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-responsive" >
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>类型</th>
+                <th>标题</th>
+                <th>描述</th>
+                <th>附件</th>
+                <th>状态</th>
+                <th>回复内容</th>
+                <th>回复时间</th>
+            </tr>
+            <volist name="list" id="v">
+            <tr>
+                <td><{$v.type}></td>
+                <td><{$v.um_title}></td>
+                <td><{$v.um_desc}></td>
+                <td><a href="__UPLOADS__/<{$v.um_file}>">点击下载</a></td>
+                <td><{$v.state}></td>
+                <td><{$v.um_re_content}></td>
+                <td><{$v.um_re_time|date="Y-m-d H:i:s"}></td>
+            </volist>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <ul id="pageBar" class="pagination">
+            <{$list|raw}>
+        </ul><br /><br /><br /><br /><br /><br />
+    </div>
+
+    <div class="clear"></div>
+
+<include file="Public/footer" />
+    <load href="__ASSETS__/js/jquery.form.min.js"></load>
+    <script>
+        function sendform() {
+            function beforeCheck(){
+                layer.open({
+                    type:2,
+                    content: "提交中",
+                });
+            }
+            function successfun(res){
+                layer.closeAll();
+                if(res.code != 1){
+                    layer.open({
+                        content: res.msg,
+                        btn:'我知道了',
+                    });
+                    return false;
+                }else{
+                    layer.open({
+                        content: res.msg,
+                        skin:'msg',
+                    });
+                    window.location.reload();
+                }
+            }
+            var options = {
+                beforeSubmit: beforeCheck, //提交前的回调函数
+                success: successfun,  //提交成功后的回调函数
+                dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+                clearForm: false,  //成功提交后，是否清除所有表单元素的值
+                resetForm: true,  //成功提交后，是否重置所有表单元素的值
+                timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
+            };
+            $('#form1').ajaxSubmit(options);
+        };
+    </script>

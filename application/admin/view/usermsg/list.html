@@ -1,0 +1,207 @@
+<include file="Public/base" />
+<link rel="stylesheet" href="__CONTENT__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+
+<script src='__CONTENT__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' language='JavaScript'></script>
+<script src='__CONTENT__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' language='JavaScript'></script>
+
+<script type="text/javascript">
+</script>
+<style>
+	#tabList th {
+		background: #FFF;
+		vertical-align: middle;
+	}
+	
+	#tabList td {
+		vertical-align: middle;
+	}
+</style>
+
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;新闻信息管理&nbsp;&nbsp;>&nbsp;&nbsp;系统留言管理
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+	<!-- 内容 -->
+	<div class="page-content">
+		<div class="row">
+			<div class="col-xs-12 widget-main ">
+				<div class="">
+
+					<h4 class="lighter">
+						<form id="formSearch" class="form-horizontal" method="post" action="">
+							<div class="form-group">
+								<div>
+									<label class=" control-label col-sm-1">留言会员</label>
+								</div>
+								<div class="col-sm-2">
+									<span class="input-icon input-icon-right"> <input
+										type="text" class="form-control" id="txtClientID"
+										name="uname" placeholder="模糊查询">
+
+									</span>
+								</div>
+								<div>
+									<label class="control-label col-sm-1">留言类型</label>
+								</div>
+
+								<div class="col-sm-2">
+							
+									<select name="um_type" id='txtSystemMessageType' class="form-control">
+										<option value="0"></option>
+										<volist name="um_type" id="v" key="k">
+										<option value="<{$k}>"><{$v}></option>
+										</volist>
+									</select>
+								</div>
+								<div>
+									<label class=" control-label col-sm-1">状态</label>
+								</div>
+								<div class="col-sm-2">
+
+									<select name="um_state" id='txtSystemMessageStatus' class="form-control">
+										<option value="0"></option>
+										<volist name="um_state" id="v" key="k">
+										<option value="<{$k}>"><{$v}></option>
+										</volist>
+									</select>
+								</div>
+
+								<div class="col-sm-3" style="text-align: center;">
+										<button class="btn btn-primary" type="button" id="btn_SubmitSearch"
+									onclick="search()">
+										<i class="icon-search align-top bigger-125"></i> 查询
+									</button>
+
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<button class="btn" type="button" onclick="ResetSearchForm();">
+										<i class="icon-refresh align-top bigger-125"></i> 重置
+									</button>
+								</div>
+							</div>
+						</form>
+					</h4>
+				</div>
+
+				<div class="table-responsive">
+					<table id="tabList" class="table table-striped table-bordered table-hover datatable table-condensed">
+						<thead>
+							<tr>
+								<th class="center">#</th>
+								<!--<th class="center">留言编号</th>-->
+								<th class="center">留言会员</th>
+								<th class="center">留言类型</th>
+								<th class="center">留言标题</th>
+								<th class="center">状态</th>
+								<th class="center">回复人</th>
+								<th class="center">时间</th>
+								<th class="center">回复</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<volist name="list" id="v">
+								<tr>
+									<td class="center col-xs-0 col-sm-0">
+										<{$v.um_id}>
+									</td>
+									<!--<td class="center col-xs-1 col-sm-1">-->
+										<!--<{$v.um_code}>-->
+									<!--</td>-->
+									<td class="center col-xs-1 col-sm-1">
+										<{$v.v_vip_id}>
+									</td>
+									<td class="center col-xs-2 col-sm-2">
+										<{$v.um_type}>
+									</td>
+									<td class="center col-xs-3 col-sm-3">
+										<{$v.um_title}>
+									</td>
+									<td class="center col-xs-1 col-sm-1">
+										<{$v.um_state}>
+									</td>
+									<td class="center col-xs-1 col-sm-1">
+										<{$v.um_re_uid|uid2uname}>
+									</td>
+									<td class="center col-xs-3 col-sm-3">
+										留言时间：
+										<{$v.create_time}>
+									</td>
+									<td class="center col-xs-1 col-sm-1">
+										<div class="btn-group">
+											<button class="btn btn-xs btn-info" onclick="ShowEditInfo('Read','<{$v.um_id}>')">
+															<i class="icon-zoom-in bigger-120"></i>查看
+														</button>
+										</div>
+									</td>
+								</tr>
+							</volist>
+						</tbody>
+					</table>
+
+					<div>
+						<ul id="pageBar" class="pagination">
+							<!--<li>
+								<a>当前1/1 每页10条 共2条</a>
+							</li>-->
+							<{$list|raw}>
+						</ul>
+					</div>
+				</div>
+				<!-- /.table-responsive -->
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script type='text/javascript'>
+	$(function() {
+		function search(){
+			var type = $("#txtSystemMessageType").val();
+			var state = $("#txtSystemMessageStatus").val();
+			var uname = $("#txtClientID").val();
+			if(type == 0){
+				if(state == 0){
+					if(uname == ""){
+						ShowMsg("W未输入搜索内容");
+						return;
+					}
+				}
+			}
+		}
+	});
+
+	function search(){
+		var type = $("#txtSystemMessageType").val();
+		var state = $("#txtSystemMessageStatus").val();
+		var uname = $("#txtClientID").val();
+		if(type == 0){
+			if(state == 0){
+				if(uname == ""){
+					ShowMsg("W未输入搜索内容");
+				}
+			}
+		}
+		$("#formSearch").submit();
+	}
+
+	function ResetSearchForm() {
+		$("#txtClientID").val('');
+		$("#txtSystemMessageType").val('');
+		$("#txtSystemMessageStatus").val('');
+	}
+
+	function ShowEditInfo(FormStatus, MessageNo) {
+		if(!FormStatus || !MessageNo) {
+			return;
+		}
+		var _url = "<{:url('Usermsg/show','','')}>"+'/id/'+MessageNo+".html";
+		window.location.href = _url;
+	}
+</script>

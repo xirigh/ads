@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__CONTENT__/bfc/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/index.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/bootstrap.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/main.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/record.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/login.css">
+    <title>注册用户</title>
+</head>
+<body>
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="/bfc/index.php/Home/Login/index.html">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <i>绑定银行卡</i>
+    </div>
+    <form method="post">
+    <div class="find">
+        </p>
+        <p>
+            开户行<br>
+            <input name="bc_kaihuhang" type="text" placeholder="请输入开户行" value="<{$data.bc_kaihuhang}>">
+        </p>
+        <p>
+            开户名<br>
+            <input name="bc_kaihuming" type="text" placeholder="请输入开户名" value="<{$data.bc_kaihuming}>">
+        </p>
+        <p>
+            银行卡号<br>
+            <input name="bc_kahao" type="text" placeholder="请输入银行卡号" value="<{$data.bc_kahao}>">
+        </p>
+        <p>
+            开户行地址<br>
+            <input name="bc_address" type="text" placeholder="请输入开户行地址" value="<{$data.bc_address}>">
+        </p>
+        <p class="refer">
+            <input type="button" value="确认">
+        </p>
+    </div>
+   </form>
+
+</div>
+</body>
+</html>
+
+
+
+
+<script src='__CONTENT__/ace/js/jquery-2.0.3.min.js' language='JavaScript'></script>
+<script src="__CONTENT__/layer-v3.1.1/layer/layer.js"></script>
+<script src="__CONTENT__/js/Common.js"></script>
+<script src="__CONTENT__/layer_mobile/layer.js"></script>
+<script>
+    function changeimg(){
+        $("#yzm").attr("src","<{:captcha_src()}>?"+Math.random());
+    }
+    $('input[type=button]').click(function() {
+        var d = {};
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            d[this.name] = this.value;
+        });
+        layer.open({
+            type:2,
+            content: "提交中",
+        });
+        $.post("<{:url('user/yinhangkaact')}>",d,function (e) {
+            layer.closeAll();
+            if(e.code != 1){
+                layer.open({
+                    content: e.msg,
+                    btn: '我知道了'
+                });
+            }else{
+                layer.open({
+                    content: e.msg,
+                    skin:"msg",
+                });
+                window.location.href = e.url;
+            }
+
+        },"json");
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+    });
+
+    function isMobile(str) {
+        var myreg = /^([0]?)(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))+\d{8})$/;
+        return myreg.test(str);
+    }
+
+
+    //短信验证码
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    var code = ""; //验证码
+    var codeLength = 6;//验证码长度
+    window.onload = function() {
+
+    }
+    function SendMsg() {
+        //获取输入的手机号码
+        var phoNum = $("input[name=v_tel]").val();
+        //用正则表达式验证手机号是否合法
+        var reg = /^1[3|5|6|7|8|9][0-9]{9}$/;
+        var r = phoNum.match(reg);
+        if (r == null) {
+            layer.open({
+                content:"手机号格式不正确",
+                btn: '确认',
+            });
+            return false;
+        }
+        curCount = count;
+        // 产生随记验证码
+        for (var i = 0; i < codeLength; i++) {
+            code += parseInt(Math.random() * 9).toString();
+        }
+
+        // 设置按钮显示效果，倒计时
+        $("#sendSms").attr("disabled", "true");
+        $("#sendSms")[0].innerHTML =curCount + " S";
+
+        InterValObj = window.setInterval(SetRemainTime, 1000); // 启动计时器，1秒执行一次
+        var _url = "<{:url('User/sendmsg')}>";
+        // 向后台发送处理数据
+        layer.open({
+            type:2,
+            content: "发送中",
+        });
+        $.ajax({
+            type : "POST", // 用POST方式传输
+            dataType : "json", // 数据格式:JSON
+            url : _url, // 目标地址
+            data : {
+                "code" : code,
+                "mobile" : phoNum
+            },
+            error : function(msg) {
+                alert(11);
+                console.info(msg);
+            },
+            success : function(e) {
+                layer.closeAll();
+                if(e.code == 1){
+                    layer.open({
+                        skin:"msg",
+                        content: e.msg,
+                        time:3,
+                    });
+                }else{
+                    layer.open({
+                        content: e.msg,
+                        btn: '我知道了'
+                    });
+                }
+            }
+        });
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);// 停止计时器
+            $("#sendSms").removeAttr("disabled");// 启用按钮
+            $("#sendSms")[0].innerHTML ="重新发送";
+            code = ""; // 清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+        } else {
+            curCount--;
+            $("#sendSms")[0].innerHTML =curCount + " S";
+        }
+    }
+
+</script>

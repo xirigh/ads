@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="<{:url('Usermsg/addact')}>" method="post" enctype="multipart/form-data">
+			留言编号：<input type="text" name="um_code" id="" /><br />
+			留言标题：<input type="text" name="um_title" id="" /><br />
+			留言描述：<input type="text" name="um_desc" id="" /><br />
+			留言类型：
+				<select name="um_type">
+					<option value="1">111</option>
+					<option value="2">111</option>
+				</select>
+			<br />
+			留言内容：<textarea name="um_content" id="" cols="30" rows="10"></textarea><br />
+			留言附件：<input type="file" name="um_file" id="" /><br />
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<include file="public/head" />
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="javascript:history.go(-1);">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <i>分享码</i>
+    </div>
+    <div class="erweima">
+        <p>
+            <img src="__CONTENT__/bfc/img/logo.png" alt="">
+        </p>
+        <div class="erweima-img">
+            <img src="__CONTENT__/bfc/img/border.png" alt="">
+            <div class="erweima-math">
+                <!--<embed src="<{:url('User/myqrcodeImg')}>" type="image/svg+xml" pluginspage="http://www.adobe.com/svg/viewer/install/" width="80%" height="100%" />-->
+                <img src="<{:url('User/myqrcodeImg')}>" alt="">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="history" style="">
+        <p><span style="color: #0a786c;">分享链接：</span> <span><{$url}></span> </p>
+        <input id="foo" type="text"  value="<{$url}>" style="border: 0;opacity: 0;width: 0">
+        <button class="btn" data-clipboard-action="copy" data-clipboard-target="#foo">链接复制分享</button>
+    </div>
+</div>
+    <input type="hidden" id="hid_footactivity" value="2" />
+    <!-- 功能 -->
+<include fiel="public/footer" />
+<load href="__CONTENT__/clipboard/dist/clipboard.min.js" />
+    <script>
+        var clipboard = new ClipboardJS('.btn');
+
+        clipboard.on('success', function(e) {
+            console.log(e);
+        });
+
+        clipboard.on('error', function(e) {
+            console.log(e);
+        });
+    </script>

@@ -1,0 +1,383 @@
+<include file="Public/base" />
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+<div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+
+        <ul class="breadcrumb">
+            <li><i class="icon-home home-icon"></i>后台管理</li>
+            <span id="span_dh">&nbsp;>&nbsp;&nbsp;系统管理&nbsp;&nbsp;>&nbsp;&nbsp;系统参数设置
+			</span>
+        </ul>
+        <!-- .breadcrumb -->
+
+    </div>
+
+    <!-- 内容 -->
+    <div class="page-content">
+
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="tabbable">
+                <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                    <li class="active">
+                        <a data-toggle="tab" href="#SystemConfig">系统参数</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="SystemConfig" class="tab-pane in active">
+
+                        <form id="form1" class="form-horizontal" role="form" method="post" action="<{:url('System/setconfig')}>">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 最大上传文件大小 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="upload_max_size_rar" class="col-xs-10 col-sm-5" value="<{$config.upload_max_size_rar}>" />
+                                    <label class="middle red">整数，单位M*</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 每页数据行数 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="pagenum" class="col-xs-10 col-sm-5" value="<{$config.pagenum}>" />
+                                    <label class="middle red">整数*</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 云片api </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="yunpian_api" class="col-xs-10 col-sm-5" value="<{$config.yunpian_api}>" />
+                                    <label class="middle red">整数*</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 短信前缀 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="yunpian_str" class="col-xs-10 col-sm-5" value="<{$config.yunpian_str}>" />
+                                    <label class="middle red">*</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 短信有效期 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="duanxin_time" class="col-xs-10 col-sm-5" value="<{$config.duanxin_time}>" />
+                                    <label class="middle red">（分钟）</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 激活消耗开户金数 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="kaihujin" class="col-xs-10 col-sm-5" value="<{$config.kaihujin}>" />
+                                    <label class="middle red">（USD）</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 以太币兑美元汇率 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="eth2usd" class="col-xs-10 col-sm-5" value="<{$config.eth2usd}>" />
+                                    <label class="middle red">1ETH = ？ USD</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 以太币收款地址 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="ethaddress" class="col-xs-10 col-sm-5" value="<{$config.ethaddress}>" />
+                                    <label class="middle red">ETH收款地址</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 转出金额倍数 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="out_money_min" class="col-xs-10 col-sm-5" value="<{$config.out_money_min}>" />
+                                    <label class="middle red">整数</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 提现金额倍数 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="tixian_money_min" class="col-xs-10 col-sm-5" value="<{$config.tixian_money_min}>" />
+                                    <label class="middle red">整数</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: none">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 用户拥有余额数 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="user_money" class="col-xs-10 col-sm-5" value="<{$config.user_money}>" />
+                                    <label class="middle red">用英文分号“ ; ”隔开，末尾不加分号</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: none">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 所对应的等级 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="user_lev" class="col-xs-10 col-sm-5" value="<{$config.user_lev}>" />
+                                    <label class="middle red">用英文分号“ ; ”隔开，末尾不加分号</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 1-6代动态奖金的百分比 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="user_get" class="col-xs-10 col-sm-5" value="<{$config.user_get}>" />
+                                    <label class="middle red">用英文分号“ ; ”隔开，末尾不加分号。</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: none">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 购买基金后冻结时间 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="wait_time" class="col-xs-10 col-sm-5" value="<{$config.wait_time}>" />
+                                    <label class="middle red"> 整数（小时）</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 每日结算时间 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="jiesuan_time" class="col-xs-10 col-sm-5" value="<{$config.jiesuan_time}>" />
+                                    <label class="middle red"> 点（24小时制 0-23）</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 打款时间 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="dakuan_time" class="col-xs-10 col-sm-5" value="<{$config.dakuan_time}>" />
+                                    <label class="middle red"> 分钟</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 每日允许激活开始时间 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="jihuo_begin_time" class="col-xs-10 col-sm-5" value="<{$config.jihuo_begin_time}>" />
+                                    <label class="middle red"> 格式 HH:MM  例如 12:30 ":"冒号为英文状态</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 每日允许激活结束时间 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="jihuo_end_time" class="col-xs-10 col-sm-5" value="<{$config.jihuo_end_time}>" />
+                                    <label class="middle red"> 格式 HH:MM  例如 12:30 ":"冒号为英文状态</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 每日允许激活数量 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="jihuo_max_num" class="col-xs-10 col-sm-5" value="<{$config.jihuo_max_num}>" />
+                                    <label class="middle red"> 整数</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1">用户充值通道状态 </label>
+
+                                <div class="col-sm-9">
+                                    <label>
+                                        <button class="btn btn-success btn-sm" type="button"  value="<{$config.chongzhi_state}>">开启</button>
+                                        <input type="hidden" name="chongzhi_state" value="<{$config.chongzhi_state}>">
+                                        <span id="chkZCXHYTD_Span" class="lbl bottom red"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                           <!-- <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司收款方 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="gsskf" class="col-xs-10 col-sm-5" value="<{$config.gsskf}>" />
+                                    <label class="middle red">*</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司联系方式 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="gslxfs" id="txtCompanyTelPhone" class="col-xs-10 col-sm-5" value="<{$config.gslxfs}>" />
+                                    <label class="middle red">*</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司微信 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="gswx" id="txtCompanyWebChat" class="col-xs-10 col-sm-5" value="<{$config.gswx}>" />
+                                    <label class="middle red">*</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司邮箱 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="gsyx" id="txtCompanyEmail" class="col-xs-10 col-sm-5" value="<{$config.gsyx}>" />
+                                    <label class="middle red">*</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司支付宝账号 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="gszfbzh" id="txtCompanyReceiveAlipay" class="col-xs-10 col-sm-5" value="<{$config.gszfbzh}>" />
+                                    <label class="middle red">*</label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司开户银行 </label>
+                                <div class="col-sm-9">
+                                    <textarea id="txtCompanyBank" class="col-xs-10 col-sm-5" style="height:100px;" name="gskhyh"><{$config.gskhyh}></textarea>
+                                    <label class="middle red">多个用英文分号“;”分隔</label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司开户名 </label>
+                                <div class="col-sm-9">
+
+                                    <textarea id="txtCompanyBankAccountName" name="gskhm" class="col-xs-10 col-sm-5" style="height:100px;"><{$config.gskhm}></textarea>
+                                    <label class="middle red">多个用英文分号“;”分隔</label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 公司银行账号 </label>
+                                <div class="col-sm-9">
+
+                                    <textarea id="txtCompanyBankCode" name="gsyhzh" class="col-xs-10 col-sm-5" style="height:100px;"><{$config.gsyhzh}></textarea>
+
+                                    <label class="middle red">多个用英文分号“;”分隔</label>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right"
+                                       for="form-field-1">收款确认短信模板 </label>
+
+                                <div class="col-sm-9">
+                                    <textarea id="txtSKQRMSG" name="skqrdxmb" class="col-xs-10 col-sm-5" style="height:100px;"><{$config.skqrdxmb}></textarea>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1">限制IP注册会员开关 </label>
+
+                                <div class="col-sm-9">
+                                    <label>
+                                        <input id="chkIPLimit" onclick="ShowCheckSpan(this);" name="xzipzckg" class="ace ace-switch ace-switch-4" type="checkbox" <eq name="config.xzipzckg" value="on">checked</eq> />
+                                        <span id="chkIPLimit_Span" class="lbl bottom red"></span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1">新会员注册通道开关 </label>
+
+                                <div class="col-sm-9">
+                                    <label>
+                                        <input id="chkZCXHYTD" onclick="ShowCheckSpan(this);" class="ace ace-switch ace-switch-4" type="checkbox" name="xhyzctd" <eq name="config.xhyzctd" value="on">checked</eq> />
+                                        <span id="chkZCXHYTD_Span" class="lbl bottom red"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1">新会员注册每天限额 </label>
+
+                                <div class="col-sm-9">
+                                    <label>
+                                        <input type="text" name="xhymrxe" id="txtZCXHYTDXE" class="col-xs-10 col-sm-5" value="<{$config.xhymrxe}>" />
+                                        <label class="middle red">*</label>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-1">关闭注册通道系统提示 </label>
+
+                                <div class="col-sm-9">
+                                    <textarea id="gbzcts" class="col-xs-10 col-sm-5" style="height:100px;"><{$config.gbzcts}></textarea>
+                                </div>
+                            </div>
+                            -->
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-info" onclick="sendform();return false;">
+                                        <i class="icon-ok bigger-110"></i> 保存
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        function reset(btn){
+            if(btn.val() == "1"){
+                btn.val(1);
+                btn.next().val(1);
+                btn.html("开启");
+                btn.removeClass("btn-danger");
+                btn.addClass("btn-success");
+            }else{
+                btn.next().val(0);
+                btn.html("关闭");
+                btn.removeClass("btn-success");
+                btn.addClass("btn-danger");
+            }
+        }
+        function changestate(btn){
+            if(btn.val() == "1"){
+                btn.val(0);
+                btn.next().val(0);
+                btn.html("关闭");
+                btn.removeClass("btn-success");
+                btn.addClass("btn-danger");
+            }else{
+                btn.val(1);
+                btn.next().val(1);
+                btn.html("开启");
+                btn.removeClass("btn-danger");
+                btn.addClass("btn-success");
+            }
+        }
+        $("button[type=button]").each(function(){
+            var btn = $(this);
+            reset(btn);
+        });
+        $("button[type=button]").click(function (){
+            var btn = $(this);
+            changestate(btn);
+        });
+    });
+
+</script>
+<script src="__CONTENT__/layer_mobile/layer.js"></script>
+<load href="__ASSETS__/js/jquery.form.min.js"></load>
+<script>
+    function sendform() {
+        function beforeCheck(){
+            layer.open({
+                type:2,
+                content: "提交中",
+            });
+        }
+        function successfun(res){
+            layer.closeAll();
+            if(res.code != 1){
+                layer.open({
+                    content: res.msg,
+                    btn:'我知道了',
+                });
+                return false;
+            }else{
+                layer.open({
+                    content: res.msg,
+                    skin:'msg',
+                });
+                window.location.reload();
+            }
+        }
+        var options = {
+            beforeSubmit: beforeCheck, //提交前的回调函数
+            success: successfun,  //提交成功后的回调函数
+            dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+            clearForm: false,  //成功提交后，是否清除所有表单元素的值
+            resetForm: true,  //成功提交后，是否重置所有表单元素的值
+            timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
+        };
+        $('#form1').ajaxSubmit(options);
+    };
+</script>

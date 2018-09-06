@@ -1,0 +1,24 @@
+/* 代码整理：懒人之家 www.lanrenzhijia.com */
+
+
+.theme-popover {
+	z-index:9999;
+	position:fixed;
+	top:65%;
+	left:52%;
+	width:230px;
+	height:200px;
+	margin:-180px 0 0 -330px;
+	border-radius:5px;
+	border:solid 2px #666;
+	background-color:#fff;
+	display:none;
+	box-shadow: 0 0 10px #666;
+	transform: scale(0.5);
+}
+.theme-poptit {
+	border-bottom:1px solid #ddd;
+	padding:15px;
+	background: green; 
+	position: relative;
+}

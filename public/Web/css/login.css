@@ -1,0 +1,15 @@
+body{background:#f5f5f5;background-size:cover;background-attachment:fixed;text-align:center;font-family: "微软雅黑";}
+input{background-color:#ffffff;border:1px solid #ddd;height:35px;line-height:35px;font-family: "微软雅黑";}
+.wrap{width:99%;position: relative;clear:both;}
+.f60{background:#f60}
+.lan{background:#2479c1}
+.cfff{color:#fff}
+.name{padding-left:35px;background:#fff url("../images/name.jpg") no-repeat 10px center;width:80%}
+.password{padding-left:35px;background:#fff url("../images/password.jpg") no-repeat 10px center;width:80%}
+.notpassword{text-align:center;margin-top:15px;font-size:12px;}
+.notpassword a{color:#de8448;}
+.notpassword a:hover{color:#f60}
+.btn{width:90%;text-align:center;border:1px solid #f60;line-height:30px;}
+.btn:hover{background:#ff781e}
+.reg{width:90%;height:35px;line-height:35px;color:#fff;margin:0 auto}
+.reg:hover{background:#2f8bd9}

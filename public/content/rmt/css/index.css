@@ -1,0 +1,15 @@
+/* ::::: http://www.bom-home.com/css/style.css ::::: */
+
+html { -moz-text-size-adjust: none; }
+body { margin: 0px; padding: 0px; font-size: 12px; font-family: "微软雅黑",Tahoma; background: rgb(255, 255, 255) none repeat scroll 0% 0%; min-width: 1100px; }
+img { border: 0px none; }
+a { color: rgb(0, 0, 0); text-decoration: none; }
+a:hover { color: red; text-decoration: none; }
+.logintop { margin: 0px auto; background-color: rgb(41, 39, 39); box-shadow: 1px 1px 5px 5px rgb(38, 38, 38); text-align: center; height: 323px; }
+.logintext { background-color: rgb(24, 21, 21); color: rgb(221, 152, 1); width: 419px; height: 59px; margin: 0px auto; font-size: 20px; text-align: left; text-indent: 15px; line-height: 59px; }
+.logincenter { margin: 0px auto; background-color: rgb(235, 235, 235); text-align: center; }
+.logintable { background-color: rgb(255, 255, 255); width: 419px; height: 221px; margin: 0px auto; font-size: 16px; }
+.logintext1, .logintext2 { border-radius: 5px; border: 1px solid rgb(223, 223, 223); background: transparent url('../images/peo.jpg') no-repeat scroll 10px 15px; width: 363px; height: 53px; margin-top: 25px; text-indent: 35px; font-size: 18px; }
+.logintext2 { background: transparent url('../images/lock.jpg') no-repeat scroll 10px 15px; margin-top: 10px; font-size: 16px; }
+.logintext3 { border-radius: 1px; border: 1px solid rgb(223, 223, 223); width: 206px; height: 53px; margin-top: 10px; text-indent: 5px; font-size: 16px; }
+.loginbutton { background-color: rgb(232, 160, 38); width: 306px; height: 43px; color: rgb(255, 255, 255); border: 1px solid rgb(232, 160, 38); font-size: 18px; margin-top: 15px; }

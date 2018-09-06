@@ -1,0 +1,85 @@
+/* msg-error */
+.msg-error{position:absolute;left:70px;top:42px;color:#E20000;font-family:Tahoma,Arial,Simsun;}
+.msg-error .error{display:inline-block;width:14px;height:14px;margin-right:4px;background-position:-60px -100px;overflow:hidden;vertical-align:-3px;*vertical-align:-1px;}
+
+/* bg-content */
+.bg-content{background:url(../images/bg-header.jpg) repeat;}
+
+/* register-content */
+.register-content{padding:110px 0;}
+.register-content .register  {float:left;padding-top: 30px;}
+.register-content .slider {width:400px;float:left;margin-right:80px;}
+.register{float:left;padding-top:30px;}
+.register li{position:relative;*width:100%;height:68px;overflow:hidden;}
+.register .ui-label{float:left;width:64px;height:34px;line-height:34px;vertical-align:middle;cursor:pointer;}
+.register .input{float:left;}
+.register .btn{margin-left:70px;}
+.pwd-strength{position:absolute;left:70px;top:42px;color:#888;}
+.pwd-bar{display:inline-block;width:168px;height:12px;margin:0 4px;border:1px solid #CECECE;background-color:#FFF;vertical-align:-3px;}
+.pwd-weak{position:absolute;margin:-1px 0 0 -1px;width:55px;height:12px;border:1px solid #D9285E;background-color:#EB3851;}
+.pwd-middle{position:absolute;margin:-1px 0 0 -1px;width:112px;height:12px;border:1px solid #E59017;background-color:#F6A10D;}
+.pwd-strong{position:absolute;margin:-1px 0 0 -1px;width:168px;height:12px;border:1px solid #80C20E;background-color:#8ED611;}
+
+/* ui-login*/
+.login-logo,
+.safe-login .login-logo,
+.login-btn,
+.login-mark,
+.msg-error .error,
+.check-error .error,
+.check-error .tri,
+.check-info .tri,
+.ico-name,
+.ico-pwd
+{background-image:url(ui-login.png);background-repeat:no-repeat;}
+
+/* login-header */
+.login-header{width:980px;height:60px;margin:100px auto 0;background:url(../images/login-header.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/login-header.png");}
+.safe-login .login-header{background:url(../images/safelogin-header.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/safelogin-header.png");}
+/* login-footer */
+.login-footer{width:980px;height:90px;margin:0 auto;background:url(../images/login-footer.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/login-footer.png");}
+.safe-login .login-footer{background:url(../images/safelogin-footer.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/safelogin-footer.png");}
+/* login-body */
+.login-body{width:980px;margin:0 auto;background:url(../images/login-body.png) repeat-y;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/login-body.png");}
+
+/* login-content */
+.login-content{width:320px;margin:0 auto;padding:20px 20px;background-color:#E9CB00;font-family:Microsoft Yahei;}
+.login-tip-error {font-size:14px;color:#F00;text-align:center;}
+.login-logo{width:190px;height:50px;margin:0 auto;background-position:0 0;}
+.login-list{margin-top:25px;}
+.login-list-input{position:relative;height:34px;padding:8px 82px 8px 50px;_padding-top:7px;_padding-bottom:7px;margin-top:10px;border:1px solid #FFF;background-color:#FFF;border-radius:3px;}
+.login-list-input:hover,.login-list .focus{border-color:#A88F00;}
+.login-input{width:100%;height:34px;padding:0;border:0 none;line-height:34px;font-family:Microsoft Yahei;font-size:14px;color:#BDBDBD;outline:none;}
+.login-input:focus,.login-input-focus{color:#555;}
+.login-btn{width:100%;height:45px;margin-top:20px;padding-bottom:3px;line-height:45px;border:0 none;font-size:20px;font-family:Microsoft Yahei;color:#FFF;cursor:pointer;border-radius:3px;
+box-shadow:0 1px 3px rgba(0,0,0,0.5);
+background-position:0 -130px;}
+input:-webkit-autofill{-webkit-box-shadow: 0 0 0px 1000px white inset;}
+.login-btn:hover{background-position:0 -180px;}
+.login-btn:active{background-position:0 -230px;}
+.verify-code{padding-left:10px;padding-right:122px;}
+.change_mode{padding:20px 0;text-align:center;border-bottom:1px solid #F2D41A;font-size:14px;color:#007361;}
+.change_mode a{display:inline-block;padding:0 4px;border:1px solid #007361;color:#007361;border-radius:3px;}
+.change_mode a:hover{background-color:#007361;color:#E9CB00;text-decoration:none;}
+
+.check-error,.check-info{position:absolute;left:358px;top:5px;height:22px;padding:10px 8px;line-height:22px;background-color:#FFF;color:#E20000;font-size:14px;white-space:nowrap;border-radius:3px;}
+.check-info{color:#007361;}
+.check-error .error{display:inline-block;width:14px;height:14px;margin-right:4px;background-position:-60px -100px;overflow:hidden;vertical-align:-2px;*vertical-align:2px;}
+.check-error .tri,.check-info .tri{position:absolute;left:-8px;top:13px;width:8px;height:15px;background-position:-80px -100px;}
+.ico-name{position:absolute;left:18px;top:16px;width:18px;height:17px;background-position:-20px -100px;}
+.ico-pwd{position:absolute;left:20px;top:16px;width:13px;height:17px;background-position:-40px -100px;}
+.find-pwd{position:absolute;right:11px;top:11px;padding:4px 6px;border:1px solid #E2E2E2;color:#BCBCBC;}
+.find-pwd:hover{text-decoration:none;}
+.verify-code img{position:absolute;top:8px;right:8px;width:84px;height:34px; cursor:pointer;}
+
+/* safelogin-content */
+.login-mark{position:absolute;right:0;top:-20px;width:120px;height:120px;background-position:-200px 0;}
+.msg-info strong{display:block;margin-bottom:10px;font-size:16px;color:#048373;}
+.safe-login .login-content{background-color:#FFF;position:relative;}
+.safe-login .login-logo{margin-left:10px;margin-bottom:35px;background-position:0 -280px;}
+.safe-login .login-list{margin-top:30px;}
+.safe-login .login-list-input{border-color:#E6E6E6;background-color:#F5F5F5;}
+.safe-login .login-input{background-color:#F5F5F5;}
+.safe-login .change_mode{border-bottom-color:#F9F9F9;}
+.safe-login .change_mode a:hover{color:#FFF;}
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎您登录代理商管理系统</title>
+<link href="style.css" tppabs="http://hjdzx235.ceshi.y4jy.com/Public/Admin/new/css/style.css" rel="stylesheet" type="text/css" />
+<script src="jquery-1.8.3.min.js" tppabs="http://hjdzx235.ceshi.y4jy.com/Public/static/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="checkbrowser.js" tppabs="http://hjdzx235.ceshi.y4jy.com/Public/static/checkbrowser.js"></script>
+<script type="text/javascript" src="cloud.js" tppabs="http://hjdzx235.ceshi.y4jy.com/Public/Admin/new/js/cloud.js"></script>
+<script type="text/javascript" src="layer.min.js" tppabs="http://hjdzx235.ceshi.y4jy.com/Public/static/layer/layecore/layer.min.js"></script>
+<script type="text/javascript" src="layer.ext.js" tppabs="http://hjdzx235.ceshi.y4jy.com/Public/static/layer/layecore/extend/layer.ext.js"></script>
+<script src="common.js" tppabs="http://hjdzx235.ceshi.y4jy.com/Public/Admin/mat/js/common.js"></script> 
+<script type="text/javascript">$(function(){isBrowser();})</script> 
+<script language="javascript">
+	$(function(){
+	$('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+	$(window).resize(function(){  
+	$('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+	})  
+});
+</script>
+</head>
+
+<body style="background-color:#1c77ac; background-image:url(/Public/Admin/new/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+		<div id="mainBody">
+			<div id="cloud1" class="cloud"></div>
+			<div id="cloud2" class="cloud"></div>
+		</div>
+		<div class="loginbody">
+			<span class="systemlogo" style='text-align:center;'><img src="576c873333c16.png" tppabs="http://hjdzx235.ceshi.y4jy.com/Uploads/Picture/2016-06-24/576c873333c16.png" width='274' height='71'/></span>
+			 <form action="http://hjdzx235.ceshi.y4jy.com/a.php?s=/public/login.html" method="post" class="form-horizontal">
+			<div class="loginbox">
+				<ul>
+					<li>
+						<input name="username" type="text" class="loginuser" placeholder="请输入用户名" value="" />
+					</li>
+					<li>
+						<input name="password" type="password" class="loginpwd" placeholder="请输入密码" value="" />
+					</li>
+					<li>
+						<button type="submit" class="loginbtn ajax-post"  target-form='form-horizontal' >登录</button>
+						<label>
+							<input name="" type="checkbox" value="" checked="checked" />记住密码</label>
+						<label><a href="#">忘记密码？</a>
+						</label>
+					</li>
+				</ul>
+			</div></form>
+		</div>
+	</body>
+</html>

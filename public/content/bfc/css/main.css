@@ -1,0 +1,136 @@
+.head{
+    font-weight: normal;
+    font-size: 16px;
+}
+body {
+  font-size:12px;
+}
+.main{
+    width:100%;
+    padding:5%;
+    font-size: 16px;
+    text-align: left;
+    display: flex;
+    flex-direction:row;
+    align-items:left;
+    border-bottom: 1px solid #868688;
+}
+.main-pic{
+    width:80px;height:80px;
+    border-radius: 50px;
+}
+.main-pic img{
+    width: 100%;
+}
+.main-intrud{
+    width:60%;
+    padding:2%;
+    padding-left:8%;
+}
+.main-intrud p{
+    font-size: 14px;
+}
+.icon-wujiaoxingxianmian{
+    color:#0394fe;
+    font-size:20px; 
+}
+.sort {
+    width: 100%;
+    margin: 5% 0;
+    
+}
+/*转出页面css*/
+
+.head a{
+    width:10%;
+    display: flex;
+    flex-direction:row;
+    align-items:left;
+    color: white;
+    padding-top: 1%;
+}
+.head a i{
+    font-size:20px;
+}
+.head i{
+    font-style:normal;
+}
+.content{
+    width:95%;
+    padding:2.5%;
+    padding-bottom: 10%;
+}
+.content p{
+    font-weight: bold;
+    font-size:14px; 
+    margin:5% 2%;
+}
+.content p strong{
+    color: red;
+    font-size:14px;
+    text-align: right;
+}
+.content p i{
+    font-style: normal;
+    font-weight: normal;
+}
+.content input{
+    width: 100%;
+    border:1px solid #868688;
+    border-radius:5px;
+    padding:2%;
+}
+.content .content-sub{
+    margin: 15% 2%;
+}
+.content .content-sub input{
+    background:#0394fe;
+    border:none;
+    color: white;
+}
+
+/*分享页面*/
+.erweima{
+    width:100%;
+    padding:3%;
+}
+.erweima p{
+    text-align: center;
+}
+.erweima img{
+    width:30%;
+}
+.erweima-img{
+    width: 100%;
+    text-align: center;
+}
+.erweima-img img{
+    width:90%;
+    margin-top:-12%;
+}
+.erweima-img .erweima-math{
+    width:90%;
+    padding:5%;
+    text-align:center;
+    margin:-75% 5%;
+}
+.history{
+    width: 100%;
+    padding:3%;
+    margin-top:68%;
+}
+.history a{
+    width:45%;
+    font-size:18px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #158947;
+    border-color: #158947;}

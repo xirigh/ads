@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__CONTENT__/bfc/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/index.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/bootstrap.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/main.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/record.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/login.css">
+    <title>登录</title>
+</head>
+<body>
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="#">
+
+        </a>
+        <i>登录</i>
+    </div>
+    <form method="post">
+    <div class="login">
+        <div class="logo">
+            <img src="__CONTENT__/bfc/img/logo.png" alt="">
+        </div>
+
+        <div class="login-input">
+            <ul>
+                <li>
+                    <i class="iconfont icon-wo"></i>
+                    <input id="txtClientID" name="v_email" type="text" placeholder="请输入邮箱号" value="">
+                </li>
+
+                <li>
+                    <i class="iconfont icon-denglumima"></i>
+                    <input id="txtLoginPassword" name="v_pwd1" value="" type="password" placeholder="请输入密码">
+                </li>
+
+                <li>
+                    <i class="iconfont icon-denglumima"></i>
+                    <input id="txtValidateCode" name="v_code" type="text" placeholder="验证码" class="code">
+
+                </li>
+                <img src="<{:captcha_src()}>" id="yzm" onclick="changeimg()" >
+                <li style="border:none;margin-top:15%;text-align:center;">
+                    <input type="button" id="login" value="登录" class="enter">
+                    <br>
+                    <br>
+                    <a href="<{:url('User/wjmm')}>">忘记密码</a><br />
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+
+</div>
+</body>
+</html>
+
+<script src='__CONTENT__/ace/js/jquery-2.0.3.min.js' language='JavaScript'></script>
+<script src="__CONTENT__/layer-v3.1.1/layer/layer.js"></script>
+<script src="__CONTENT__/js/Common.js"></script>
+<script src="__CONTENT__/layer_mobile/layer.js"></script>
+
+<script>
+    function changeimg(){
+        $("#yzm").attr("src","<{:captcha_src()}>?"+Math.random());
+    }
+
+    $(function(){
+        $("#login").click(function(){
+            layer.open({
+                type:2,
+                content: "提交中",
+            });
+            var d = {};
+            var t = $('form').serializeArray();
+            $.each(t, function() {
+                d[this.name] = this.value;
+            });
+           $.post("<{:url('User/loginact')}>",d,function(e){
+               layer.closeAll();
+                if(e.code == 1){
+                    layer.open({
+                        content:e.msg,
+                        skin:"msg",
+                    });
+                    window.location.href = e.url;
+                }else{
+                    layer.open({
+                        content: e.msg,
+						btn:"我知道了",
+						yes:function(){
+							window.location.href = "";
+						},
+                    });
+                }
+           },"json");
+        });
+    });
+</script>

@@ -1,0 +1,455 @@
+<include file="Public/base" />
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;会员管理&nbsp;&nbsp;>&nbsp;&nbsp;会员信息管理
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content" id="app">
+
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+
+			<form id="Form1" class="form-horizontal" role="form" method="post" action="<{:url('User/editact')}>">
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1">会员名 </label>
+					<div class="col-sm-9">
+						<input type="text" id="txtClientID" name="ClientID" class="col-xs-10 col-sm-5" value="<{$data.v_vip_id}>" /> <label class="middle red">*</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1">邮箱 </label>
+					<div class="col-sm-9">
+						<input type="text" name="email" placeholder="请输入注册邮箱" class="col-xs-10 col-sm-5" onchange="checkemail();"  value="<{$data.v_email}>" /> <label class="middle red">*</label><span id="email" class="middle red"></span>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 手机号码</label>
+
+					<div class="col-sm-9">
+						<input type="text" name="TelPhone" placeholder="请输入手机号码" class="col-xs-10 col-sm-5" onchange="checkphone()"  value="<{$data.v_tel}>" /> <label class="middle red">*</label><span id="phone" class="middle red"></span>
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 推荐码 </label>
+
+					<div class="col-sm-9">
+						<input type="text" id="txtRecommendID" placeholder="" class="col-xs-10 col-sm-5" onchange="CheckIsExistClient()"  value="<{$data.v_recomm_code}>" />
+						<input type="hidden" name="RecommendID"/>
+						<span class="middle red">*</span> <span id="spanRecommendID" class="middle red"></span>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型 </label>
+
+					<div class="col-sm-9">
+
+						<select name="ClientLevel" id='txtClientLevel' class="col-sm-5">
+							<volist name="v_type" id="v" >
+								<option value="<{$v.c_value}>" <eq name="data.v_type" value="$v['c_value']">selected</eq> ><{$v.c_value_name}> </option>
+							</volist>
+						</select>
+
+						<span class="middle red">*</span>
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 真实姓名 </label>
+
+					<div class="col-sm-9">
+						<input type="text" name="FullName" id="txtFullName" placeholder="" class="col-xs-10 col-sm-5"  value="<{$data.v_name}>" /> <label class="middle red">*</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1">
+							性别 </label>
+
+					<div class="col-sm-9">
+							<volist name="sex" id="v" key="key">
+						&nbsp;&nbsp;&nbsp;&nbsp; <label>
+								<input name="Sex" type="radio" class="ace" value="<{$v.c_value}>" <eq name="data.v_sex" value="$v['c_value']">checked</eq> /> <span class="lbl"><{$v.c_value_name}></span>
+							</label>
+							</volist>
+					</div>
+
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 身份证号 </label>
+
+					<div class="col-sm-9">
+						<input type="text" name="IDCard" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_card_id}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1">QQ</label>
+
+					<div class="col-sm-9">
+						<input type="text" name="QQ" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_qq}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1">微信</label>
+
+					<div class="col-sm-9">
+						<input type="text" name="Webchat" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_wechat}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1">ETH地址</label>
+
+					<div class="col-sm-9">
+						<input type="text" name="Alipay" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_alipay}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户行 </label>
+
+					<div class="col-sm-9">
+						<input type="text" name="AccountBank" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_bank}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户名</label>
+
+					<div class="col-sm-9">
+						<input type="text" name="AccountName" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_bank_name}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 银行卡号 </label>
+
+					<div class="col-sm-9">
+						<input type="text" name="BankCode" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_card_num}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户行地址 </label>
+
+					<div class="col-sm-9">
+						<input type="text" name="BankAddress" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_bank_address}>" /><label class="middle red"></label>
+					</div>
+
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 收货地址 </label>
+
+					<div class="col-sm-9">
+						<input type="text" name="ReceivingAddress" placeholder="" class="col-xs-10 col-sm-5" value="<{$data.v_address}>" /><label class="middle red"></label>
+						<input type="hidden" name="uid" value="<{$data.v_id}>">
+					</div>
+
+				</div>
+
+				<div class="clearfix form-actions">
+					<div class="col-md-offset-3 col-md-9">
+						<button class="btn btn-info" type="submit" id="submit">
+							<i class="icon-ok bigger-110"></i> 保存
+						</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	var flag = "<{:input('type','Read')}>";
+	if(flag == "Read"){
+		$("#txtClientLevel").attr("disabled","disabled");
+		$("input").each(function(e){
+			$(this).attr("disabled","disabled");
+		});
+		$("#submit").attr("disabled","disabled");
+    }else{
+	    $("#submit").submit();
+	}
+</script>
+<script type="text/javascript">
+    function CheckIsExistClient(clientid) {
+        clientid = $("#txtRecommendID").val();
+        $('#spanRecommendID')[0].innerText = "";
+        if(!clientid) {
+            ShowMsg("W请输入推荐人邮箱");
+            return;
+        }
+
+        var _url = "<{:url('user/checkemail')}>";
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            url: _url, // 目标地址
+            data: {
+                "email": clientid
+            },
+            error: function(msg) {
+                console.info(msg);
+            },
+            success: function(e) {
+                if(e.code != 1){
+                    $('#spanRecommendID')[0].innerText = e.msg;
+                    $('input[name=RecommendID]').val("");
+                }else{
+                    $('#spanRecommendID')[0].innerText = "当前用户可用";
+                    $('input[name=RecommendID]').val(e.msg);
+                }
+            }
+        });
+    }
+
+    function checkphone(){
+        var $phone = $("input[name=telPhone]").val();
+        $.post("<{:url('user/checkphone')}>",{"phone":$phone},function(e){
+			if(e.code != 1){
+                $('#phone')[0].innerText = e.msg;
+			}else{
+                $('#phone')[0].innerText = "";
+			}
+		},"json");
+	}
+
+	function checkemail(){
+        var $email = $("input[name=email]").val();
+        $.post("<{:url('user/checkemailisone')}>",{"email":$email},function(e){
+            if(e.code != 1){
+                $('#email')[0].innerText = e.msg;
+            }else{
+                $('#email')[0].innerText = "";
+			}
+        },"json");
+	}
+</script>
+
+<script type='text/javascript'>
+	$(function() {
+
+        /*
+            $('#Form1').bootstrapValidator({　　　
+                message: 'This value is not valid',
+                　feedbackIcons: {　　　　　　　　 //valid: 'glyphicon glyphicon-ok',
+                    　　　　　　　　 //invalid: 'glyphicon glyphicon-remove',
+                    　　　　　　　　 //validating: 'glyphicon glyphicon-refresh'
+                    　　　　　　　　},
+                fields: {
+                    ClientID: {
+                        validators: {
+                            notEmpty: {
+                                message: '会员名不能为空'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z\d]+$/,
+                                message: '不允许出现中文'
+                            }
+                        }
+                    },
+                    FullName: {
+                        validators: {
+                            notEmpty: {
+                                message: '姓名不能为空'
+                            },
+                            stringLength: {
+                                min: 1,
+                                max: 30,
+                                message: '长度不能大于30'
+                            }
+                        }
+                    },
+                    TelPhone: {
+                        validators: {
+                            notEmpty: {
+                                message: '手机号码不能为空'
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: '邮箱不能为空'
+                            }
+                        }
+                    },
+                    ValidateCode: {
+                        validators: {
+                            notEmpty: {
+                                message: '验证码不能为空'
+                            }
+                        }
+                    },
+                    LoginPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: '登录密码不能为空'
+                            },
+                            identical: {
+                                field: 'ConfirmLoginPassword',
+                                message: '两次密码输入不一致'
+                            },
+                            regexp: {
+                                regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+                                message: '6-12位数字与字母组合'
+                            },
+                            different: {
+                                field: 'BusinessPassword',
+                                message: '与交易密码不能相同'
+                            }
+                        }
+                    },
+                    ConfirmLoginPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: '确认密码不能为空'
+                            },
+                            identical: {
+                                field: 'LoginPassword',
+                                message: '两次密码输入不一致'
+                            },
+                            regexp: {
+                                regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+                                message: '6-12位数字与字母组合'
+                            },
+                            different: {
+                                field: 'BusinessPassword',
+                                message: '与交易密码不能相同'
+                            }
+                        }
+                    },
+                    BusinessPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: '交易密码不能为空'
+                            },
+                            different: {
+                                field: 'LoginPassword',
+                                message: '与登录密码不能相同'
+                            },
+                            regexp: {
+                                regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+                                message: '6-12位数字与字母组合'
+                            }
+                        }
+                    },
+                    ConfirmBusinessPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: '确认密码不能为空'
+                            },
+                            identical: {
+                                field: 'BusinessPassword',
+                                message: '两次密码输入不一致'
+                            },
+                            different: {
+                                field: 'LoginPassword',
+                                message: '与登录密码不能相同'
+                            },
+                            regexp: {
+                                regexp: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+                                message: '6-12位数字与字母组合'
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            emailAddress: {
+                                message: '邮箱格式不正确'
+                            }
+                        }
+                    },
+                    IDCard: {
+                        validators: {
+                            regexp: {
+                                regexp: /^\d{15}|\d{18}$/,
+                                message: '身份证格式不正确'
+                            }
+                        }
+                    },
+                    QQ: {
+                        validators: {
+                            regexp: {
+                                regexp: /^[1-9][0-9]{4,}$/,
+                                message: 'QQ格式不正确'
+                            }
+                        }
+                    },
+                    Webchat: {
+                        validators: {
+
+                        }
+                    },
+                    AccountBank: {
+                        validators: {
+
+                        }
+                    },
+                    AccountName: {
+                        validators: {
+
+                        }
+                    },
+                    BankCode: {
+                        validators: {
+
+                            regexp: {
+                                regexp: /^[1-9][0-9]{15,}$/,
+                                message: '银行卡号格式不正确'
+                            }
+                        }
+                    },
+                    BankAddress: {
+                        validators: {
+
+                        }
+                    },
+                    RecommendID: {
+                        validators: {
+                            notEmpty: {
+                                message: '推荐人不能为空'
+                            }
+                        }
+                    },
+                    ClientLevel: {
+                        validators: {
+                            notEmpty: {
+                                message: '会员类型不能为空'
+                            }
+                        }
+                    }
+                }
+            });
+    */
+		/*
+		var clientid=getQueryString("client");
+		if(clientid){
+			$('#txtRecommendID').val(clientid);
+			$('#txtContactID').val(clientid);
+			$('#txtCustomsCenterID').val(clientid);
+		}
+		var zone=getQueryString("zone");
+		if(zone){
+			$("input[name='ContactIDZone'][value='"+zone+"']").attr("checked",true); 
+		}
+		*/
+	});
+</script>

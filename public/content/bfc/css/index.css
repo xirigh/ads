@@ -1,0 +1,136 @@
+/*头部*/
+.head{
+    width:100%;
+    padding:4%;
+    background:#158947;
+    font-size:22px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+.head img{
+    width:10%;
+}
+
+.common{
+    font-size:15px;
+    color: #158947 ;
+}
+.common i{
+    color: #333033;
+}
+/*通用积分*/
+.minute{
+    width:90%;
+    margin-top:4%;
+    margin-bottom:4%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+.common{
+    width:49%;
+    border-right:1px solid #868688;
+    text-align:center;
+}
+.common i{
+    font-style: normal;
+}
+/*轮播*/
+.lunbo{
+    width: 100%;
+    height:220px;
+}
+.swiper-container{
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide{
+    text-align: center;
+}
+.swiper-slide img{
+    width: 100%;height: 100%;
+}
+/*轮播结束*/
+/*扫描*/
+.scan{
+    width:90%;
+    margin-top:4%;
+    margin-bottom:4%;
+    margin-left: 5%;
+    padding:0;
+    background: #158947;
+    border-radius:10px;
+    text-align: center;
+}
+.scan i{
+    font-size:90px;
+    color: white;
+}
+/*功能*/
+.sort{
+    width: 100%;
+    margin:10% 0;
+    margin-bottom:30%!important;
+}
+.sort .sotr-cont{
+    width: 100%;
+    border-bottom:1px solid #868688;
+}
+.out{
+    display:inline-block;
+    width:32%;
+    margin:0!important;
+    padding:5%;
+    border-right:1px solid #868688;
+    text-align: center;
+    color: #158947;
+    font-weight: bold;
+}
+.out i{
+    font-size:60px;
+    color:#158947;
+    font-weight:normal;
+}
+/*底部*/
+.footer{
+    width: 100%;
+    border-top:1px solid #158947;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: white;
+    z-index: 99999999999;
+}
+.footer a{
+    display: inline-block;
+    width:25%;
+    text-align: center;
+    color:#868688;
+}
+.footer a i{
+    font-size:30px;
+    color:#868688;
+    margin : 10px 0;
+}
+#active{
+    color:#158947;
+}
+#active i{
+    color:#158947;
+}
+
+
+
+
+body {
+  font-size:12px;
+}
+
+
+
+

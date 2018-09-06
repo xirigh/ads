@@ -1,0 +1,205 @@
+<include file="Public/base" />
+<script src="__CONTENT__/ace/js/jstree/src/jstree.js"></script>
+<link href="__CONTENT__/ace/js/jstree/src/themes/default/style.css" rel="stylesheet" />
+<style>
+	#tabList th {
+		background: #FFF;
+		vertical-align: middle;
+	}
+	
+	#tabList td {
+		vertical-align: middle;
+	}
+</style>
+
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;团队管理&nbsp;&nbsp;>&nbsp;&nbsp;会员团队网络
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+
+		<div class="row">
+
+			<div class="widget-box">
+				<div class="widget-header header-color-blue2">
+					<h4 class="lighter smaller">
+						团队总人数：<span id="span_SumCountUser"></span>人
+					</h4>
+
+					<span class="input-icon" style="float:right;margin-top:5px;margin-right:10px;">
+					
+						<input type="text" placeholder="按回车搜索..." class="nav-search-input" id="txtClientID" autocomplete="off"
+						onkeypress="if(event.keyCode == 13) SearchForm();" />
+						<i class="icon-search nav-search-icon"></i>
+					
+					
+						<button type="button" class="btn btn-xs btn-yellow"
+							onclick="DevelopTree();" data-dismiss="modal">
+							<i class="icon-resize-full write bigger-110"></i> 全部展开
+						</button>
+						<button type="button" class="btn btn-xs btn-danger"
+							onclick="MergeTree();" data-dismiss="modal">
+							<i class="icon-resize-small write bigger-110"></i> 全部合并
+						</button>
+						</span>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main padding-8">
+						<div id="tree1" class=""></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type='text/javascript'>
+	var ClientID;
+	function SearchForm() {
+		var clientId = $("#txtClientID").val();
+		ClientID = clientId;
+		BindTree();
+	}
+	var getFloatStr = function(num) {
+		num += '';
+		num = num.replace(/[^0-9|\.]/g, ''); //清除字符串中的非数字非.字符  
+
+		if(/^0+/) //清除字符串开头的0  
+			num = num.replace(/^0+/, '');
+		if(!/\./.test(num)) //为整数字符串在末尾添加.00  
+			num += '.00';
+		if(/^\./.test(num)) //字符以.开头时,在开头添加0  
+			num = '0' + num;
+		num += '00'; //在字符串末尾补零  
+		num = num.match(/\d+\.\d{2}/)[0];
+
+		return num;
+	};
+
+	$(function() {
+		BindTree();
+
+	});
+
+	function BindTree() {
+		//$("#tree1").jstree("uncheck_all");
+		$('#tree1').data('jstree', false).empty(); //清空
+		var TreeData = [];
+
+		var _url = "<{:url('User/getUserLevTree')}>";
+
+		$.ajax({
+			type: "POST", // 用POST方式传输    
+			dataType: "json", // 数据格式:JSON
+			url: _url, // 目标地址    
+			data: {
+				"ClientID": ClientID
+			},
+			error: function(msg) {
+				console.info(msg);
+			},
+			success: function(objs) {
+				for(var key in objs) {
+					var temp = "<i class='icon-user red'></i>";
+					if(objs[key]['parent'] != "#") {
+						temp += "【" + objs[key]['parentcount'] + "代】";
+					}
+					temp += " (" + objs[key]['count'] + "人) ";
+					temp += objs[key]['id'];
+					temp += " (" + objs[key]['fullname'] +
+						") &nbsp;&nbsp;&nbsp;";
+					temp += objs[key]['clientlevel'] +
+						"&nbsp;&nbsp;&nbsp;";
+					temp += " <span style='color:red'> 注册日期：" + objs[key]['createdata'] +
+						"</span> &nbsp;&nbsp;&nbsp;";
+					/*
+					temp += " 互助钱包:";
+
+					if (objs[key]['互助钱包余额'] > 0) {
+						temp += "<b style='color:blue'>(余额："
+								+ getFloatStr(objs[key]['互助钱包余额']) + ";</b>";
+					} else {
+						temp += " (余额：" + getFloatStr(objs[key]['互助钱包余额'])
+								+ ";";
+					}
+					if (objs[key]['互助钱包累计收入'] > 0) {
+						temp += " <b style='color:blue'>累计收益："
+								+ getFloatStr(objs[key]['互助钱包累计收入'])
+								+ "</b>)&nbsp;&nbsp;";
+					} else {
+						temp += " 累计收益：" + getFloatStr(objs[key]['互助钱包累计收入'])
+								+ ")&nbsp;&nbsp;";
+					}
+
+					temp += " 奖金钱包:";
+					if (objs[key]['奖金钱包余额'] > 0) {
+						temp += "<b style='color:blue'>(余额："
+								+ getFloatStr(objs[key]['奖金钱包余额']) + ";</b>";
+					} else {
+						temp += " (余额：" + getFloatStr(objs[key]['奖金钱包余额'])
+								+ ";";
+					}
+					if (objs[key]['奖金钱包累计收入'] > 0) {
+						temp += " <b style='color:blue'>累计收益："
+								+ getFloatStr(objs[key]['奖金钱包累计收入'])
+								+ "</b>)&nbsp;&nbsp;";
+					} else {
+						temp += " 累计收益：" + getFloatStr(objs[key]['奖金钱包累计收入'])
+								+ ")&nbsp;&nbsp;";
+					}
+					*/
+
+					//  temp+=" 累计提供援助："+getFloatStr(objs[key]['累计提供援助金额'])+"&nbsp;&nbsp;";
+					// temp+=" 累计接受援助："+getFloatStr(objs[key]['累计接受援助金额'])+"&nbsp;&nbsp;";
+
+					var obj = {
+						id: objs[key]['id'],
+						parent: objs[key]['parent'],
+						text: temp
+					};
+					TreeData.push(obj);
+				}
+
+				$("#tree1").jstree({
+					"plugins": ["checkbox"],
+					"core": {
+						"themes": {
+							"theme": "classic",
+							"dots": true,
+							"icons": false
+						},
+						'data': TreeData
+					}
+				});
+				$("#span_SumCountUser")[0].innerText = TreeData.length;
+			}
+		});
+
+		// 展开节点
+		$("#tree1").on("loaded.jstree", function(event, data) {
+			// 展开所有节点
+			$('#tree1').jstree('open_all');
+			// 展开指定节点
+			// data.instance.open_node('1002');     // 单个节点 （1 是顶层的id）
+			//data.instance.open_node([1, 10]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行）
+		});
+	}
+
+	function DevelopTree() {
+		$('#tree1').jstree('open_all');
+	}
+
+	function MergeTree() {
+		$('#tree1').jstree('close_all');
+	}
+</script>

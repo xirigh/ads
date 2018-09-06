@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<script type="text/javascript">
+
+</script>
+<head>
+    <meta charset="utf-8" />
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src='__CONTENT__/ace/js/jquery-2.0.3.min.js' language='JavaScript'></script>
+    <link href="__CONTENT__/adminlogin/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__CONTENT__/adminlogin/checkbrowser.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            isBrowser();
+        })
+    </script>
+    <script language="javascript">
+        $(function() {
+            $('.loginbox').css({
+                'position' : 'absolute',
+                'left' : ($(window).width() - 692) / 2
+            });
+            $(window).resize(function() {
+                $('.loginbox').css({
+                    'position' : 'absolute',
+                    'left' : ($(window).width() - 692) / 2
+                });
+            })
+        });
+    </script>
+</head>
+<body style="background-color: #1c77ac; background-image: url(__CONTENT__/adminlogin/light.png); background-repeat: no-repeat; background-position: center top; overflow: hidden;">
+<div id="mainBody">
+    <div id="cloud1" class="cloud"></div>
+    <div id="cloud2" class="cloud"></div>
+</div>
+<div class="loginbody">
+		<span class="systemlogo" style='text-align: center;'><img
+                src="__CONTENT__/adminlogin/787433768577305683.png"
+                width='274' height='71' /></span>
+    <form id='LoginForm' action='<{:url('User/loginact')}>'
+          method="post" class="form-horizontal">
+        <div class="loginbox">
+            <ul>
+                <li><input name="user_id" type="text" class="loginuser"
+                           placeholder="请输入用户名" value="" /></li>
+                <li><input name="Password" type="password" class="loginpwd"
+                           placeholder="请输入密码" value="" /></li>
+                <li>
+                    <button type="submit" class="loginbtn ajax-post" target-form='form-horizontal'>登录</button>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+</body>
+</html>

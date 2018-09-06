@@ -1,0 +1,133 @@
+@charset "utf-8";
+/* CSS Document */
+html{font-size:62.5%; }
+*{margin:0;padding:0}
+body{font-family: "Microsoft YaHei","宋体","Arial Narrow",HELVETICA;-webkit-text-size-adjust:100%; color:#fff;  background:#000;
+font-size: 1.4em;height:100%;min-width:320px; }
+
+h1,h2,h3,h4,h5,h6 {font-size:100%;}
+a{text-decoration:none; color:#fff; cursor:pointer;}
+a:hover,.yellow{text-decoration:none; color:#e9a101}
+ 
+.mt10{ margin-top:1rem }
+
+img{border:0;vertical-align:middle}
+.clear{ clear:both;}
+em{font-style:normal}
+.gary{ color:#999;}
+li{list-style:none}
+.fl{float:left ;}
+.fr{float:right;}
+.tl{ text-align: left}
+.tr{ text-align:right}
+.tc{ text-align:center}
+.wrap{ padding:0 4%; width:92%}
+input{ outline:none;border:0; font-family:microsoft yahei}
+/* input[type="button"], input[type="submit"], input[type="reset"] { -webkit-appearance:bottom; -moz-appearance:none;-webkit-appearance: none;}
+input[type="button"], input[type="checkbox"], input[type="radio"] {-webkit-appearance:none;} */
+.flexbox {display: -moz-box; /* Firefox */ display: -ms-flexbox; /* IE10 */ display: -webkit-box; /* Safari */ 
+display: -webkit-flex; /* Chrome, WebKit */ display: box; display: flexbox; display: flex; -webkit-box-pack: center;-moz-box-pack: center;
+-ms-flex-align: center;-webkit-box-align: center;-moz-box-align: center;-webkit-align-items: center;-moz-align-items: center;align-items: center;}
+.main{  padding-bottom:5.5rem;margin:0 auto; overflow:hidden;}
+.header{ height: 4.5rem;padding: 0 4%;background:#0f0f0f; border-bottom: 1px solid rgba(255,255,255,.1)}
+.header .back{height:4.5rem;  width:5%;}
+.header .word{width:90%;height:4.5rem;text-align:center}
+.header .word p{ width:100%; font-size:1.6em;}
+ 
+
+form input{ width:100%; border-radius:.5em; margin:0.5rem;display:inline-block; line-height:1.8rem;height:2.8rem;font-size:1em;text-indent: 10px;}
+.inputbutton{ width:100%; background:#e9a101; color:#fff; display:inline-block; padding:1% 0; border-radius:.5em; }
+.loginbutton{ width:100%; color:#fff; padding:1% 0; border-radius:.5em; margin:1rem 0 0 0}
+
+.bottom{ overflow:hidden;  box-sizing:border-box; text-align:center; background:#0f0f0f;  position:fixed;width:100%; bottom:0; left:0;}
+.bottom ul li{ width:25%; padding:.5rem 0; box-sizing:border-box;border-right: 1px solid rgba(255,255,255,0.1);border-left: 1px solid #000;}
+.bottom ul li a{ color:#fff;}
+.bottom ul li img{ width:40%; margin:auto}
+.bottom ul li em{ display:block; width:1.8em; height:1.8em; margin:0 auto .2em;}
+.bottom ul li em.em1{background: url(../images/bot1.png) no-repeat center center ;background-size:100% 100%; }
+.bottom ul li em.em2{background: url(../images/bot2.png) no-repeat center center ; background-size:100% 100%;}
+.bottom ul li em.em3{background: url(../images/bot3.png) no-repeat center center ; background-size:100% 100%;}
+.bottom ul li em.em4{background: url(../images/bot4.png) no-repeat center center ; background-size:100% 100%;}
+.bottom ul li a:hover em.em1,.bottom ul li.current em.em1{background: url(../images/bot1h.png) no-repeat center center ;background-size:100% 100%; }
+.bottom ul li a:hover em.em2,.bottom ul li.current em.em2{background: url(../images/bot2h.png) no-repeat center center ; background-size:100% 100%;}
+.bottom ul li a:hover em.em3,.bottom ul li.current em.em3{background: url(../images/bot3h.png) no-repeat center center ; background-size:100% 100%;}
+.bottom ul li a:hover em.em4,.bottom ul li.current em.em4{background: url(../images/bot4h.png) no-repeat center center ; background-size:100% 100%;}
+.bottom ul li.current a{ color:#e9a101}
+.bg{ background:#fff;}
+/******公共结束******/
+/***首页**/
+.usercenter{ background:#0f0f0f; padding:2rem 4%; overflow:hidden} 
+.usercenter .user{ width:20%; float:left}
+.usercenter .user img{ border-radius:50%; border:2px solid #fff; width:100%;}
+.usercenter .user p{ width:100%;overflow:hidden;text-overflow:ellipsis; -o-text-overflow:ellipsis;white-space:nowrap; padding:2% 0 5%;}
+.usercenter .user .bq{ background:#e9a101; color:#fff; font-size:.8em; padding:1% 5%; border-radius:5px;}
+.usercenter .user .rd{ background:red; color:#fff; font-size:.8em; padding:1% 5%; border-radius:5px;}
+.usercenter ul{ width:75%; float:right; margin:1rem 0 0 0}
+.usercenter ul li{ width:33.3%; box-sizing:border-box;border-right: 1px solid rgba(255,255,255,0.2);}
+.usercenter ul li:last-child{ border:0;}
+.usercenter ul li .f20{ font-size:1.8em}
+.type { margin:1rem auto 0; overflow:hidden; padding-bottom:1.5rem; }
+.type ul li{width:25%; padding:1rem 0 0; box-sizing:border-box;float: left;  text-decoration: none;text-align: center;vertical-align: middle; color: #FFF;position: relative;}
+.type ul li span {  vertical-align: middle;display: inline-block; }
+.type ul li span img{ width:80%;}
+.type ul li p em{ font-style:normal; font-size:1.0rem; display:block}
+.type ul li img{ width:100%;}
+.type ul li p{  width: 100%; max-height:42px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;  margin:8% auto 0; }
+.type ul li.yhhd{ width:98%; margin:auto;}
+.title{border-bottom: 1px solid rgba(255,255,255,.1);border-top: 1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); overflow:hidden }
+.title .flexbox{height:4rem;}
+.title .word{font-size:1.2em;margin:0 0 0 1.5rem; }
+.title .ico{ width:8%}
+.title .more{ width:4%; }
+.title.borderbottom{ border-bottom:0;} 
+.homelist{ margin:1rem auto 0}
+.homelist ul li{ padding:0 2%; border-bottom: 1px solid rgba(255,255,255,.1); overflow:hidden; width:100%; line-height:3.5rem;}
+.homelist ul li:last-child{ border:0;}
+.homelist ul li .star{ width:5%; display:inline-block;}
+.homelist ul li .time{ font-size:0.8em; color:#737373; width:25%; text-align:right}
+.homelist ul li .flexbox{ height:3rem;}
+.homelist ul li a{ width:65%; overflow:hidden;text-overflow:ellipsis; -o-text-overflow:ellipsis;white-space:nowrap; display:inline-block}
+.qiandao{ width:15%; position:fixed; bottom:30%; right:0;}
+
+.proul li{ width:48%; margin:1rem 0 0 0}
+.proul li .pro{border: 1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.05); padding:5% 0; border-radius:.5em;}
+.proul li img{ width:60%; display:block; margin:5% auto 3%;}
+.proul li .name{ font-size:1.2em;}
+.proul li .button{ width:100%; background:#e9a101; color:#fff; display:inline-block; padding:5% 0; border-radius:.5em; margin:1rem 0 0 0}
+.proul li .button.tong{ background:#c98849}
+.proul li .button.yin{ background:#b1b2b6}
+.jynav{border-bottom: 1px solid rgba(255,255,255,.1);   overflow:hidden}
+.jynav ul li{ width:25%; text-align:center; padding:.7em 0; text-transform:uppercase}
+.jynav ul li a{  display:block; width:100%;height:25px;}
+.jynav ul li.current { color:#e9a101;border-bottom:2px solid #e9a101}
+.jynav ul li.current a{color:#e9a101;}
+.zxgg{  margin:.5rem auto 0;  height:3rem; overflow:hidden;   background-repeat:no-repeat; }
+.zxgg img{ width:4%; margin:0 1% 0 0}
+.zxgg .qimo8{ overflow:hidden; width:94%;  float:left; }
+.zxgg .qimo8 .qimo {width:8000%; }
+.zxgg .qimo8 .qimo div{ float:left;}
+.zxgg .qimo8 .qimo ul{float:left;  overflow:hidden; zoom:1; }
+.zxgg .qimo8 .qimo ul li{float:left;   list-style:none; color:#e9a101}
+.zxgg .qimo8 li a{margin-right:10px; }
+.jyrecord dl { margin:1rem 0 0 0; overflow:hidden}
+.jyrecord dl dt{border-bottom: 1px solid rgba(255,255,255,.1);border-top: 1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); padding:.5em 4%; overflow:hidden }
+.jyrecord dl dt .num{ margin:0 4% 0 0;}
+.jyrecord dl dt .more{ width:3%;}
+.jyrecord dl dd { padding:.5em 4%;}
+.jyrecord dl dd .zt1{ background:url(../images/zt1.png) no-repeat 0 center; background-size:25%; padding:0 0 0 5%;color:#42ae0e;}
+.jyrecord dl dd .zt2{ background:url(../images/zt2.png) no-repeat 0 center; background-size:25%; padding:0 0 0 5%;color:#ff002a;}
+.jyrecord dl dd .time{ margin:0 0 0 4%; background:url(../images/time.png)  no-repeat 0 center; background-size:7.5%; padding:0 0 0 6%;}
+.page{ margin:1rem auto 1rem; overflow:hidden}
+.page a{ display:inline-block;border: 1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); padding:1% 2%; margin:0 1%}
+@media(max-width: 320px){body{ font-size:1.2em;}.title .word{font-size:1.6rem}}
+@media(max-width: 480px){}
+@media screen and (min-width:480px) and (max-width: 768px) {
+	body{font-size: 2.0em;}
+	.usercenter ul{ margin:3rem 0 0 0}
+	.title .ico{ width:5%}
+	.title .more{ width:2%; }
+	.title .flexbox{height:5rem;}
+	.homelist ul li{ line-height:4.5rem;}
+	.main{  padding-bottom:6.5rem;}
+	.proul li{ margin:2rem 0 0 0}
+	}

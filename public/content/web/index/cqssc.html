@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+
+<title>游戏中心－GCL理财娱乐</title>
+<link href="__CONTENT__/gcl/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="./css/base.css">
+<link rel="stylesheet" type="text/css" href="./css/play.css">
+<link rel="stylesheet" type="text/css" href="./css/skinsb.css">
+<link rel="stylesheet" type="text/css" href="./css/dialog.css">
+<link rel="stylesheet" type="text/css" href="./css/modal.css">
+<link rel="stylesheet" type="text/css" href="./css/icon.css">
+<script language="javascript" type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
+<!-- <script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/modal.js"></script>
+<script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/Confrim.js"></script>
+<script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/jquery.simplemodal.src.js"></script>
+<script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/jquery.cookie.js"></script>
+ 
+<script>var TIP=true;</script>
+<script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/jquery.ui.datepicker-zh-CN.js"></script>
+<script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/jquery.messager.js"></script>
+ 
+<link type="text/css" rel="stylesheet" href="__CONTENT__/gcl/css/jquery-ui-1.8.21.custom.css" />
+<script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/jquery-ui-1.8.23.custom.min.js"></script>
+<script language="javascript" type="text/javascript" src="__CONTENT__/gcl/js/gamecommon.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>  -->
+ 
+
+</head>
+<body>
+    <include file="./Web/Home/View/Common/head.html" />
+    
+    
+    
+    
+ <div class="top-bg" style="position: absolute;"></div>
+ <div id="kaijiang" type="1" ctype="1">
+                    <div class="game_top">
+                        <div class="gm_con">
+                            <div class="gm_con_to">
+                                <div class="gct_l">
+                                    <div class="game-icon2 game_1"></div>
+                                    <p class="time-title"><span class="wjtips">正在销售...</span>&nbsp;&nbsp;&nbsp;<span id="current_endtime"></span></p>
+                                    <div class="gct_time">
+                                        <div class="gct_time_now">
+                                            <div class="gct_time_now_l"  id="count_down"></div>
+                                        </div>
+                                    </div>
+                                    <h3></h3>
+                                    <div class="gct_now">
+									<strong class="kj-title">第&nbsp;&nbsp;<span id="span_NextIssueNo" class="color-blue"></span>&nbsp;&nbsp;期</strong>
+									 <br>总共:&nbsp;&nbsp;<strong><span id="current_sale" class="color-blue">120</span></strong>&nbsp;&nbsp;期<br>
+										<img id="voice" class="voice-on" onclick="VoiceOnOff();" >
+																				
+										                                        <a href="http://trend.baidu.lecai.com/cqssc/" target="_blank" class="bt01"><span class="fa fa-bar-chart"></span>号码走势</a>
+										                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="gct_menu"><a class="gct_menu_yl" href="#" target="_top"></a> </div>
+                                </div>
+                                <div id="shownb-box">
+                                     <ul class="box-ul">
+                                        <li><a class="tabulous_active" href="#nb-box1">近一期</a></li>
+                                        <li><a class="" href="#nb-box2">近五期</a></li>
+										<span class="tabulousclear"></span>
+                                    </ul>
+                                     <div class="transition" style="height: 120px;" id="tabs_container">
+                                        <div class="make_transist hideleft showleft kj-bottom" style="position: absolute; top: 40px;" id="nb-box1">
+                                            <p>重庆时时彩  第&nbsp;&nbsp;<b><span class="color-blue last_issues" id="last_issues"></span></b>&nbsp;&nbsp;期 <span id="lt_opentimebox">&nbsp;&nbsp;<span id="kjsay" style=""></span>&nbsp;</span></p>
+													<!-- 显示开奖号码 begin-->
+											<span class="wjkjData">
+											  <p class="hide" style="display: none;"></p>
+											  <ul class="kj-hao" style="margin: 10px auto auto 10px;" ctype="g1" cnum="10">
+												  <li id="span_lot_0" class="gr_s gr_s020" flag="move">08</li>
+												  <li id="span_lot_1" class="gr_s gr_s020" flag="move">05</li>
+												  <li id="span_lot_2" class="gr_s gr_s020" flag="move">08</li>
+												  <li id="span_lot_3" class="gr_s gr_s020" flag="move">05</li>
+												  <li id="span_lot_4" class="gr_s gr_s020" flag="move">04</li>
+											
+											   </ul>
+											  <div class="clear hideleft" style="position: absolute; top: 40px;"></div>
+											  </span>
+											<!-- 显示开奖号码 end-->		
+                                       											
+                                       										   										
+                                        </div>
+									       <div style="position: absolute; top: 40px; margin-left: -20px;" class="hideleft make_transist" id="nb-box2">
+     
+     
+</div>
+                                     </div><!--End tabs container-->
+                                </div>
+								<!-- 彩种-->
+                              <div class="clear"></div>
+                           </div>
+                       </div>
+                        <!--奖期基本信息结束-->
+</div></div>
+ <div class="clear"></div>
+<div class="game">
+  <div class="gm_con_to" style="background-color: rgb(204, 204, 204);">
+ <!--投注选号标签开始-->
+<div class="game-main"><!--选号模块-->
+<div id="bet-game" >
+	<div class="game-btn" >		
+		<div class="ul-li current" style="margin-left: -8px;">
+        	<a class="cai" href="http://gcl.ykykjs.com/index.php?tnt=igp&amp;type=1&amp;groupId=107"><span class="content" >定位胆</span></a>
+		</div>
+<div class="clear"></div>	
+</div>
+<div class="game-cont">
+<div class="game-btn2"><div class="ul-li current"><a data_id="1037" href="#">五星定位胆</a></div>
+<div class="clear"></div></div>
+<div id="game-helptips"><div class="showhelp" style="font-size: 15px;">
+	<h5>在万位、千位、百位、十位、个位任意位置上任意选择1个或1个以上号码。</h5>
+    <div class="clear"></div>
+</div>
+<div class="game_eg hide" id="lt_examples_div">
+	<div class="cont">投注方案：个位 1    开奖号码：个位 1，即中定位胆个位。</div>
+ </div>
+ <div class="game_eg hide" id="lt_helps_div">
+	<div class="cont"><strong>说明：</strong><br>从万位、千位、百位、十位、个位任意1个位置或多个位置上选择1个号码，所选号码与相同位置上的开奖号码一致，即为中奖。</div>
+ </div></div>
+<div class="num-table" id="num-select"><input name="playedGroup" value="107" type="hidden">
+<input name="playedId" value="1037" type="hidden">
+<input name="type" value="1" type="hidden">
+<div id="div_ppww" class="pp" action="tz5xDwei" random="sscRandom">
+	<div class="title">万位</div>
+	&nbsp;
+	<input value="0" class="code min s" type="button">
+	<input value="1" class="code min d" type="button">
+	<input value="2" class="code min s" type="button">
+	<input value="3" class="code min d" type="button">
+	<input value="4" class="code min s" type="button">
+	<input value="5" class="code max d" type="button">
+	<input value="6" class="code max s" type="button">
+	<input value="7" class="code max d" type="button">
+	<input value="8" class="code max s" type="button">
+	<input value="9" class="code max d" type="button">
+
+	&nbsp;&nbsp;
+	
+	<input value="清" class="action none" type="button">
+    <input value="双" class="action even" type="button">
+    <input value="单" class="action odd" type="button">
+    <input value="小" class="action small" type="button">
+    <input value="大" class="action large" type="button">
+    <input value="全" class="action all" type="button">
+</div>
+<div  id="div_ppqw" class="pp" action="tz5xDwei" random="sscRandom">
+	<div class="title">千位</div>
+	&nbsp;
+	<input value="0" class="code min s" type="button">
+	<input value="1" class="code min d" type="button">
+	<input value="2" class="code min s" type="button">
+	<input value="3" class="code min d" type="button">
+	<input value="4" class="code min s" type="button">
+	<input value="5" class="code max d" type="button">
+	<input value="6" class="code max s" type="button">
+	<input value="7" class="code max d" type="button">
+	<input value="8" class="code max s" type="button">
+	<input value="9" class="code max d" type="button">
+
+	&nbsp;&nbsp;
+	
+	<input value="清" class="action none" type="button">
+    <input value="双" class="action even" type="button">
+    <input value="单" class="action odd" type="button">
+    <input value="小" class="action small" type="button">
+    <input value="大" class="action large" type="button">
+    <input value="全" class="action all" type="button">
+</div>
+<div id="div_ppbw" class="pp" action="tz5xDwei" random="sscRandom">
+	<div class="title">百位</div>
+	&nbsp;
+	<input value="0" class="code min s" type="button">
+	<input value="1" class="code min d" type="button">
+	<input value="2" class="code min s" type="button">
+	<input value="3" class="code min d" type="button">
+	<input value="4" class="code min s" type="button">
+	<input value="5" class="code max d" type="button">
+	<input value="6" class="code max s" type="button">
+	<input value="7" class="code max d" type="button">
+	<input value="8" class="code max s" type="button">
+	<input value="9" class="code max d" type="button">
+
+	&nbsp;&nbsp;
+	
+	<input value="清" class="action none" type="button">
+    <input value="双" class="action even" type="button">
+    <input value="单" class="action odd" type="button">
+    <input value="小" class="action small" type="button">
+    <input value="大" class="action large" type="button">
+    <input value="全" class="action all" type="button">
+</div>
+<div id="div_ppsw" class="pp" action="tz5xDwei" random="sscRandom">
+	<div class="title">十位</div>
+	&nbsp;
+	<input value="0" class="code min s" type="button">
+	<input value="1" class="code min d" type="button">
+	<input value="2" class="code min s" type="button">
+	<input value="3" class="code min d" type="button">
+	<input value="4" class="code min s" type="button">
+	<input value="5" class="code max d" type="button">
+	<input value="6" class="code max s" type="button">
+	<input value="7" class="code max d" type="button">
+	<input value="8" class="code max s" type="button">
+	<input value="9" class="code max d" type="button">
+
+	&nbsp;&nbsp;
+	
+	<input value="清" class="action none" type="button">
+    <input value="双" class="action even" type="button">
+    <input value="单" class="action odd" type="button">
+    <input value="小" class="action small" type="button">
+    <input value="大" class="action large" type="button">
+    <input value="全" class="action all" type="button">
+</div>
+<div id="div_ppgw" class="pp" action="tz5xDwei" random="sscRandom">
+	<div class="title">个位</div>
+	&nbsp;
+	<input value="0" class="code min s" type="button">
+	<input value="1" class="code min d" type="button">
+	<input value="2" class="code min s" type="button">
+	<input value="3" class="code min d" type="button">
+	<input value="4" class="code min s" type="button">
+	<input value="5" class="code max d" type="button">
+	<input value="6" class="code max s" type="button">
+	<input value="7" class="code max d" type="button">
+	<input value="8" class="code max s" type="button">
+	<input value="9" class="code max d" type="button">
+
+	&nbsp;&nbsp;
+	
+	<input value="清" class="action none" type="button">
+    <input value="双" class="action even" type="button">
+    <input value="单" class="action odd" type="button">
+    <input value="小" class="action small" type="button">
+    <input value="大" class="action large" type="button">
+    <input value="全" class="action all" type="button">
+</div>
+
+</div> <div class="tbn_bot">
+   <div class="fandian-table" style="height: auto;" id="game-dom">
+			<div class="fandian">
+				<div class="fandian-k" style="visibility: visible;">
+				<div class="prompt" id="game-tip-dom" style="float: left; margin-right: 10px;"></div>
+					<span class="spn8">奖金/返点：</span>
+					
+					<span id="fandian-value" class="fdmoney">{:C('SYSTEM_RULE_CONFIG.CP')['PL']}%</span>
+				</div>
+				<div style="float: right; margin-right: 15px;">
+				<div class="danwei">
+					<span>模式：</span>
+										<label><input value="2.00" data-max-fan-dian="10" name="danwei" checked="checked" type="radio">元</label>
+									</div>
+				<div class="beishu">
+                <span>倍数：</span><input class="surbeishu" value="" type="button"><input id="beishu" value="1" class="txt"><input class="addbeishu" value="" type="button">
+				</div>
+				</div>
+                <div class="clear"></div>
+			</div>		
+		</div>
+   </div>
+      <div class="clear"></div>
+   <div>
+     <div class="g_submit" id="lt_sel_insert" onclick="gameActionAddCode()"><span class="fa fa-plus fa-lg"></span>添加</div>
+	 
+	 </div>
+	    <div class="clear"></div>
+   <div class="tbn_b_bot">
+     <div class="tbn_bb_l">
+       <div class="tbn_bg1"><div class="tbn_bg2"></div></div>
+       <div class="tbn_bb_ln">
+         <div class="tz_tab_list_box touzhu-cont">
+		 <table id="tabResult" width="100%">
+		
+		 <tr>
+		 <th>选号</th>
+		 <th>注数</th>
+		  <th>倍数</th>
+		   <th>金额</th>
+		     <th>删除</th>
+		 </tr>
+		 
+		 
+		
+		 </table>
+         </div>
+       </div>
+     </div>
+     <div class="clear"></div>
+   </div>
+   <div class="tbn_bb_2">
+    <span  class="tbn_clear" id="lt_random_one" onclick="gameActionRandom(1)" title="点击多次，随机更多">随机一注</span>
+    <span class="tbn_clear" id="lt_random_five" onclick="gameActionRandom(5)" title="点击多次，随机更多">随机五注</span> 
+    <span class="tbn_clear" id="lt_cf_clear" onclick="gameActionRemoveCode()" title="清除投注框内投注单">清除号码</span>
+   </div>
+   <div class="clear"></div>
+   <div class="tbn_bb_r">
+    <div class="touzhu-bottom sub_txt">
+	<div class="tz-tongji">
+        总注数: <strong><span class="r" id="all-count">0</span></strong> 注&nbsp;&nbsp;&nbsp;&nbsp;
+        总金额: <strong><span class="r" id="all-amount">0.00</span></strong> 元
+   </div>
+    <div>
+    
+   </div>
+  </div>
+ </div>
+    <!--投注选号区结束-->
+<div class="clear"></div>
+<div class="zh_body">
+   <div class="unit">
+     <div class="unit_title">
+       <div class="ut_l"></div>
+       <div class="ut_r"></div>
+     </div>
+    
+     <div class="bg10">
+     
+     
+    <div id="div_radio" style="color:orange;text-align:center;">
+   	 	
+    </div>
+    	
+    
+	  <div class="touzhu-bottom g_submit" onclick="SaveForm();"  id="lt_buy">
+	   
+	  <div class="tz-true-btn" id="btnPostBet">
+	  <span class="fa fa-check-square-o fa-lg"></span>确认投注</div></div>
+     </div>
+  </div><!--unit end -->
+  <div class="clear"></div>
+  <!--游戏记录开始-->
+  <div class="gm_con">
+     <div class="gm_con_to">
+       <div class="yx_body">
+         <div class="unit">
+           <div class="unit_title">
+             <div class="ut_l"></div>
+             <h4><label class="yx_title">游戏记录</label></h4>
+             <div class="ut_r"></div>
+           </div>
+         </div>
+         <div class="yx_box">
+           <div class="yxlist">
+             <div class="modal fade" id="betInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+   </div><table cellspacing="0" cellpadding="0" border="0">
+             <tbody>
+             <tr>
+										<th  style="width:5%;">编号</th>
+										<th style="width:12%;">投注时间</th>
+										<th style="width:5%;">期号</th>
+										<th style="width:5%;">玩法</th>
+										<th style="width:5%;">倍数</th>
+										<th style="width:5%;">模式</th>
+										<th style="width:5%;">总额</th>
+										<th style="width:5%;">奖金</th>
+										<th style="width:15%;">投注号码</th>
+										<th style="width:15%;">开奖号码</th>
+										<th style="width:5%;">状态</th>
+										<th style="width:5%;">撤单</th>
+									</tr>
+			 <tbody class="" id="order-history">  
+
+<volist name="list" id="vo" empty="">
+									<tr class="">
+										<td style="width:5%;">{$vo.CathecticCode}</td>
+										<td style="width:12%;">{$vo.CreateTime}</td>
+										<td style="width:5%;">{$vo.IssueNo}</td>
+										<td style="width:5%;">{$vo.PlayMethodName}</td>
+										<td style="width:5%;">{$vo.BuyTimes}</td>
+										<td style="width:5%;">{$vo.CathecticTypeName}</td>
+										<td style="width:5%;">{$vo.CathecticTotalMoney}</td>
+										<td style="width:5%;">{$vo.ProfitMoney}</td>
+										<td style="width:15%;">{$vo.CathecticNum}</td>
+										<td style="width:15%;">{$vo.PlayPraiseNum}</td>
+										<td style="width:5%;">{$vo.CathecticStatusName}</td>
+										<td style="width:5%;">
+
+			<if condition="$vo['CathecticStatus'] eq '01' ">
+			
+				<input type="button" value="撤单" onclick="CheDan('{$vo.CathecticCode}');" />
+			
+			</if>
+											</td>
+									</tr>	
+									</volist>
+						
+</tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <!--游戏记录结束-->
+   
+</div>
+   <!-- -->
+</div></div>
+   </div>
+</div>
+
+<include file="./Web/Home/View/Common/foot.html" />
+
+
+<div id="wanjinDialog"></div>
+
+
+  
+   
+ </div></body>
+</html>
+<script>
+//定义播放音乐开关
+var PlayMusic=true;
+
+$('input.code').live('click', function() {
+	var $this = $(this);
+	if ($this.is('.checked')) {
+		$this.removeClass('checked');
+		$this.css('color','#fff');
+	} else {
+		$this.addClass('checked');
+	}
+});
+
+if ($.browser.msie) {
+	$('a, :button, :radio, :checkbox').live('focus', function() {
+		this.blur();
+	});
+}
+$('input.action').live('click', function() {
+	var $this = $(this),
+		call = $this.attr('action'),
+		pp = $this.parent();
+	   $this.addClass("on").siblings(".action").removeClass("on");
+	if (call && $.isFunction(call = window[call])) {
+		call.call(this, pp);
+	} else if ($this.is('.all')) {
+		$('input.code', pp).addClass('checked');
+	} else if ($this.is('.large')) {
+		$('input.code.max', pp).addClass('checked');
+		$('input.code.min', pp).removeClass('checked');
+	} else if ($this.is('.small')) {
+		$('input.code.min', pp).addClass('checked');
+		$('input.code.max', pp).removeClass('checked');
+	} else if ($this.is('.odd')) {
+		$('input.code.d', pp).addClass('checked');
+		$('input.code.s', pp).removeClass('checked');
+	} else if ($this.is('.even')) {
+		$('input.code.s', pp).addClass('checked');
+		$('input.code.d', pp).removeClass('checked');
+	} else if ($this.is('.none')) {
+		$('input.code', pp).removeClass('checked');
+	}
+});
+// $('td.code-list').live('click', function() {
+// 	var data = $(this).parent().data('code');
+// 	displayCodeList(data);
+// });
+
+//添加号码函数
+var SelectCodes=[],SelectResult=[];
+var rowCount=1;  //行数
+
+function gameActionAddCode() {
+	var baby = $('.ball-section li').size();
+	// 获取选中的值
+	var objW = $('#div_ppww .checked');
+	var objQ = $('#div_ppqw .checked');
+	var objB = $('#div_ppbw .checked');
+	var objS = $('#div_ppsw .checked');
+	var objG = $('#div_ppgw .checked');
+	
+	getCode(SelectCodes,'ww',objW);
+	getCode(SelectCodes,'qw',objQ);
+	getCode(SelectCodes,'bw',objB);
+	getCode(SelectCodes,'sw',objS);
+	getCode(SelectCodes,'gw',objG);
+	
+	if(SelectCodes.length==0){
+		alert('请选择投注');
+		return;
+	}
+	var TZMsg = '';
+	TZMsg+=getTypeCode(SelectCodes,'ww');
+	TZMsg+=",";
+	TZMsg+=getTypeCode(SelectCodes,'qw');
+	TZMsg+=",";
+	TZMsg+=getTypeCode(SelectCodes,'bw');
+	TZMsg+=",";
+	TZMsg+=getTypeCode(SelectCodes,'sw');
+	TZMsg+=",";
+	TZMsg+=getTypeCode(SelectCodes,'gw');
+	
+	// 获取倍数
+	var bs = $("#beishu").val();
+	
+	rowCount++;  
+	 
+	var result = {
+		no:rowCount,
+		num:TZMsg,
+		zs:SelectCodes.length,
+		bs:$("#beishu").val(),
+		amount:SelectCodes.length*2*$("#beishu").val()
+	};
+
+	// 追加行
+	addRow(result);
+	// 追加结果集
+	SelectResult.push(result);
+	// 设置总注数显示
+	ShowTipLabel();
+	
+	// 清空本次投注的值
+	$("#num-select .code").removeClass("checked");
+	SelectCodes=[];
+	
+}
+
+function ShowTipLabel(){
+	var count=0;
+	var amount=0;
+	for(var i=0;i<SelectResult.length;i++){
+		if(SelectResult[i].no>0){
+			count+=SelectResult[i].zs;
+			amount+=SelectResult[i].amount;
+		}
+	}
+	$("#all-count")[0].innerText=count;
+	$("#all-amount")[0].innerText=amount;
+	
+}
+
+
+
+//添加行  
+function addRow(r){  
+   
+    var newRow='<tr id="tr'+rowCount+'">';
+    newRow+='<td>'+r['num']+'</td>';
+    newRow+='<td>'+r['zs']+'</td>';
+    newRow+='<td>'+r['bs']+'</td>';
+    newRow+='<td>'+r['amount']+'</td>';
+    newRow+='<td><a href="#" onclick="delRow('+rowCount+')">删除</a>'+'</td>';
+    
+    $('#tabResult').append(newRow);  
+}  
+  
+//删除行  
+function delRow(rowIndex){  
+    $("#tr"+rowIndex).remove();  
+    
+    for(var i=0;i<SelectResult.length;i++){
+		if(SelectResult[i].no==rowIndex){
+			SelectResult.splice(i,1);
+		    break;
+		}
+	}
+    
+    rowCount--;  
+    
+   
+    
+    ShowTipLabel();
+}  
+
+function getCode(arr,type,codes){
+	for(var i=0;i<codes.length;i++){
+		var o={
+			t:type,
+			n:codes[i].value
+		};
+		arr.push(o);
+	}
+}
+function getTypeCode(arr,type){
+	var str="";
+	for(var i=0;i<arr.length;i++){
+		if(arr[i].t==type){
+			str+=arr[i].n;
+		}
+	}
+	if(!str){
+		str="-";
+	}
+	return str;
+}
+
+// $('.surbeishu').live('click', function() {
+// 	var newVal = parseInt($('#beishu').val()) - 1;
+// 	if (newVal < 1) newVal = 1;
+// 	$('#beishu').val(newVal);
+// 	//gameMsgAutoTip();
+// });
+// $('.addbeishu').live('click', function() {
+// 	var newVal = parseInt($('#beishu').val()) + 1;
+// 	$('#beishu').val(newVal);
+// 	//gameMsgAutoTip();
+// });
+
+// function gameActionRandom(num){
+// 	if(!num){
+// 		return;
+// 	}
+// 	for(var i=0;i<num;i++){
+// 		var TZMsg = '';
+// 		TZMsg+=generateMixed(9);
+// 		TZMsg+=",";
+// 		TZMsg+=generateMixed(9);
+// 		TZMsg+=",";
+// 		TZMsg+=generateMixed(9);
+// 		TZMsg+=",";
+// 		TZMsg+=generateMixed(9);
+// 		TZMsg+=",";
+// 		TZMsg+=generateMixed(9);
+		
+// 		// 获取倍数
+// 		var bs = $("#beishu").val();
+		
+// 		rowCount++;  
+		 
+// 		var result = {
+// 			no:rowCount,
+// 			num:TZMsg,
+// 			zs:1,
+// 			bs:$("#beishu").val(),
+// 			amount:5*2*$("#beishu").val()
+// 		};
+// 		// 追加行
+// 		addRow(result);
+// 		// 追加结果集
+// 		SelectResult.push(result);
+// 		// 设置总注数显示
+// 		ShowTipLabel();
+		
+		
+// 		SelectCodes=[];
+// 	}
+// }
+// function generateMixed(n) {
+// 	var res= parseInt(n*Math.random());
+//     return res;
+// }
+// /*
+//  * 清除所有选中的号
+//  */
+// function gameActionRemoveCode(){
+// 	location.reload();
+// }
+
+</script>

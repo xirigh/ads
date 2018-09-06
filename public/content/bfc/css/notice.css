@@ -1,0 +1,40 @@
+.notice{
+    width:100%;
+    padding: 5%;
+    text-align: left;
+}
+.notice h4{
+    background:#e8e8e8;
+    text-align: center;
+    padding:2%;
+    font-size:20px;
+}
+
+/*公告列表*/
+.notice ul{
+    width:100%;
+    list-style:none;
+    padding:2%;
+}
+.notice li{
+    border-bottom:1px dashed #000;
+    text-align: right;
+    padding:2%;
+}
+.notice li a{
+    display:inline-block;
+    float: left;
+}
+body {
+  font-size:12px;
+}
+
+
+
+
+
+
+
+
+
+

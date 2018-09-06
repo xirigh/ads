@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>信息系统后台管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- basic styles -->
+
+		<link href="__ASSETS__/ace/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__ASSETS__/ace/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__ASSETS__/ace/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+-->
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="__ASSETS__/ace/css/ace.min.css" />
+		<link rel="stylesheet" href="__ASSETS__/ace/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="__ASSETS__/ace/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__ASSETS__/ace/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="__ASSETS__/ace/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="__ASSETS__/ace/js/html5shiv.js"></script>
+		<script src="__ASSETS__/ace/js/respond.min.js"></script>
+		<![endif]-->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<!--
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+-->
+		<!-- <![endif]-->
+
+		<!--[if IE]><!--
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+-->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery ||
+				document
+				.write("<script src='__ASSETS__/ace/js/jquery-2.0.3.min.js'>" +
+					"<" + "/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__ASSETS__/ace/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document)
+				document
+				.write("<script src='__ASSETS__/ace/js/jquery.mobile.custom.min.js'>" +
+					"<" + "/script>");
+		</script>
+		<script src="__ASSETS__/ace/js/bootstrap.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="__ASSETS__/ace/js/ace.min.js"></script>
+
+		<link href="__CONTENT__/toastr/toastr.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__ASSETS__/ace/css/my.css" />
+		<script src="__CONTENT__/toastr/toastr.min.js"></script>
+
+		<script src="__CONTENT__/js/Common.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			$(document).ready(
+				function() {
+
+					var span = $("#span_dh")[0];
+					if(span) {
+						var spanDH = span.innerText.trim();
+						$("#MeauUL li").each(function(i) {
+							var title = $(this)[0].innerText.trim();
+							//
+
+							if(spanDH.indexOf(title) > 0) {
+								$(this).attr("class", "active");
+							} else {
+								if(spanDH.indexOf('控制台') > 0) {
+									if(title == "首页") {
+										$(this).attr("class", "active");
+									}
+								} else {
+									$(this).attr("class", "");
+								}
+							}
+							//console.info();
+
+						});
+					}
+
+					//window.setInterval(CheckLogin, 60000); 
+
+					//改变样式
+					var c = $(document.body);
+					c.addClass('skin-1');
+					$(".ace-nav > li.grey").addClass("dark")
+					$(".ace-nav > li").removeClass("no-border margin-1");
+					$(".ace-nav > li:not(:last-child)").removeClass("light-pink")
+						.find('> a > [class*="icon-"]').removeClass("pink")
+						.end().eq(0).find(".badge")
+						.removeClass("badge-warning");
+					$(".ace-nav > li.grey").removeClass("red").find(".badge")
+						.removeClass("badge-yellow");
+
+					//处理分页参数
+
+					// 分页（修改链接方法）
+					$('#pageBar a').click(function() {
+
+						var tmpHref = $(this).attr('href');
+						tmpHref = tmpHref.replace(/\/selCon\//, "");
+						$("#formSearch").attr("action", tmpHref);
+						$("#formSearch").submit();
+
+						return false;
+					});
+				});
+
+			function SubmitSearchForm(page) {
+				$("#formSearch").attr("action", "__URL__/" + page + "/p/1");
+				$("#formSearch").submit();
+			}
+
+			try {
+				ace.settings.check('navbar', 'fixed')
+			} catch(e) {}
+		</script>
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="<{:url('Index/index')}>" class="navbar-brand">
+
+						<small>
+					&nbsp;信息系统后台管理
+				</small>
+					</a>
+					<!-- /.brand -->
+				</div>
+				<!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle"> <img class="nav-user-photo" src="__CONTENT__/images/touxiang.png" alt="Jason's Photo" /> <span class="user-info"> <small>欢迎回来,</small> <{:$Think.session.admin.user_name}></span> <i class="icon-caret-down"></i>
+							</a>
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+								<li>
+									<a href="<{:url('User/logout')}>"> <i class="icon-off"></i> 退出
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<!-- /.ace-nav -->
+				</div>
+				<!-- /.navbar-header -->
+			</div>
+			<!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try {
+					ace.settings.check('main-container', 'fixed')
+				} catch(e) {}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#"> <span class="menu-text"></span>
+				</a>
+				<!-- 左侧菜单开始 -->
+				<div class="sidebar" id="sidebar">
+					<ul id="MeauUL" class="nav nav-list">
+						<volist name="menu" id="v">
+						<li class='hidden_flag'>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-th-large"></i> <span class="menu-text"><{$v.title}></span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+							<ul class="submenu">
+								<volist name="v.data" id="vv">
+								<li>
+									<a href="<{$vv.function_url|url}>">
+										<i class="icon-double-angle-right"></i>
+										<{$vv.function_name}>
+									</a>
+								</li>
+								</volist>
+							</ul>
+						</li>
+						</volist>
+					</ul>
+								<div class="sidebar-collapse" id="sidebar-collapse">
+									<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+								</div>
+
+								<script type="text/javascript">
+									//如果没有子菜单  则隐藏这个父级菜单
+									var hfs = $(".hidden_flag");
+									if(hfs.length > 0) {
+										for(var i = 0; i < hfs.length; i++) {
+											if(hfs[i].children[1].children.length == 0) {
+												hfs[i].style.display = "none";
+											}
+										}
+									}
+
+									try {
+										ace.settings.check('sidebar', 'collapsed')
+									} catch(e) {}
+								</script>
+				</div>
+				<!-- /左侧菜单-->
+
+				<!-- 	
+		</div>
+		
+
+		
+	</div>
+	
+
+</body>
+</html>
+ -->

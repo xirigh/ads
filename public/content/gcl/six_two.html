@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>平台提现－充值提现－金富汇</title>
+<link href="/david.ico" rel="shortcut icon" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="./css/base.css">
+<link rel="stylesheet" type="text/css" href="./css/all.css">
+<link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="./css/dialog.css">
+<link rel="stylesheet" type="text/css" href="./css/modal.css">
+<link rel="stylesheet" type="text/css" href="./css/icon.css">
+<script language="javascript" type="text/javascript" src="./js/jquery-1.8.0.min.js"></script>
+<!--[if IE 9]>
+<script language="javascript" type="text/javascript" src="/template/js/base/html5.js"></script>
+<![endif]-->
+<!--<script language="javascript" type="text/javascript" src="/template/js/base/keyboard.js"></script>-->
+<link type="text/css" rel="stylesheet" href="./css/jquery-ui-1.8.21.custom.css" />
+<script language="javascript" type="text/javascript" src="./js/jquery-ui-1.8.23.custom.min.js"></script>
+<script language="javascript" type="text/javascript" src="./js/gamecommon.js"></script>
+<script language="javascript" type="text/javascript" src="./js/modal.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.cookie.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.messager.js"></script>
+<!--<script language="javascript" type="text/javascript" src="/template/js/base/Array.ext.js"></script>-->
+<script language="javascript" type="text/javascript" src="./js/jquery.ui.datepicker-zh-CN.js"></script>
+<script language="javascript" type="text/javascript" src="./js/load.js"></script>
+<script language="javascript" type="text/javascript" src="./js/Confrim.js"></script>
+
+<script type="text/javascript">
+function beforeToCash(){
+	if(!this.amount.value) throw('请填写提现金额');
+	if(!this.amount.value.match(/^[0-9]*[1-9][0-9]*$/)) throw('提现金额错误');
+	showPaymentFee()
+	var amount=parseInt(this.amount.value);
+	if($('input[name=bankId]').val()==2||$('input[name=bankId]').val()==3){
+		if(amount<parseFloat("100")) throw('支付宝/财付通提现最小限额为100元');
+		if(amount>parseFloat("100000")) throw('支付宝/财付通提现最大限额为100000元');
+		showPaymentFee()
+	}else{
+		if(amount<parseFloat("100")) throw('提现最小限额为100元');
+		if(amount>parseFloat("100000")) throw('提现最大限额为100000元');
+		showPaymentFee()
+	}
+	if(!this.coinpwd.value) throw('请输入资金密码');
+	if(this.coinpwd.value<6) throw('资金密码至少6位');
+	showPaymentFee()
+}
+
+function toCash(err, data){
+	if(err){
+		davidError(err);
+	}else{    
+		reloadMemberInfo();
+		$(':password').val('');
+		$('input[name=amount]').val('');
+		window.location.href="/index.php?tnt=ctcr";
+	}
+}
+$(function(){
+	$('input[name=amount]').keypress(function(event){
+		event.keyCode=event.keyCode||event.charCode;
+		
+		return !!(
+			// 数字键
+			(event.keyCode>=48 && event.keyCode<=57)
+			|| event.keyCode==13
+			|| event.keyCode==8
+			|| event.keyCode==46
+			|| event.keyCode==9
+		)
+	});
+});
+</script>
+<!-- <script type="text/javascript">
+function showPaymentFee() {
+   $("#ContentPlaceHolder1_txtMoney").val($("#ContentPlaceHolder1_txtMoney").val().replace(/\D+/g, ''));
+   jQuery("#chineseMoney").html(changeMoneyToChinese($("#ContentPlaceHolder1_txtMoney").val()));
+        }
+</script> -->
+
+
+</head> 
+<body>
+<header class="header" style=" margin-bottom:38px;">
+<script type="text/javascript">
+function indexSign(err, data){
+	// if(err){
+	// 	davidError(err);
+	// }else{
+	// 	reloadMemberInfo();
+	// 	davidOk(data);
+	// }
+  alert('签到成功');
+} 
+</script>
+<div class="header-top-wapper">
+      <ul class="top-user userInfo">
+          <li>您好，<a href="nine_one.html" id="nickname" title="点击修改昵称">abc123</a></li>
+          <li>金额: <span class="color-1 font-weight" id="usermoney">￥12133.0000</span>&nbsp;&nbsp;<a style=" cursor: pointer;" href="javascript:void(0)" onclick="reloadMemberInfo();" class="fa fa-refresh fa-lg color-0"></a></li>
+		      <li>冻结购彩金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+		      <li>证券金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+          <li>金币: <span class="color-1 font-weight" id="usermoney">＄86</span>&nbsp;&nbsp;</li>
+          <li><a class="color-0" href="/index.php?tnt=ds"  dataType="json" call="indexSign" target="ajax" >签到就送</a></li>
+          <li><a class="color-0" href="login.html" target="_top">安全退出</a></li>
+      </ul>
+</div>                        <div class="header-navbg">
+                            <div class="wrapper">
+                                <a href="index.html" ><div class="logo"></div></a>
+                                <div id="dd" class="header-nav-game" tabindex="1">全部游戏
+                                    <ul class="dropdown"> 
+										      <li><a href="four.html"><span class='fa fa-chevron-circle-right fa-lg'></span>重庆时时彩</a></li>
+                          <li><a href="five.html"><span class='fa fa-chevron-circle-right fa-lg'></span>北京PK拾</a></li>
+              
+				      
+                         </ul>
+                     </div>
+                      <ul class="header-nav-user">                
+                              <li><a class="default_home" href="index.html" ><div class="fa fa-home fa-2x"></div>网站首页</a></li>
+                              <li><a class="account_autosave" href="six_one.html" ><div class="fa fa-cny fa-2x"></div>充值提现</a></li>
+                              <li><a class="history_playlist" href="seven_one.html" ><div class="fa fa-gamepad fa-2x"></div>游戏报表</a></li>
+                              <li><a class="users_list" href="eight_one.html" ><div class="fa fa-users fa-2x"></div>代理中心</a></li>
+                              <img src="./images/5-130H21SH5.gif" alt="/" style="position:absolute;z-index:1001;margin-left:-40px;margin-top:-6px;"></li></li>
+                              <li><a class="users_info" href="nine_one.html" ><div class="fa fa-cogs fa-2x"></div>账户中心</a></li>
+                              <li><a class="promotion_center" href="one_one.html" ><div class="fa fa-bullhorn  fa-2x"></div>证券中心</a></li>
+                              <li><a class="account_autosave" href="eleven_one.html" ><div class="fa fa-fire  fa-2x"></div>金币兑换</a></li>
+                              <li><a class="csonline_list" href="#000" ><div class="fa fa-wechat fa-2x"></div>在线客服</a></li>
+                              <li><a class="help_general" href="thirteen_one.html" ><div class="fa fa-question fa-2x"></div>常见问题</a></li>
+                         </ul>
+                            </div>
+                        </div>
+                    </header>
+<!-- <script type='text/javascript'>
+function kf(){
+ //客服是否开启 个人客服是否开启
+	var iTop = (window.screen.availHeight-30-570)/2; //获得窗口的垂直位置;
+	var iLeft = (window.screen.availWidth-10-750)/2; //获得窗口的水平位置;
+	var url = 'http://api1.pop800.com/web800/c.do?l=cn&type=0&n=262889&w=0';
+	var winOption = "height=570,width=750,top="+iTop+",left="+iLeft+",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,fullscreen=1";
+	var newWin = window.open(url,window, winOption);
+		return false;
+}
+function down(){
+    window.location="/template/down/inst.php";
+}
+</script> -->
+<div id="rightcon">
+            <div class="head-box">
+                <div class="haed-box-wrapper">
+                    <div class="head-box-bg1" id="transform"></div>
+                    <div class="head-box-bg2" id="transform"></div>
+                    <div class="head-box-bg3"></div>
+                </div>
+            </div>
+            <div class="wrapper bigbox">
+<div class="page-wrapper">
+    <p id="page-title"><span class="fa fa-cny"></span>平台提现</p>
+    <div class="top_menu">
+        <a href="six_four.html">充值记录</a>
+        <a href="six_three.html">提现记录</a>
+        <a class="act"  href="six_two.html">平台提现</a>
+        <a href="six_one.html">自动充值</a>
+    </div>
+    <div class="page-info">
+       <div class="page_list">
+                        <form action="/index.php?tnt=catc" method="post" target="ajax" datatype="json" onajax="beforeToCash" call="toCash">
+                                <div class="help">
+                <h4 class="fa fa-exclamation-circle"><span>提现须知</span></h4>
+               <p>您是尊贵的&nbsp;&nbsp; <strong style="font-size:16px;color:red;">VIP1</strong>&nbsp;&nbsp;客户，每天限提&nbsp;&nbsp;<strong style="font-size:16px;color:red;">3</strong>&nbsp;&nbsp;次,今天您已经成功发起了&nbsp;&nbsp;<strong style="font-size:16px;color:green">0</strong>&nbsp;&nbsp;次提现申请</p>
+	                    <p>每天的提现处理时间为：<strong style="font-size:16px;color:red;" >
+    早上 11:00 至 晚上
+    23:00</strong></p>
+	                    <p>提现3分钟内到账。(如遇高峰期，可能需要延迟到十分钟内到帐)</p>
+	                    <p style="color:blue;">用户每次最小提现100元&nbsp;&nbsp;
+    <strong style="color:green;font-size:16px;">100</strong>&nbsp;&nbsp;元，最大提现&nbsp;&nbsp; 
+    <strong style="color:green;font-size:16px;">100000</strong>&nbsp;&nbsp;元。
+            </div>
+			<div class="help">
+                <h4 class="fa fa-exclamation-circle"><span>消费详情</span></h4>
+                 <p>今日投注：&nbsp;&nbsp;0 &nbsp;&nbsp;今日充值：&nbsp;&nbsp;0 &nbsp;&nbsp;</p>
+				 <p>(消费比例未达到系统设置的&nbsp;&nbsp;<strong style="color:red" id="sysbili">0</strong>&nbsp;&nbsp;%，则不能提款.)&nbsp;&nbsp;&nbsp;&nbsp;计算公式：消费比例=投注量/充值额</p>
+	          
+            </div>
+            <table border="0" cellpadding="0" cellspacing="0">
+                    <input name="CANKIF_BOK" type="hidden" value="061f4eeed649ca91dd327ecca71154c1" />
+                    <input name="TOLKEASF_ASH" type="hidden" value="9aa8ecd849066e0a3f8e2dedbfff3db8" />
+                    <tbody>
+					<tr>
+                        <td class="tdtitle" style="padding-top: 9px;" width="150">可提现金额：</td>
+                        <td><span style="margin-left:10px;">12133.0000</span></td>
+                    </tr>
+                    <tr>
+                        <td class="tdtitle">银行信息：</td>
+                        <td><img class="bankimg" src="./images/zgyh.gif" title="中国银行" style="margin-left:10px;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdtitle">账户名：</td>
+                        <td><input readonly value="t**" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="tdtitle">银行账号：</td>
+                        <td><input  readonly value="***1111" type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tdtitle">提现金额：</td>
+                        <td><span><input name="amount" class="spn9"  value="" id="ContentPlaceHolder1_txtMoney"  type="text" onkeyup="showPaymentFee();"/></span>&nbsp;&nbsp;<span> ( 单笔提现限额：最低：&nbsp;<strong style="color:red">100</strong>&nbsp;元， 最高：&nbsp;<strong style="color:red">100000</strong>&nbsp;元 ) </span></td>
+                    </tr>
+                    <tr>
+                        <td class="tdtitle" style="padding-top: 9px;">提现金额(大写)：</td>
+                        <td>&nbsp;<strong style="color:red;margin-left:10px" id="chineseMoney"></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="tdtitle" style="padding-top: 9px;">资金密码：</td>
+                        <td>&nbsp;<span id="chineseMoney"></span><input id="coinpwd" name="coinpwd" type="password"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdtitle"></td>
+                        <td height="30"><br><button name="submit"  id='put_button_pass' type="submit" class="btn_next btn btn-action"><i class="fa fa-chevron-right"></i>提交申请</button><br><br></td>
+                    </tr>
+                
+            </tbody></table>
+            <div class="clear"></div>		
+</form>
+  		        </div>
+    </div>
+</div>
+</div>
+</div><footer class="footer">
+    <div class="wrapper">
+        <div class="footer-box1">
+            <h2><span class="fa fa-question fa-2x"></span>帮助</h2>
+            <ul>
+                                <li><a href="thirteen_three.html" title="平台功能介绍">功能介绍</a></li>
+                                <li><a href="thirteen_one.html" title="常见问题说明">常见问题</a></li>
+          </ul>
+        </div>
+        <div class="footer-box1 footer-box2">
+            <h2><span class="fa fa-gamepad fa-2x"></span>玩法介绍</h2>
+            <ul>
+                                <li><a href="thirteen_two.html" title="时时彩">时时彩</a></li>
+                                <li><a href="thirteen_two.html" title="11选5">11选5</a></li>
+                                <li><a href="thirteen_two.html" title="快三">快三</a></li>
+                                <li><a href="thirteen_two.html" title="排列三/五">排列三/五</a></li>
+                                <li><a href="thirteen_two.html" title="3D">3D</a></li>
+          </ul>
+        </div>
+        <div class="footer-box1">
+            <h2><span class="fa fa-credit-card fa-2x"></span>支持主流银行</h2>
+            <img src="./images/comm/yh.png" alt="主流银行">        </div>
+        <a href="/app.apk" class="fa fa-cloud-download fa-3x footer-bt" onclick="down()"> <span class="footer-bt-style">下载手机APP</span></a>    </div>
+    <div class="footnotice">充值卡号会频繁更换，请一定要复制最新卡号信息,不可直接用上次充值的卡号信息,否则充到错误的卡号而产生的损失平台一律不负责！</div>
+</footer>
+<div id="wanjinDialog"></div></body>
+</html>

@@ -1,0 +1,112 @@
+<include file="Public/base" />
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;权限管理&nbsp;&nbsp;>&nbsp;&nbsp;修改用户密码
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content">
+
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+			<div class="tabbable">
+				<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+					<li class="active">
+						<a data-toggle="tab" href="#UpdateLoginPwd">修改密码</a>
+					</li>
+				</ul>
+
+				<div class="tab-content">
+					<div id="UpdateLoginPwd" class="tab-pane in active">
+
+						<form id="Form1" class="form-horizontal" role="form" method="post" action="<{:url('user/changepwdact')}>">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户 </label>
+								<div class="col-sm-9">
+									<select class="col-xs-10 col-sm-5 " id="txtUserID" name="UserID">
+										<volist name="userlist" id="v">
+											<option value="<{$v.u_id}>"><{$v.user_name}></option>
+										</volist>
+									</select> <label class="middle red">*</label>
+								</div>
+
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">原始密码 </label>
+
+								<div class="col-sm-9">
+									<input type="password" name="OldPassword1" placeholder="" class="col-xs-10 col-sm-5" /> <label class="middle red">*</label>
+								</div>
+
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 新密码 </label>
+
+								<div class="col-sm-9">
+									<input type="password" name="Password1" placeholder="" class="col-xs-10 col-sm-5" /> <label class="middle red">*</label>
+								</div>
+							</div>
+
+							<div class="clearfix form-actions">
+								<div class="col-md-offset-3 col-md-9">
+									<button class="btn btn-info" type="submit">
+										<i class="icon-ok bigger-110"></i> 保存
+									</button>
+									<button class="btn" type="reset">
+										<i class="icon-undo bigger-110"></i> 重置
+									</button>
+								</div>
+							</div>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	$(function() {
+		$('#Form1').bootstrapValidator({　　　
+			message: 'This value is not valid',
+			　feedbackIcons: {　　　　　　　　 //valid: 'glyphicon glyphicon-ok',
+				　　　　　　　　 //invalid: 'glyphicon glyphicon-remove',
+				　　　　　　　　 //validating: 'glyphicon glyphicon-refresh'
+				　　　　　　　　},
+			fields: {
+				UserID: {
+					validators: {
+						notEmpty: {
+							message: '用户名不能为空'
+						}
+					}
+				},
+				OldPassword1: {
+					validators: {
+						notEmpty: {
+							message: '原始密码不能为空'
+						}
+					}
+				},
+				Password1: {
+					validators: {
+						notEmpty: {
+							message: '新密码不能为空'
+						}
+					}
+				}
+			}
+		});
+
+	});
+</script>

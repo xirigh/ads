@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__CONTENT__/bfc/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/index.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/bootstrap.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/main.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/record.css">
+    <link rel="stylesheet" href="__CONTENT__/bfc/css/login.css">
+    <link rel="stylesheet" href="__ASSETS__/ace/css/my.css">
+    <title>提现</title>
+</head>
+<body>
+<div class="container">
+    <div class="head" style="line-height: 4px;">
+        <a href="<{:url('User/home')}>">
+            <i class="iconfont icon-fanhui"></i>
+        </a>
+        <i>提现</i>
+    </div>
+    <form method="post" id="form1" action="<{:url('User/outact')}>">
+    <div class="find" id="app">
+        <p>
+            请输入ETH提现地址
+            <br>
+            <input name="ub_msg" type="text"  placeholder="请输入ETH提现地址" value="<{$ethaddress}>">
+        </p>
+        <p>
+            请输入提现金额(USD)
+            <br>
+            <input name="ub_money" type="text"  placeholder="请输入提现金额">
+            <span style="color: #1b8f54;float: right;margin-right: 10px" id="uanme">当前账户余额$<{$money|round=6}></span>
+        </p>
+        <p>
+            请输入提现数量(ETH)
+            <br>
+            <input name="ub_num" type="text"  placeholder="请输入提现数量">
+        </p>
+        <p class="refer">
+            <php>$max =config('mydefind.tixian_money_min');</php>
+            <gt name="money" value="$max">
+                <input type="button" onclick="sendform();" value="提交申请">
+                <else />
+                <input type="button" disabled="disabled" value="当前账户余额小于最低提现额度，不可提现">
+            </gt>
+        </p>
+    </div>
+    </form>
+        <h3 style="text-align: center">我的提现列表</h3>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>id</th>
+                <th>提现金额（USD）</th>
+                <th>提现地址</th>
+                <th>提现状态</th>
+                <th>提现时间</th>
+            </tr>
+            <volist name="list" id="v" key="k">
+            <tr>
+                <td><{$k}></td>
+                <td><{$v.ub_money}></td>
+                <td><{$v.ub_msg}></td>
+                <td><{$v.ub_state}></td>
+                <td><{$v.ub_create_time}></td>
+            </tr>
+            </volist>
+        </table>
+    <div><{$list|raw}></div>
+    </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+<script src='__CONTENT__/ace/js/jquery-2.0.3.min.js' language='JavaScript'></script>
+<script src="__CONTENT__/layer-v3.1.1/layer/layer.js"></script>
+<script src="__CONTENT__/js/Common.js"></script>
+<script src="__CONTENT__/layer_mobile/layer.js"></script>
+<load href="__ASSETS__/js/vue.js"></load>
+<load href="__ASSETS__/js/jquery.form.min.js"></load>
+
+<script>
+    var huilv = "<{:config('mydefind.eth2usd')}>";
+    $("input[name=ub_money]").keyup(function(){
+        var num = $(this).val();
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (!re.test(num)){
+            app.usd = "";
+            app.eth = "";
+            return false;
+        }
+        var eth = parseFloat((num / huilv).toFixed(8));
+        $("input[name=ub_num]").val(eth);
+
+    });
+    $("input[name=ub_num]").keyup(function(){
+        var num = $(this).val();
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (!re.test(num)){
+            app.usd = "";
+            app.eth = "";
+            return false;
+        }
+        var eth = parseFloat((num * huilv).toFixed(8));
+        $("input[name=ub_money]").val(eth);
+
+    });
+</script>
+
+<script>
+    function sendform() {
+        function beforeCheck(){
+            layer.open({
+                type:2,
+                content: "提交中",
+            });
+        }
+        function successfun(res){
+            layer.closeAll();
+            if(res.code != 1){
+                layer.open({
+                    content: res.msg,
+                    btn:'我知道了',
+                });
+                return false;
+            }else{
+                layer.open({
+                    content: res.msg,
+                    skin:'msg',
+                });
+                window.location.reload();
+            }
+        }
+        var options = {
+            beforeSubmit: beforeCheck, //提交前的回调函数
+            success: successfun,  //提交成功后的回调函数
+            dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+            clearForm: false,  //成功提交后，是否清除所有表单元素的值
+            resetForm: true,  //成功提交后，是否重置所有表单元素的值
+            timeout: 3000     //限制请求的时间，当请求大于3秒后，跳出请求
+        };
+        $('#form1').ajaxSubmit(options);
+    };
+</script>

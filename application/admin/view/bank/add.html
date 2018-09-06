@@ -1,0 +1,177 @@
+<include file="public/base" />
+<script
+        src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js'
+        language='JavaScript'></script>
+
+<link rel="stylesheet"
+      href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+
+
+<div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+
+        <ul class="breadcrumb">
+            <li><i class="icon-home home-icon"></i>后台管理</li>
+            <span id="span_dh">&nbsp;>&nbsp;&nbsp;会员管理&nbsp;&nbsp;>&nbsp;&nbsp;充值
+			</span>
+        </ul>
+        <!-- .breadcrumb -->
+
+    </div>
+
+    <!-- 内容 -->
+    <div class="page-content">
+
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="tabbable">
+                <ul class="nav nav-tabs padding-12 tab-color-blue background-blue"
+                    id="myTab4">
+                    <li class="active"><a data-toggle="tab" href="#Recharge">财务管理</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="Recharge" class="tab-pane in active">
+
+                        <form id="Form1" class="form-horizontal" role="form" method="post"
+                              action="ClientRechargeDo">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right"
+                                       for="form-field-1"> 会员ID </label>
+                                <div class="col-sm-9">
+                                    <input placeholder="请输入用户邮箱" type="text" id="txtClientID" name="ClientID" class="col-xs-10 col-sm-5" onblur="GetClientInfo(this.value);" />
+                                    </select> <label class="middle red">*</label>
+                                    <label id="lbl_ClientFullName" class="middle red"></label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right"
+                                       for="form-field-1"> 选择钱包 </label>
+
+                                <div class="col-sm-9">
+                                    &nbsp;&nbsp;&nbsp;&nbsp; <label> <input  name="WalletType"
+                                                                             checked="true" type="radio" class="ace" value="01" /> <span class="lbl">开户金</span></label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp; <label> <input  name="WalletType" type="radio" class="ace" value="02" /> <span class="lbl">余额</span></label>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right"
+                                       for="form-field-1">充值/扣款金额 </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtMoney" name="Money" class="col-xs-10 col-sm-5" /> <label
+                                        class="middle red">*此功能支持扣款操作，输入负数即可</label>
+                                </div>
+
+                            </div>
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-info" type="button" id="btnSave" onclick="SaveForm();">
+                                        <i class="icon-ok bigger-110"></i>执行
+                                    </button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript'>
+    $(function () {
+        $('#Form1').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                //valid: 'glyphicon glyphicon-ok',
+                //invalid: 'glyphicon glyphicon-remove',
+                //validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                ClientID: {
+                    validators: {
+                        notEmpty: {
+                            message: '会员不能为空'
+                        }
+                    }
+                },
+                WalletType: {
+                    validators: {
+                        notEmpty: {
+                            message: '钱包不能为空'
+                        }
+                    }
+                },
+                Money: {
+                    validators: {
+                        notEmpty: {
+                            message: '充值金额不能为空'
+                        },
+                        regexp:{
+                            regexp:/^(-)?[1-9][0-9]*$/,
+                            message: '金额格式不正确'
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#btnSave").attr('disabled',false);
+
+    });
+    function GetClientInfo(value){
+        if(!value){
+            return;
+        }
+        var _url="<{:url('Bank/checkuserinfo')}>";
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            dataType: "json",
+            url: _url, // 目标地址
+            data: { "email": value },
+            success: function (e) {
+                if(e.code == 1){
+                    $("#lbl_ClientFullName")[0].innerHTML="用户名："+e.msg;
+                    $('#btnSave').removeAttr("disabled");
+                }else{
+                    $("#lbl_ClientFullName")[0].innerText="该会员不存在";
+                    $("#btnSave").attr('disabled',true);
+                }
+            }
+        });
+    }
+    function SaveForm(){
+        var value = $("#txtMoney").val();
+        if(!value)value=0;
+        value=parseFloat(value);
+        $("#btnSave").attr('disabled',true);
+
+        var _url="<{:url('bank/addact')}>";
+        var SaveData={
+            "email":$("#txtClientID").val(),
+            "type":$('input[name="WalletType"]:checked ').val(),
+            "money":$("#txtMoney").val()
+        };
+
+        $.ajax({
+            type: "POST", // 用POST方式传输
+            dataType: "json",
+            url: _url, // 目标地址
+            data: SaveData,
+            success: function (e) {
+                if (e.code != 1) {
+                    $("#btnSave").attr('disabled',false);
+                }
+                ShowMsg(e.msg);
+            }
+        });
+    }
+</script>

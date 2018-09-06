@@ -1,0 +1,372 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>团队帐变</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="renderer" content="webkit">
+
+    
+<link href="./css/base.css" rel="stylesheet"/>
+<link href="./css/funds.css" rel="stylesheet"/>
+<link href="./css/safe.css" rel="stylesheet"/>
+<link href="./css/js-ui.css" rel="stylesheet"/>
+
+
+<script src="./js/jquery-1.9.1.min.js"></script>
+<script src="./js/jquery-ui-1.10.2.js"></script>
+<script src="./js/jquery.easing.1.3.js"></script>
+<script src="./js/jquery.tmpl.min.js"></script>
+<script src="./js/jquery.flot.js"></script>
+<script src="./js/jquery.flot.crosshair.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="./js/phoenix.base.js"></script>
+<script src="./js/phoenix.Class.js"></script>
+<script src="./js/phoenix.Event.js"></script>
+<script src="./js/phoenix.util.js"></script>
+<script src="./js/phoenix.Timer.js"></script>
+<script src="./js/phoenix.Input.js"></script>
+<script src="./js/phoenix.Tab.js"></script>
+<script src="./js/phoenix.Slider.js"></script>
+<script src="./js/phoenix.Hover.js"></script>
+<script src="./js/phoenix.Tip.js"></script>
+<script src="./js/phoenix.Mask.js"></script>
+<script src="./js/phoenix.MiniWindow.js"></script>
+<script src="./js/phoenix.Validator.js"></script>
+<script src="./js/phoenix.DatePicker.js"></script>
+<script src="./js/phoenix.BASE64.js"></script>
+<script src="./js/dateUtil.js"></script>
+<script src="./js/datePicker.js"></script>
+<script src="./js/page.js"></script>
+<script src="./js/accountDetails.js"></script>
+
+
+    
+
+    <!-- <script type="text/javascript">
+        global_params_notice = "all,ad_top",
+        global_userName = 'a123456';
+        global_userID = '26051';
+        _logOut = 'http://www.play688.com';
+    </script>
+
+    <script type="text/javascript">
+        var baseUrl = 'http://www.play688.com';
+        var staticFileContextPath = 'http://www.play688.com';
+    </script> -->
+
+  
+</head>
+<body class="user-body">
+
+    <!-- toolbar start -->
+<div class="bg-toolbar"></div>
+<div class="toolbar">
+    <div class="g_33">
+        <div class="game-menu" id="J-top-game-menu">
+  <!--           <span class="game-menu-text dropdown-menu-btn">游戏选择</span> -->
+            <div class="game-menu-panel">
+                <span class="triangle game-menu-triangle"><span></span></span>
+                <div class="game-menu-inner">
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">时时彩</div>
+                        <div class="game-menu-list">
+                                    <a class="hot-game" href="/GameBet/GameBetPage?lotteryCode=10001">重庆时时彩<i></i></a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10003">新疆时时彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10004">天津时时彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10005">五分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10007">二分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10006">分分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10008">韩国1.5分</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10009">东京1.5分彩</a>
+                           
+                        </div>
+                    </div>
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">11选5</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=20001">十一运夺金</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20002">广东11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20004">江西11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20003">上海11选5</a>
+                        </div>
+                    </div>
+                   
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">低频</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=30001">福利彩票3D</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=30002">体彩排列三</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=70001">上海时时乐</a>
+                                                            <a href="/GameBet/GameBetPagePK10?lotteryCode=60002">北京 PK10</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <a href="index.html" class="back-top-home">返回首页</a>
+        <ul class="menu">
+            <li class="username">您好，dang037</li>
+            <li class="user hover" id="J-top-userinfo">
+                <a href="javascript:void(0);" class="dropdown-menu-btn">我的账户<i class="tri"></i></a>
+                 <div class="simazhao" style="width: 100%;height: 120px;">
+                <div class="menu-nav">
+                    <i class="tri"></i>
+
+                  <a href="touzhu.html">投注记录</a>
+                    <a href="zhanghu.html">账户明细</a>
+                    <a href="geren.html">个人报表</a>
+                    <!--  -->
+                    <a href="zhanghu.html">账户中心</a>
+                       <a href="daili.html">代理中心</a>
+                    
+                    
+                    <!--  -->
+                    </div>
+             </div>
+            </li>
+            
+            <li class="balance">
+                <span id="hiddBall" style="display:none">余额：<span id="spanBall" name="spanBall">0.0000</span>
+                    &nbsp;积分:<span id="spanBallIntegral" name="spanBallIntegral">0</span>   <a href="/ChargeWithdrawal/ExchangeIntegralIndex" >[兑换]</a>             
+                <i class="refreshBall"></i></span>
+                <span id="hiddenBall">余额已隐藏 <a href="#" id="showAllBall">显示</a></span>
+            </li>
+              <li class="recharge"><a href="woyaochongzhi.html">充值</a></li>
+            <li class="withdrawals"><a href="tixian.html">提现</a></li>
+            <li class="quit"><a href="login.html">退出</a></li>
+        </ul>
+    </div>
+</div>
+
+   
+    <!-- toolbar end -->
+    <!-- header start -->
+    <!-- toolbar end -->
+    <!-- header start -->
+<div class="header">
+        <div class="g_33">
+            <a href="/home/index/" class="logo" name="Page_firefrog_index"></a>
+<div class="user-tools">
+            
+                <div class="user-info clearfix">
+                    <!--  -->
+                    <a class="user-head user-head-normal" target="_blank"></a>
+                    <!--  -->
+                    <div class="user-balance">
+    				<h2 class="user-name">欢迎你,<strong>a123456</strong></h2>
+                        <div class="user-balance-title">可用  余额</div>
+                        <div class="user-balance-number" name="spanBall">0.0000</div>
+                    </div>
+                </div>
+ 			
+                <div class="safe-info">
+
+                    <div class="safe-info-progress ">
+                        <div class="progress-wapper progress-low"><div class="progress-inner" style="width:0%"></div></div>
+                    </div>
+                   <div class="safe-info-ip">
+                        上次登录:
+                        <!--  -->
+                        2017/6/22 17:37:19
+                        <!--  -->
+                        </br>
+                    </div>
+                </div>
+				<div class="account-info">
+                    <div class="account-info-btn clearfix">
+                         <a target="_blank" href="woyaochongzhi.html" class="btn-withdrawals">我要充值</a>
+                        <a target="_blank" href="tixian.html" class="btn-transfer">我要提现</a>
+                        <a href="" target="_blank" class="link-service" title="客服" id="custom-service">联系客服</a>
+                    </div>
+									
+                </div>
+          	</div>
+          
+         
+        </div>
+    </div>    
+    <!-- header end -->
+    <div class="g_33 common-main">
+
+
+
+        <div class="g_5">
+            <div class="common-side">
+                <div class="nav-side">
+                   <dl class="side-bet">
+                        <dt class="title">投注管理</dt>
+                        <dd><a href="touzhu.html">投注记录</a></dd>
+                        <dd><a href="zhuihao.html">追号记录</a></dd>
+                        <dd><a href="zhanghu.html">账户明细</a></dd>
+                        <dd><a href="geren.html">个人报表</a></dd>
+                    </dl>
+                    <dl class="side-safe">
+                        <dt class="title">账户安全</dt>
+                        <dd><a href="zhanghuxinxi.html">账户信息</a></dd>
+                        <dd><a href="yonghumima.html">用户密码</a></dd>
+                        <dd><a href="zijinmima.html">资金密码</a></dd>
+                        <dd><a href="ziliaoxiugai.html">资料修改</a></dd>
+                    </dl>
+                    <dl class="side-service">
+                        <dt class="title">服务</dt>
+                        
+                        <dd><a href="wangzhangonggao.html">网站公告</a></dd>
+                        <dd><a href="remenhuodong.html">热门活动</a></dd>
+                    </dl>
+
+                     <dl class="side-proxy">
+
+                        <dt class="title">代理中心</dt>
+
+                        <dd><a href="daili.html">代理首页</a></dd>
+                        <dd><a href="kaihuzhongxin.html">开户中心</a></dd>
+                        <dd><a href="huiyuanliebiao.html">会员列表</a></dd>
+
+                        <dd><a href="tuanduibaobiao.html">团队报表</a></dd>
+                        <dd><a href="tuanduizhangbian.html">团队帐变</a></dd>
+                        <dd><a href="tuanduitouzhu.html">团队投注</a></dd>
+
+                        <dd><a href="xiajichongzhi.html">下级充值</a></dd>
+                        
+
+                    </dl>
+
+
+
+                    <dl class="side-funds">
+                        <dt class="title">资金</dt>
+                        <dd><a href="woyaochongzhi.html">我要充值</a></dd>
+                        <dd><a href="woyaotixian.html">我要提现</a></dd>
+                        <dd><a href="jifenduihuan.html">积分兑换</a></dd>
+                        
+                     
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+
+
+<div class="g_28 g_last">
+
+    <div class="common-article">
+        <!--  -->
+        <div class="title">团队帐变</div>
+        <!--  -->
+        <form action="/TeamReport/QueryTeamChange/" id="J-form" method="post">
+            <input id="pageNo"
+                   type="hidden" name="pageNo" value="1"> <input id="pageSize" type="hidden" name="pageSize" value="15">
+
+            <div class="content">
+                <div class="ui-tab">
+
+                    <!--  -->
+                    <div>
+                        <!-- start -->
+                        <ul class="ui-search search-fund clearfix">
+
+
+                            <li class="status">
+                                <input type="hidden" id="statusValue" value="_ALL"><label class="ui-label">类别：</label>
+                                <select class="ui-select" name="status" id="status">
+                                    <option value="_ALL" selected="selected">全部</option>
+                                    <!--  -->
+                                    <option value="01">用户充值</option>
+                                    <!--  -->
+                                    <option value="02">用户提现</option>
+                                    <!--  -->
+                                    <option value="03">购买彩票</option>
+                                    <!--  -->
+                                    <option value="04">用户返点</option>
+                                    <!--  -->
+                                    <option value="05">下级返点</option>
+                                    <!--  -->
+                                    <option value="06">系统派奖</option>
+                                    <!--  -->
+                                    <option value="07">用户撤单</option>
+                                    <!--  -->
+                                    <option value="08">系统赠送</option>
+                                    <!--  -->
+                                    <option value="09">已开奖订单</option>
+                                    <!--  -->
+                                    <option value="10">积分兑换</option>
+                                    <!--  -->
+                                    <option value="11">系统分红</option>
+                                    <!--  -->
+                                    <option value="17">积分抽奖</option>
+
+                                </select>
+                            </li>
+
+                            <li class="name">
+                                <input type="hidden" id="searchNameValue" />
+                                <label for="name" class="ui-label">会员姓名：</label>
+                                <input type="text" name="searchName" id="searchName" value="" class="input" maxlength="16">
+                            </li>
+
+                            <li class="date">
+                                <label for="dateStar" class="ui-label">起始日期：</label>
+                                <input type="hidden" id="fromDateValue" value="2017-06-22"><input type="hidden" id="toDateValue" value="2017-06-23">
+                                <input type="text" class="input" id="J-date-start" value="" name="fromDate"> - <input type="text" class="input" value="" id="J-date-end" name="toDate">
+                            </li>
+                            <!--  -->
+                            <li class="button"><a class="btn btn-important" id="J-button-submit" href="javascript:void(0);">查 询<b class="btn-inner"></b></a></li>
+
+                        </ul>
+
+                            <div class="alert alert-waring">
+                                <i></i>
+                                <div class="txt">
+                                    <h4>没有搜索到游戏记录！</h4>
+                                </div>
+                            </div>
+
+
+                        <!-- end -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+        
+
+
+    </div>
+
+<div class="footer">
+    <div class="quality"></div>
+    <p>2007-2017@永利国际娱乐 <br>提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票！</p>
+</div>
+<script language="JavaScript" src="http://code.54kefu.net/kefu/js/b142/1006942.js" type="text/javascript" charset="utf-8"></script>
+    
+
+    
+
+</body>
+
+</html>
+<script type="text/javascript">
+   $(function(){
+    
+   $('#J-top-userinfo').hover(function(){
+     
+                $(this).find('.menu-nav').css('display','block');
+                 $(this).find('.simazhao').css('display','block');
+            },function(){
+                $(this).find('.menu-nav').css('display','none');
+                 $(this).find('.simazhao').css('display','none');
+        })
+   }) 
+</script>
+

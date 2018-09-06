@@ -1,0 +1,1355 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>五分彩</title>
+    
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+<link href="./css/jquery-ui.structure.css" rel="stylesheet"/>
+<link href="./css/jquery-ui.theme.css" rel="stylesheet"/>
+<link href="./css/base1.css" rel="stylesheet"/>
+<link href="./css/game.css" rel="stylesheet"/>
+<link href="./css/login.css" rel="stylesheet"/>
+<link href="./css/js-ui.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="_./css/base.css">
+<link rel="stylesheet" type="text/css" href="./css/play.css">
+<link rel="stylesheet" type="text/css" href="./css/skins.css">
+<link rel="stylesheet" type="text/css" href="./css/dialog.css">
+<link rel="stylesheet" type="text/css" href="./css/modal.css">
+<link rel="stylesheet" type="text/css" href="./css/icon.css">
+<script language="javascript" type="text/javascript" src="./js/jquery-1.8.3.min.js"></script> <style type="text/css">
+    .ball-aid{
+        float: left;
+        display: block;
+        padding-left: 20px;
+    }
+</style>
+ 
+<script type="text/javascript">
+    $('input.code').live('click', function() {
+    var $this = $(this);
+    if ($this.is('.checked')) {
+        $this.removeClass('checked');
+    } else {
+        $this.addClass('checked');
+       
+    }
+});
+
+  $('input.action').live('click', function() {
+    var $this = $(this);
+    $this.addClass('checked').siblings().removeClass('checked');
+});
+
+if ($.browser.msie) {
+    $('a, :button, :radio, :checkbox').live('focus', function() {
+        this.blur();
+    });
+}
+$('input.action').live('click', function() {
+    var $this = $(this),
+        call = $this.attr('action'),
+        pp = $this.parent();
+    $this.addClass("on").siblings(".action").removeClass("on");
+    if (call && $.isFunction(call = window[call])) {
+        call.call(this, pp);
+    } else if ($this.is('.all')) {
+        $('input.code', pp).addClass('checked');
+    } else if ($this.is('.large')) {
+        $('input.code.max', pp).addClass('checked');
+        $('input.code.min', pp).removeClass('checked');
+    } else if ($this.is('.small')) {
+        $('input.code.min', pp).addClass('checked');
+        $('input.code.max', pp).removeClass('checked');
+    } else if ($this.is('.odd')) {
+        $('input.code.d', pp).addClass('checked');
+        $('input.code.s', pp).removeClass('checked');
+    } else if ($this.is('.even')) {
+        $('input.code.s', pp).addClass('checked');
+        $('input.code.d', pp).removeClass('checked');
+    } else if ($this.is('.none')) {
+        $('input.code', pp).removeClass('checked');
+    }
+});
+
+$('input.code').live('click', function() {
+    var $this = $('.action'),
+        call = $this.attr('action'),
+        pp = $this.parent();
+    $this.addClass("on").siblings(".action").removeClass("on");
+    if (call && $.isFunction(call = window[call])) {
+        call.call(this, pp);
+    } else if ($this.is('.all')) {
+        $('input.action', pp).removeClass('checked');
+    } else if ($this.is('.large')) {
+        $('input.code.max', pp).addClass('checked');
+        $('input.code.min', pp).removeClass('checked');
+    } else if ($this.is('.small')) {
+        $('input.code.min', pp).addClass('checked');
+        $('input.code.max', pp).removeClass('checked');
+    } else if ($this.is('.odd')) {
+        $('input.code.d', pp).addClass('checked');
+        $('input.code.s', pp).removeClass('checked');
+    } else if ($this.is('.even')) {
+        $('input.code.s', pp).addClass('checked');
+        $('input.code.d', pp).removeClass('checked');
+    } else if ($this.is('.none')) {
+        $('input.code', pp).removeClass('checked');
+    }
+});
+
+
+
+
+
+
+
+var SelectCodes=[],SelectResult=[];
+var rowCount=1;  //行数
+
+function gameActionAddCode() {
+    var baby = $('.ball-section li').size();
+    // 获取选中的值
+    var objW = $('#div_ppww .checked');
+    var objQ = $('#div_ppqw .checked');
+    var objB = $('#div_ppbw .checked');
+    var objS = $('#div_ppsw .checked');
+    var objG = $('#div_ppgw .checked');
+    
+    getCode(SelectCodes,'ww',objW);
+    getCode(SelectCodes,'qw',objQ);
+    getCode(SelectCodes,'bw',objB);
+    getCode(SelectCodes,'sw',objS);
+    getCode(SelectCodes,'gw',objG);
+    
+    if(SelectCodes.length==0){
+        alert('请选择投注');
+        return;
+    }
+    var TZMsg = '';
+    TZMsg+=getTypeCode(SelectCodes,'ww');
+    TZMsg+=",";
+    TZMsg+=getTypeCode(SelectCodes,'qw');
+    TZMsg+=",";
+    TZMsg+=getTypeCode(SelectCodes,'bw');
+    TZMsg+=",";
+    TZMsg+=getTypeCode(SelectCodes,'sw');
+    TZMsg+=",";
+    TZMsg+=getTypeCode(SelectCodes,'gw');
+    
+    // 获取倍数
+    var bs = $("#beishu").val();
+    
+    rowCount++;  
+     
+    var result = {
+        no:rowCount,
+        num:TZMsg,
+        hang:3,
+        zs:SelectCodes.length,
+        bs:$("#beishu").val(),
+        amount:SelectCodes.length*2*$("#beishu").val()
+    };
+
+    // 追加行
+    addRow(result);
+    // 追加结果集
+    SelectResult.push(result);
+    // 设置总注数显示
+    ShowTipLabel();
+    
+    // 清空本次投注的值
+    $("#num-select .code").removeClass("checked");
+    SelectCodes=[];
+    
+}
+
+function ShowTipLabel(){
+    var count=0;
+    var amount=0;
+    for(var i=0;i<SelectResult.length;i++){
+        if(SelectResult[i].no>0){
+            count+=SelectResult[i].zs;
+            amount+=SelectResult[i].amount;
+        }
+    }
+    $("#all-count")[0].innerText=count;
+    $("#all-amount")[0].innerText=amount;
+    
+}
+
+
+
+//添加行  
+function addRow(r){  
+   
+    var newRow='<li id="tr'+rowCount+'">';
+    newRow+='<span>'+r['num']+'</span>';
+    newRow+='<span>'+r['zs']+'</span>'+'元';
+    newRow+='<span>'+r['bs']+'</span>'+'倍';
+    newRow+='¥'+'<span>'+r['amount']+'</span>';
+    newRow+='<span><a href="#" onclick="delRow('+rowCount+')">删除</a>'+'</span>';
+    
+    $('#tabResult').append(newRow);  
+}  
+  
+//删除行  
+function delRow(rowIndex){  
+    $("#tr"+rowIndex).remove();  
+    
+    for(var i=0;i<SelectResult.length;i++){
+        if(SelectResult[i].no==rowIndex){
+            SelectResult.splice(i,1);
+            break;
+        }
+    }
+    
+    rowCount--;  
+    
+   
+    
+    ShowTipLabel();
+}  
+
+function getCode(arr,type,codes){
+    for(var i=0;i<codes.length;i++){
+        var o={
+            t:type,
+            n:codes[i].value
+        };
+        arr.push(o);
+    }
+}
+function getTypeCode(arr,type){
+    var str="";
+    for(var i=0;i<arr.length;i++){
+        if(arr[i].t==type){
+            str+=arr[i].n+",";
+        }
+    }
+    if(!str){
+        str="-";
+    }
+    return str;
+}
+
+$('.surbeishu').live('click', function() {
+    var newVal = parseInt($('#beishu').val()) - 1;
+    if (newVal < 1) newVal = 1;
+    $('#beishu').val(newVal);
+    //gameMsgAutoTip();
+});
+$('.addbeishu').live('click', function() {
+    var newVal = parseInt($('#beishu').val()) + 1;
+    $('#beishu').val(newVal);
+    //gameMsgAutoTip();
+});
+
+function gameActionRandom(num){
+    if(!num){
+        return;
+    }
+    for(var i=0;i<num;i++){
+        var TZMsg = '';
+        TZMsg+=generateMixed(9);
+        TZMsg+=",";
+        TZMsg+=generateMixed(9);
+        TZMsg+=",";
+        TZMsg+=generateMixed(9);
+        TZMsg+=",";
+        TZMsg+=generateMixed(9);
+        TZMsg+=",";
+        TZMsg+=generateMixed(9);
+        
+        // 获取倍数
+        var bs = $("#beishu").val();
+        
+        rowCount++;  
+         
+        var result = {
+            no:rowCount,
+            num:TZMsg,
+            zs:1,
+            bs:$("#beishu").val(),
+            amount:5*2*$("#beishu").val()
+        };
+        // 追加行
+        addRow(result);
+        // 追加结果集
+        SelectResult.push(result);
+        // 设置总注数显示
+        ShowTipLabel();
+        
+        
+        SelectCodes=[];
+    }
+}
+function generateMixed(n) {
+    var res= parseInt(n*Math.random());
+    return res;
+}
+/*
+ * 清除所有选中的号
+ */
+function gameActionRemoveCode(){
+    location.reload();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+ 
+    
+    <div class="bg-toolbar"></div>
+<div class="toolbar">
+    <div class="g_33">
+        <div class="game-menu" id="J-top-game-menu">
+       <!--      <span class="game-menu-text dropdown-menu-btn">游戏选择</span> -->
+            <div class="game-menu-panel">
+                <span class="triangle game-menu-triangle"><span></span></span>
+                <div class="game-menu-inner">
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">时时彩</div>
+                        <div class="game-menu-list">
+                                    <a class="hot-game" href="/GameBet/GameBetPage?lotteryCode=10001">重庆时时彩<i></i></a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10003">新疆时时彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10004">天津时时彩</a>
+                                    
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10008">韩国1.5分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10009">东京1.5分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10005">五分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10007">二分彩</a>
+                                    <a href="/GameBet/GameBetPage?lotteryCode=10006">分分彩</a>
+                           
+                        </div>
+                    </div>
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">11选5</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=20001">十一运夺金</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20002">广东11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20004">江西11选5</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=20003">上海11选5</a>
+                        </div>
+                    </div>
+                   
+                    <div class="game-menu-box">
+                        <div class="game-menu-title">低频</div>
+                        <div class="game-menu-list">
+                                <a href="/GameBet/GameBetPage?lotteryCode=30001">福利彩票3D</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=30002">体彩排列三</a>
+                                <a href="/GameBet/GameBetPage?lotteryCode=70001">上海时时乐</a>
+                                <a href="/GameBet/GameBetPagepk10?lotteryCode=60002">北京PK10</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="../index.html" class="back-top-home">返回首页</a>
+        <ul class="menu">
+            <li class="username" style="line-height: 32px;">您好，dang037</li>
+            <li class="user hover" id="J-top-userinfo">
+                <a href="javascript:void(0);" class="dropdown-menu-btn">我的账户<i class="tri"></i></a>
+                 <div class="simazhao" style="width: 100%;height: 120px;">
+                <div class="menu-nav" >
+                    <i class="tri"></i>
+
+                  <a href="../touzhu.html">投注记录</a>
+                    <a href="../zhanghu.html">账户明细</a>
+                    <a href="../geren.html">个人报表</a>
+                    <!--  -->
+                    <a href="../zhanghu.html">账户中心</a>
+                       <a href="../daili.html">代理中心</a>
+                    
+                    
+                    <!--  -->
+                    </div>
+                </div>
+            </li>
+            
+           <li class="balance">
+                <span id="hiddBall" style="display:none">余额：<span id="spanBall" name="spanBall">0.5200</span>
+                <i class="refreshBall"></i></span>
+                <span id="hiddenBall" style="display: inline;">余额已隐藏 <a href="#" id="showAllBall">显示</a></span>
+            </li>
+            <li class="recharge"><a href="../woyaochongzhi.html">充值</a></li>
+            <li class="withdrawals"><a href="../tixian.html">提现</a></li>
+            <li class="quit"><a href="../login.html">退出</a></li>
+        </ul>
+    </div>
+</div>
+
+
+    <div class="header">
+        <div class="g_33">
+            <h1 class="logo">
+                <a title="时时彩" id="J-lottery-logo" style="background: url(&quot;http://fucai.bjjgzs.com:8011/Images/game/ssc_logo/logo-ssc.png&quot;) 0px 0px no-repeat scroll rgba(0, 0, 0, 0);">时时彩</a>
+            </h1>
+            <div class="deadline">
+                <div class="deadline-text">
+                    <input id="J-lottery-info-currentIssue" type="hidden" autocomplete="off">
+                    第<strong id="J-lottery-info-number">----</strong>期 离投注截止还有
+                </div>
+                <div class="deadline-number">
+                    <em class="min-left">0</em>
+                    <em class="min-right">0</em>
+                    <span>:</span>
+                    <em class="sec-left">0</em>
+                    <em class="sec-right">0</em>
+                    <strong style="display:none">预售中</strong>
+                </div>
+            </div>
+            <div class="lottery">
+                <div class="lottery-text">
+
+                   第<strong id="J-lottery-info-lastnumber">20161006078</strong>期 
+                       <a href="/Trend/index?LotteryCode=10005" target="_blank">开奖号码&gt;</a>
+                
+                </div>
+                <div class="lottery-number" id="J-lottery-info-balls">
+                        <em>5</em> 
+                        <em>4</em> 
+                        <em>1</em> 
+                        <em>4</em> 
+                        <em>4</em>
+                    
+                </div>
+
+               
+
+            </div>
+            <div class="lottery-link">
+                         <a href="#" target="_blank" class="chart">号码走势</a>
+                   
+                    <a target="_blank" class="info">游戏说明</a>
+                </div>
+            <div class="history-list">
+                <div class="titles">历史开奖</div>
+              <div class="cons">
+                <table class="list" id="program-history-open">
+                    <thead>
+                        <tr>
+                            <th>开奖期号</th>
+                            <th>开奖号码</th>
+
+                        </tr>
+                    </thead>
+                    
+                    <tbody><tr> <td>20161006078</td><td><b class="price">4,9,7,1,8</b></td></tr><tr> <td>20161006077</td><td><b class="price">7,9,6,9,0</b></td></tr><tr> <td>20161006076</td><td><b class="price">2,1,8,7,3</b></td></tr><tr> <td>20160928091</td><td><b class="price">8,7,7,9,5</b></td></tr><tr> <td>20160928090</td><td><b class="price">4,7,6,9,3</b></td></tr><tr> <td>20160928089</td><td><b class="price">8,9,6,3,3</b></td></tr><tr> <td>20160928088</td><td><b class="price">0,7,7,6,7</b></td></tr><tr> <td>20160928087</td><td><b class="price">1,0,7,5,4</b></td></tr><tr> <td>20160928086</td><td><b class="price">1,1,1,5,6</b></td></tr><tr> <td>20160928085</td><td><b class="price">5,1,9,2,7</b></td></tr></tbody></table>
+        </div>
+       </div>
+    </div>
+    </div>
+    <div class="g_33 main">
+        <div class="chart-switch" style="top: 192px;display:none">近期走势</div>
+        <div class="play-section">
+
+            <div id="J-play-select" class="play-select">
+
+            <div id="change">
+               <ul class="play-select-title clearfix">
+               <li class="wuxing">五星</li><li class="sixing">四星</li>
+               <li class="qiansan current">前三</li>
+               <li class="zhongsan">中三</li>
+               <li class="housan">后三</li>
+               <li class="qianer">前二</li>
+               <li class="houer">后二</li>
+               <li class="yixing">一星</li>
+               <li class="renxuan">任选</li>
+               </ul>
+
+               <ul class="play-select-content clearfix">
+            <!--    五星直选 -->
+               <li class="wuxing">
+                <dl class="zhixuan">
+                    <dt>五星直选：</dt>
+                        <dd class="fushi">常规选号</dd>
+                        <dd class="danshi">手工输入</dd>
+                </dl>
+                <dl class="zuxuan">
+                   <dt>五星组选：</dt>
+                      <dd class="zuxuan120">组选120</dd>
+                      <dd class="zuxuan60">组选60</dd>
+                      <dd class="zuxuan30">组选30</dd>
+                      <dd class="zuxuan20">组选20</dd>
+                      <dd class="zuxuan10">组选10</dd>
+                      <dd class="zuxuan5">组选5</dd>
+                </dl>
+                <dl class="quwei">
+                    <dt>五星特殊：</dt>
+                        <dd class="yifanfengshun">一帆风顺</dd>
+                        <dd class="haoshichengshuang">好事成双</dd>
+                        <dd class="sanxingbaoxi">三星报喜</dd>
+                        <dd class="sijifacai">四季发财</dd>
+                </dl>
+                </li>
+
+             <!--    四星直选 -->
+                <li class="sixing">
+                   <dl class="zhixuan">
+                       <dt>后四直选：</dt>
+                           <dd class="fushi">常规选号</dd>
+                           <dd class="danshi">手工输入</dd>
+                   </dl>
+
+                   <dl class="zuxuan">
+                       <dt>四星组选：</dt>
+                           <dd class="zuxuan24">组选24</dd>
+                           <dd class="zuxuan12">组选12</dd>
+                           <dd class="zuxuan6">组选6</dd>
+                           <dd class="zuxuan4">组选4</dd>
+                   </dl>
+                   </li>
+               <!--    前三直选 -->
+                <li class="qiansan current">
+                    <dl class="zhixuan">
+                      <dt>前三直选：</dt>
+                        <dd class="fushi current">常规选号</dd>
+                        <dd class="danshi">手工输入</dd>
+                        <dd class="hezhi">直选和值</dd>
+                    </dl>
+
+                    <dl class="zuxuan">
+                       <dt>前三组选：</dt>
+                       <dd class="zusan">组三</dd>
+                       <dd class="zuliu">组六</dd>
+                       <dd class="hunhezuxuan">混合组选</dd>
+                    </dl>
+
+                    <dl class="budingwei">
+                        <dt>前三不定位：</dt>
+                        <dd class="yimabudingwei">前三不定位</dd>
+                    </dl>
+                    </li>
+                 <!--    中三直选 -->
+                    <li class="zhongsan">
+                       <dl class="zhixuan">
+                          <dt>中三直选：</dt>
+                          <dd class="fushi">常规选号</dd>
+                          <dd class="danshi">手工输入</dd>
+                          <dd class="hezhi">直选和值</dd>
+                        </dl>
+
+                        <dl class="zuxuan">
+                          <dt>中三组选：</dt>
+                          <dd class="zusan">组三</dd>
+                          <dd class="zuliu">组六</dd>
+                          <dd class="hunhezuxuan">混合组选</dd>
+                        </dl>
+
+                        <dl class="budingwei">
+                           <dt>中三不定位：</dt>
+                           <dd class="yimabudingwei">中三不定位</dd>
+                        </dl>
+                    </li>
+
+                    <!--    后三直选 -->
+                    <li class="housan">
+                       <dl class="zhixuan">
+                          <dt>后三直选：</dt>
+                          <dd class="fushi">常规选号</dd>
+                          <dd class="danshi">手工输入</dd>
+                          <dd class="hezhi">直选和值</dd>
+                        </dl>
+
+                        <dl class="zuxuan">
+                           <dt>后三组选：</dt>
+                           <dd class="zusan">组三</dd>
+                           <dd class="zuliu">组六</dd>
+                           <dd class="hunhezuxuan">混合组选</dd>
+                        </dl>
+
+                        <dl class="budingwei">
+                             <dt>后三不定位：</dt>
+                             <dd class="yimabudingwei">后三不定位</dd>
+                        </dl>
+                    </li>
+
+                     <!--    前二直选 -->
+                    <li class="qianer">
+                        <dl class="zhixuan">
+                            <dt>前二直选：</dt>
+                            <dd class="fushi">常规选号</dd>
+                            <dd class="danshi">手工输入</dd>
+                        </dl>
+
+                        <dl class="zuxuan">
+                           <dt>前二组选：</dt>
+                           <dd class="fushi">常规选号</dd>
+                        </dl>
+                    </li>
+
+                   <!--    后二直选 -->
+                    <li class="houer">
+                        <dl class="zhixuan">
+                            <dt>后二直选：</dt>
+                            <dd class="fushi">常规选号</dd>
+                            <dd class="danshi">手工输入</dd>
+                        </dl>
+
+                        <dl class="zuxuan">
+                            <dt>后二组选：</dt>
+                            <dd class="fushi">常规选号</dd>
+                        </dl>
+                    </li>
+
+                    <li class="yixing">
+                       <dl class="dingweidan">
+                           <dt>定位胆：</dt>
+                           <dd class="fushi">五星定位胆</dd>
+                        </dl>
+                    </li>
+
+                    <li class="renxuan">
+                       <dl class="renerzhixuan">
+                          <dt>任二直选：</dt>
+                          <dd class="fushi">常规选号</dd>
+                          <dd class="danshi">手工输入</dd>
+                        </dl>
+
+                        <dl class="renerzuxuan">
+                           <dt>任二组选：</dt>
+                           <dd class="fushi">常规选号</dd>
+                        </dl>
+
+                        <dl class="rensanzhixuan">
+                           <dt>任三直选：</dt>
+                           <dd class="fushi">常规选号</dd>
+                           <dd class="danshi">手工输入</dd>
+                           <dd class="hezhi">直选和值</dd>
+                        </dl>
+
+                        <dl class="rensanzuxuan">
+                            <dt>任三组选：</dt>
+                            <dd class="zusan">组三</dd>
+                            <dd class="zuliu">组六</dd>
+                            <dd class="hunhe">混合组选</dd>
+                        </dl>
+
+                        <dl class="rensizhixuan">
+                            <dt>任四直选：</dt>
+                            <dd class="fushi">常规选号</dd>
+                            <dd class="danshi">手工输入</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+                <div class="prompt">
+                    <i class="icon-question"></i> <span class="method-tip">提示：至少选择三位，如：“万、千和百位”，按位数选1组或多组号码，选号与开奖号按位一致即中奖。</span>
+                    <a class="example-button" href="javascript:void(0);">选号示例</a>
+                    <div class="example-tip">选位：万位、千位和百位
+选号：1 2 3
+开奖：12345
+中奖：{$奖金}</div>
+                </div>
+            </div>
+        </div>
+        <!-- 走势图开始 -->
+        <div class="chart-section" style="display: none" id="J-game-chart">
+            <!-- 动态显示各投注方式的DOM -->
+            <!-- 动态显示各投注方式的DOM -->
+        </div>
+        <!-- 走势图结束 -->
+       <!-- 选球统计开始 -->
+        <div class="number-section">
+            <div id="J-balls-main-panel">
+              <div style="display: block;">
+                 <div class="number-select-title balls-type-title clearfix">
+                    <ul class="function-select-title game-frequency-type">
+                      <li class="fre" data-type="lost">
+                           <a href="price.html">遗漏</a>
+                       </li>
+                       <li class="lost current" data-type="fre">
+                          <a href="lengre.html">冷热</a>
+                       </li>
+                    </ul>
+
+                    <ul class="function-select-content">
+                       <li class="game-frequency-fre-length">
+                           <a href="lengre.html;" data-type="30" class="period30 current">30期</a>
+                           <a href="lengre_two.html" data-type="60" class="period60">60期</a>
+                           <a href="lengre_three.html" data-type="100" class="period100">100期</a>
+                        </li>
+                    </ul>
+                </div>
+
+            <div class="number-select-content">
+                <ul class="ball-section">
+                    <li class="geshu">
+                        <div class="ball-title">
+                                <strong>万位</strong>
+                                <span>30期</span>
+                        </div>
+
+                <ul class="ball-content">
+               
+                       <li>
+                        <div class="game">
+                         <div id="div_ppww" class="pp" action="tz5xDwei" random="sscRandom">
+
+                            <input value="0" class="code min s " type="button">
+                            <input value="1" class="code min d" type="button">
+                            <input value="2" class="code min s" type="button">
+                            <input value="3" class="code min d" type="button">
+                            <input value="4" class="code min s" type="button">
+                            <input value="5" class="code max d" type="button">
+                            <input value="6" class="code max s" type="button">
+                            <input value="7" class="code max d" type="button">
+                            <input value="8" class="code max s" type="button">
+                            <input value="9" class="code max d" type="button">
+
+                           <span style="display: block;margin-left: 40px;width: 1px;height: 1px;float: left;"></span>
+              
+                            <input value="全" class="action all" type="button">
+                            <input value="双" class="action even" type="button" >
+                            <input value="大" class="action large" type="button">
+                            <input value="小" class="action small" type="button">
+                            <input value="奇" class="action odd" type="button">
+                            <input value="偶" class="action even" type="button">
+                            <input value="清" class="action none" type="button">
+
+                        </div>
+                        <div class="yiluo">
+                            <span class="ball-aid">1</span>
+                            <span class="ball-aid" style="padding-left: 40px;">5</span>
+                            <span class="ball-aid" style="padding-left: 32px;">10</span>
+                            <span class="ball-aid" style="padding-left: 30px;">80</span>
+                            <span class="ball-aid" style="padding-left: 30px;">15</span>
+                            <span class="ball-aid" style="padding-left: 30px;">21</span>
+                            <span class="ball-aid" style="padding-left: 30px;">1</span>
+                            <span class="ball-aid" style="padding-left: 40px;">5</span>
+                            <span class="ball-aid" style="padding-left: 33px;">10</span>
+                            <span class="ball-aid" style="padding-left: 33px;">80</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+
+                <li class="geshu">
+                   <div class="ball-title">
+                       <strong>千位</strong>
+                       <span>30期</span>
+                    </div>
+
+                    <ul class="ball-content">
+
+                       <li>
+                        <div class="game">
+                         <div id="div_ppww" class="pp" action="tz5xDwei" random="sscRandom">
+                            <input value="0" class="code min s " type="button">
+                            <input value="1" class="code min d" type="button">
+                            <input value="2" class="code min s" type="button">
+                            <input value="3" class="code min d" type="button">
+                            <input value="4" class="code min s" type="button">
+                            <input value="5" class="code max d" type="button">
+                            <input value="6" class="code max s" type="button">
+                            <input value="7" class="code max d" type="button">
+                            <input value="8" class="code max s" type="button">
+                            <input value="9" class="code max d" type="button">
+
+                           <span style="display: block;margin-left: 40px;width: 1px;height: 1px;float: left;"></span>
+            
+                            <input value="全" class="action all" type="button">
+                            <input value="双" class="action even" type="button" >
+                            <input value="大" class="action large" type="button">
+                            <input value="小" class="action small" type="button">
+                            <input value="奇" class="action odd" type="button">
+                            <input value="偶" class="action even" type="button">
+                            <input value="清" class="action none" type="button">
+
+                        </div>
+                        <div class="yiluo">
+                            <span class="ball-aid">1</span>
+                            <span class="ball-aid" style="padding-left: 40px;">5</span>
+                            <span class="ball-aid" style="padding-left: 32px;">10</span>
+                            <span class="ball-aid" style="padding-left: 30px;">80</span>
+                            <span class="ball-aid" style="padding-left: 30px;">15</span>
+                            <span class="ball-aid" style="padding-left: 30px;">21</span>
+                            <span class="ball-aid" style="padding-left: 30px;">1</span>
+                            <span class="ball-aid" style="padding-left: 40px;">5</span>
+                            <span class="ball-aid" style="padding-left: 33px;">10</span>
+                            <span class="ball-aid" style="padding-left: 33px;">80</span>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>       
+        </li>
+                  <li class="geshu">
+                    <div class="ball-title">
+                       <strong>百位</strong>
+                       <span>30期</span>
+                    </div>
+                       <ul class="ball-content">
+                           <li>
+                            <div class="game">
+                             <div id="div_ppww" class="pp" action="tz5xDwei" random="sscRandom">
+                                <input value="0" class="code min s " type="button">
+                                <input value="1" class="code min d" type="button">
+                                <input value="2" class="code min s" type="button">
+                                <input value="3" class="code min d" type="button">
+                                <input value="4" class="code min s" type="button">
+                                <input value="5" class="code max d" type="button">
+                                <input value="6" class="code max s" type="button">
+                                <input value="7" class="code max d" type="button">
+                                <input value="8" class="code max s" type="button">
+                                <input value="9" class="code max d" type="button">
+
+                               <span style="display: block;margin-left: 40px;width: 1px;height: 1px;float: left;"></span>
+                  
+                                <input value="全" class="action all" type="button">
+                                <input value="双" class="action even" type="button" >
+                                <input value="大" class="action large" type="button">
+                                <input value="小" class="action small" type="button">
+                                <input value="奇" class="action odd" type="button">
+                                <input value="偶" class="action even" type="button">
+                                <input value="清" class="action none" type="button">
+
+                                </div>
+                                <div class="yiluo">
+                                    <span class="ball-aid">1</span>
+                                    <span class="ball-aid" style="padding-left: 40px;">5</span>
+                                    <span class="ball-aid" style="padding-left: 32px;">10</span>
+                                    <span class="ball-aid" style="padding-left: 30px;">80</span>
+                                    <span class="ball-aid" style="padding-left: 30px;">15</span>
+                                    <span class="ball-aid" style="padding-left: 30px;">21</span>
+                                    <span class="ball-aid" style="padding-left: 30px;">1</span>
+                                    <span class="ball-aid" style="padding-left: 40px;">5</span>
+                                    <span class="ball-aid" style="padding-left: 33px;">10</span>
+                                    <span class="ball-aid" style="padding-left: 33px;">80</span>
+                        </div>
+                            </div>
+                         </li>
+                   </ul>        
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+            <div id="J-balls-statistics-panel">
+                <ul class="bet-statistics">
+                    <li class="multiple-limit" style="display:none">
+                        倍数限额：<em id="J-balls-statistics-multipleLimit">无限制</em>
+                    </li>
+                    <li class="choose-bet">
+                        你选择了<em id="J-balls-statistics-lotteryNum">0</em>注，
+                    </li>
+                    <!--
+                        <li class="choose-multiple">
+                            <div class="choose-list" style="display:none;">
+                                <a href="javascript:void(0);">1倍</a>
+                                <a href="javascript:void(0);">5倍</a>
+                                <a href="javascript:void(0);">10倍</a>
+                                <a href="javascript:void(0);">15倍</a>
+                            </div>
+                            <input type="text" value="8000" class="input" /><i></i><span class="text">倍，</span>
+                        </li>
+                        -->
+                    <span id="J-balls-statistics-multiple-text" style="display: none;">1</span>
+
+                    <div class="choose-model ui-simulation-select beishu">
+                        <div class="choose-list" style="display:none;">
+                           <a data-value="1" href="javascript:void(0);">1</a>
+                           <a data-value="5" href="javascript:void(0);">5</a>
+                           <a data-value="10" href="javascript:void(0);">10</a>
+                           <a data-value="15" href="javascript:void(0);">15</a>
+                        </div>
+
+                    <span class="info beishu"><input data-realvalue="1" class="choose-input" type="text" value="1" id="beishu"></span><i></i>
+                    </div>
+                    <select id="J-balls-statistics-multiple" class="J-ui-select" style="display: none;">
+                        <option value="1" selected="selected">1</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select> 倍 &nbsp;&nbsp;
+
+
+                    <div class="choose-model ui-simulation-select"><div class="choose-list" style="display:none;"><a data-value="1" href="javascript:void(0);">元</a><a data-value="0.1" href="javascript:void(0);">角</a><a data-value="0.01" href="javascript:void(0);">分</a><a data-value="0.001" href="javascript:void(0);">厘</a></div><span class="info"><input data-realvalue="1" class="choose-input" disabled="disabled" type="text" value="元"></span><i></i></div><select id="J-balls-statistics-moneyUnit" class="J-ui-select" style="display: none;">
+                        <option value="1" selected="selected">元</option>
+                        <option value="0.1">角</option>
+                        <option value="0.01">分</option>
+                        <option value="0.001">厘</option>
+                    </select>
+
+                   <!--  
+                        <li class="choose-model">
+                            <div class="choose-list ">
+                                <a href="javascript:void(0);">角</a>
+                                <a href="javascript:void(0);">元</a>
+                            </div>  
+                            <span class="info">角</span><i></i><span class="text">模式</span>
+                        </li>
+                         -->
+                  
+                    <span class="fandianSel-btn">
+                        <a href="javascript:void(0);" id="J-change-fanDian" class="sel"><i></i>返点设置</a>
+                    </span>
+
+                    <li class="total-fandian">
+                        模式:<strong id="J-balls-statistics-fandianModel">0/1952</strong>
+                    </li>
+
+                    <li class="total-fandian">
+                        奖金:<strong id="J-balls-statistics-jiangjin" class="price">1952.000</strong>元
+                    </li>
+                   
+                    <li class="total-fandian">
+                        共<strong class="price" id="J-balls-statistics-amount">0.00</strong>元
+                    </li>
+                </ul>
+                <div class="choose-btn">
+                    <input type="button" value="" id="lt_sel_insert" class="g_submit" onclick="gameActionAddCode()">
+                
+                </div>
+        </div>
+        <!-- 选球统计结束 -->
+
+
+
+       <div class="panel-section">
+            <div class="clearfix">
+                <div class="panel-select">
+                    <ul id="J-balls-order-container">
+                        <li id="tabResult" width="100%">
+                            <div class="result">
+                                  <span class="moneyUnitText"></span>
+                                  <span class="bet"></span>
+                                  <span class="multiple"></span>
+                                  <span class="graduation"></span>
+                                  <span class="price"><span>
+                                  <dfn></dfn>
+                                  </span></span>
+                            </div>
+                                <span></span>
+                                <span style="position:relative">
+                                <span data-param="action=detail&amp;id=1" class="lottery-details"></span>
+                                   <div class="lottery-details-area">
+                                       <div class="num">
+                                           <span class="multiple"></span>
+                                           <em data-param="action=detailhide" class="close"></em>
+                                    </div>
+                                <div class="list">
+                            </div>
+                        </div>
+                    </span>
+                </li>
+            </ul>
+        </div>
+                <div class="panel-btn">
+                    <a href="javascript:void(0);" id="randomone" class="take-one"><i></i>机选一注</a>
+                    <a href="javascript:void(0);" id="randomfive" class="take-five"><i></i>机选五注</a>
+                    <a href="javascript:void(0);" id="restdata" class="empty-number"><i></i>清空号码</a>
+                </div>
+
+            </div>
+            <ul class="bet-statistics">
+                <li>
+                    方案注数 <em id="J-gameOrder-lotterys-num">0</em> 注，
+                </li>
+                <li>
+                    金额<strong class="price">
+                        <dfn>¥</dfn> <span id="J-gameOrder-amount">0.00</span>
+                    </strong>元
+                </li>
+                <li>
+                    <label class="label" for="J-trace-switch">
+                        <input id="J-trace-switch" type="checkbox" class="checkbox">我要追号
+                    </label>
+                </li>
+                <li><span class="bet-tips"><i></i>追号能提高中奖率</span></li>
+            </ul>
+
+
+
+
+
+
+             <!-- 追号开始 -->
+            <div id="J-trace-panel" style="display: none;">
+
+
+                <div class="chase-tab">
+                    <div class="chase-tab-title clearfix">
+                        <ul>
+                            <li class="chase-tab-t current">普通追号</li>
+                            <li class="chase-tab-t">高级追号</li>
+                        </ul>
+                        <h3>追号设置</h3>
+
+                        <div id="J-trace-iswinstop-panel" class="chase-stop" style="display: none;">
+                            <label class="label" for="J-trace-iswinstop">
+                                <input id="J-trace-iswinstop" type="checkbox" class="checkbox" autocomplete="off">累计盈利
+                            </label>&gt;<input id="J-trace-iswinstop-money" disabled="disabled" type="text" class="input" value="1000" autocomplete="off">元时停止追号&nbsp; <i class="icon-question" id="J-trace-iswinstop-hover">
+                                <div id="chase-stop-tip-2" class="chase-stop-tip">
+                                    当追号计划中，累计盈利金额（已获奖金扣除已投本金）大于设定值时，即停止继续追号。<br> 如果您不考虑追号的盈利情况，<a href="#" id="J-chase-stop-switch-2">点这里</a>。
+                                </div>
+                            </i>
+
+                        </div>
+                        <div id="J-trace-iswintimesstop-panel" class="chase-stop">
+                            <label class="label">
+                                <input id="J-trace-iswintimesstop" type="checkbox" class="checkbox" checked="checked">中奖后停止追号
+                            </label>&nbsp;
+                            <i class="icon-question" id="J-trace-iswintimesstop-hover">
+                                <div id="chase-stop-tip-1" class="chase-stop-tip">
+                                    当追号计划中，一个方案内的任意注单中奖时，即停止继续追号。。
+                                </div>
+                            </i>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chase-tab-content chase-tab-content-current">
+                        <ul class="chase-select-normal clearfix">
+                            <li id="J-function-select-tab">
+                                连续追：
+                                <ul class="function-select-title">
+                                    <li>5期</li>
+                                    <li class="current">10期</li>
+                                    <li>15期</li>
+                                    <li>20期</li>
+                                </ul>
+                                <ul class="function-select-panel" style="display: none;">
+                                    <li></li>
+                                    <li class="panel-current"></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input id="J-trace-normal-times" type="text" class="input" value="10" autocomplete="off">&nbsp;&nbsp;期
+                            </li>
+                            <li>
+                                倍数：
+                                <!--
+                                <div class="choose-model">
+                                    <div class="choose-list " style="display:none;">
+                                        <a href="javascript:void(0);">5</a>
+                                        <a href="javascript:void(0);">10</a>
+                                        <a href="javascript:void(0);">15</a>
+                                        <a href="javascript:void(0);">20</a>
+                                        <a href="javascript:void(0);">30</a>
+                                    </div>
+                                    <span class="info">5</span><i></i>
+                                </div>
+                                -->
+                                <div class="choose-model ui-simulation-select"><div class="choose-list" style="display:none;"><a data-value="1" href="javascript:void(0);">1</a><a data-value="5" href="javascript:void(0);">5</a><a data-value="10" href="javascript:void(0);">10</a><a data-value="15" href="javascript:void(0);">15</a><a data-value="20" href="javascript:void(0);">20</a><a data-value="30" href="javascript:void(0);">30</a><a data-value="50" href="javascript:void(0);">50</a></div><span class="info"><input data-realvalue="1" class="choose-input" type="text" value="1"></span><i></i></div><select id="J-trace-normal-multiple" style="display: none;">
+                                    <option>1</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                            </li>
+                        </ul>
+
+                        <div class="chase-table-container">
+                            <table id="J-trace-table" class="chase-table">
+                                <tbody id="J-trace-table-body"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                 
+
+
+
+                    <div class="chase-tab-content">
+                        <div class="chase-select-high">
+                            <div class="title">基本参数</div>
+                            <ul class="base-parameter">
+                                <li>
+                                    起始期号： <div class="choose-model chase-trace-startNumber-select"><div class="choose-list" style="display:none;"><a data-value="20170620141" href="javascript:void(0);">20170620141(当前期)</a><a data-value="20170620142" href="javascript:void(0);">20170620142</a><a data-value="20170620143" href="javascript:void(0);">20170620143</a><a data-value="20170620144" href="javascript:void(0);">20170620144</a><a data-value="20170620145" href="javascript:void(0);">20170620145</a><a data-value="20170620146" href="javascript:void(0);">20170620146</a><a data-value="20170620147" href="javascript:void(0);">20170620147</a><a data-value="20170620148" href="javascript:void(0);">20170620148</a><a data-value="20170620149" href="javascript:void(0);">20170620149</a><a data-value="20170620150" href="javascript:void(0);">20170620150</a><a data-value="20170620151" href="javascript:void(0);">20170620151</a><a data-value="20170620152" href="javascript:void(0);">20170620152</a><a data-value="20170620153" href="javascript:void(0);">20170620153</a><a data-value="20170620154" href="javascript:void(0);">20170620154</a><a data-value="20170620155" href="javascript:void(0);">20170620155</a><a data-value="20170620156" href="javascript:void(0);">20170620156</a><a data-value="20170620157" href="javascript:void(0);">20170620157</a><a data-value="20170620158" href="javascript:void(0);">20170620158</a><a data-value="20170620159" href="javascript:void(0);">20170620159</a><a data-value="20170620160" href="javascript:void(0);">20170620160</a><a data-value="20170620161" href="javascript:void(0);">20170620161</a><a data-value="20170620162" href="javascript:void(0);">20170620162</a><a data-value="20170620163" href="javascript:void(0);">20170620163</a><a data-value="20170620164" href="javascript:void(0);">20170620164</a><a data-value="20170620165" href="javascript:void(0);">20170620165</a><a data-value="20170620166" href="javascript:void(0);">20170620166</a><a data-value="20170620167" href="javascript:void(0);">20170620167</a><a data-value="20170620168" href="javascript:void(0);">20170620168</a><a data-value="20170620169" href="javascript:void(0);">20170620169</a><a data-value="20170620170" href="javascript:void(0);">20170620170</a><a data-value="20170620171" href="javascript:void(0);">20170620171</a><a data-value="20170620172" href="javascript:void(0);">20170620172</a><a data-value="20170620173" href="javascript:void(0);">20170620173</a><a data-value="20170620174" href="javascript:void(0);">20170620174</a><a data-value="20170620175" href="javascript:void(0);">20170620175</a><a data-value="20170620176" href="javascript:void(0);">20170620176</a><a data-value="20170620177" href="javascript:void(0);">20170620177</a><a data-value="20170620178" href="javascript:void(0);">20170620178</a><a data-value="20170620179" href="javascript:void(0);">20170620179</a><a data-value="20170620180" href="javascript:void(0);">20170620180</a><a data-value="20170620181" href="javascript:void(0);">20170620181</a><a data-value="20170620182" href="javascript:void(0);">20170620182</a><a data-value="20170620183" href="javascript:void(0);">20170620183</a><a data-value="20170620184" href="javascript:void(0);">20170620184</a><a data-value="20170620185" href="javascript:void(0);">20170620185</a><a data-value="20170620186" href="javascript:void(0);">20170620186</a><a data-value="20170620187" href="javascript:void(0);">20170620187</a><a data-value="20170620188" href="javascript:void(0);">20170620188</a><a data-value="20170620189" href="javascript:void(0);">20170620189</a><a data-value="20170620190" href="javascript:void(0);">20170620190</a><a data-value="20170620191" href="javascript:void(0);">20170620191</a><a data-value="20170620192" href="javascript:void(0);">20170620192</a><a data-value="20170620193" href="javascript:void(0);">20170620193</a><a data-value="20170620194" href="javascript:void(0);">20170620194</a><a data-value="20170620195" href="javascript:void(0);">20170620195</a><a data-value="20170620196" href="javascript:void(0);">20170620196</a><a data-value="20170620197" href="javascript:void(0);">20170620197</a><a data-value="20170620198" href="javascript:void(0);">20170620198</a><a data-value="20170620199" href="javascript:void(0);">20170620199</a><a data-value="20170620200" href="javascript:void(0);">20170620200</a><a data-value="20170620201" href="javascript:void(0);">20170620201</a><a data-value="20170620202" href="javascript:void(0);">20170620202</a><a data-value="20170620203" href="javascript:void(0);">20170620203</a><a data-value="20170620204" href="javascript:void(0);">20170620204</a><a data-value="20170620205" href="javascript:void(0);">20170620205</a><a data-value="20170620206" href="javascript:void(0);">20170620206</a><a data-value="20170620207" href="javascript:void(0);">20170620207</a><a data-value="20170620208" href="javascript:void(0);">20170620208</a><a data-value="20170620209" href="javascript:void(0);">20170620209</a><a data-value="20170620210" href="javascript:void(0);">20170620210</a><a data-value="20170620211" href="javascript:void(0);">20170620211</a><a data-value="20170620212" href="javascript:void(0);">20170620212</a><a data-value="20170620213" href="javascript:void(0);">20170620213</a><a data-value="20170620214" href="javascript:void(0);">20170620214</a><a data-value="20170620215" href="javascript:void(0);">20170620215</a><a data-value="20170620216" href="javascript:void(0);">20170620216</a><a data-value="20170620217" href="javascript:void(0);">20170620217</a><a data-value="20170620218" href="javascript:void(0);">20170620218</a><a data-value="20170620219" href="javascript:void(0);">20170620219</a><a data-value="20170620220" href="javascript:void(0);">20170620220</a><a data-value="20170620221" href="javascript:void(0);">20170620221</a><a data-value="20170620222" href="javascript:void(0);">20170620222</a><a data-value="20170620223" href="javascript:void(0);">20170620223</a><a data-value="20170620224" href="javascript:void(0);">20170620224</a><a data-value="20170620225" href="javascript:void(0);">20170620225</a><a data-value="20170620226" href="javascript:void(0);">20170620226</a><a data-value="20170620227" href="javascript:void(0);">20170620227</a><a data-value="20170620228" href="javascript:void(0);">20170620228</a><a data-value="20170620229" href="javascript:void(0);">20170620229</a><a data-value="20170620230" href="javascript:void(0);">20170620230</a><a data-value="20170620231" href="javascript:void(0);">20170620231</a><a data-value="20170620232" href="javascript:void(0);">20170620232</a><a data-value="20170620233" href="javascript:void(0);">20170620233</a><a data-value="20170620234" href="javascript:void(0);">20170620234</a><a data-value="20170620235" href="javascript:void(0);">20170620235</a><a data-value="20170620236" href="javascript:void(0);">20170620236</a><a data-value="20170620237" href="javascript:void(0);">20170620237</a><a data-value="20170620238" href="javascript:void(0);">20170620238</a><a data-value="20170620239" href="javascript:void(0);">20170620239</a><a data-value="20170620240" href="javascript:void(0);">20170620240</a><a data-value="20170620241" href="javascript:void(0);">20170620241</a><a data-value="20170620242" href="javascript:void(0);">20170620242</a><a data-value="20170620243" href="javascript:void(0);">20170620243</a><a data-value="20170620244" href="javascript:void(0);">20170620244</a><a data-value="20170620245" href="javascript:void(0);">20170620245</a><a data-value="20170620246" href="javascript:void(0);">20170620246</a><a data-value="20170620247" href="javascript:void(0);">20170620247</a><a data-value="20170620248" href="javascript:void(0);">20170620248</a><a data-value="20170620249" href="javascript:void(0);">20170620249</a><a data-value="20170620250" href="javascript:void(0);">20170620250</a><a data-value="20170620251" href="javascript:void(0);">20170620251</a><a data-value="20170620252" href="javascript:void(0);">20170620252</a><a data-value="20170620253" href="javascript:void(0);">20170620253</a><a data-value="20170620254" href="javascript:void(0);">20170620254</a><a data-value="20170620255" href="javascript:void(0);">20170620255</a><a data-value="20170620256" href="javascript:void(0);">20170620256</a><a data-value="20170620257" href="javascript:void(0);">20170620257</a><a data-value="20170620258" href="javascript:void(0);">20170620258</a><a data-value="20170620259" href="javascript:void(0);">20170620259</a><a data-value="20170620260" href="javascript:void(0);">20170620260</a></div><span class="info"><input data-realvalue="20170620141" class="choose-input" disabled="disabled" type="text" value="20170620141(当前期)"></span><i></i></div><select id="J-traceStartNumber" style="display: none;"><option value="20170620141" selected="selected">20170620141(当前期)</option><option value="20170620142">20170620142</option><option value="20170620143">20170620143</option><option value="20170620144">20170620144</option><option value="20170620145">20170620145</option><option value="20170620146">20170620146</option><option value="20170620147">20170620147</option><option value="20170620148">20170620148</option><option value="20170620149">20170620149</option><option value="20170620150">20170620150</option><option value="20170620151">20170620151</option><option value="20170620152">20170620152</option><option value="20170620153">20170620153</option><option value="20170620154">20170620154</option><option value="20170620155">20170620155</option><option value="20170620156">20170620156</option><option value="20170620157">20170620157</option><option value="20170620158">20170620158</option><option value="20170620159">20170620159</option><option value="20170620160">20170620160</option><option value="20170620161">20170620161</option><option value="20170620162">20170620162</option><option value="20170620163">20170620163</option><option value="20170620164">20170620164</option><option value="20170620165">20170620165</option><option value="20170620166">20170620166</option><option value="20170620167">20170620167</option><option value="20170620168">20170620168</option><option value="20170620169">20170620169</option><option value="20170620170">20170620170</option><option value="20170620171">20170620171</option><option value="20170620172">20170620172</option><option value="20170620173">20170620173</option><option value="20170620174">20170620174</option><option value="20170620175">20170620175</option><option value="20170620176">20170620176</option><option value="20170620177">20170620177</option><option value="20170620178">20170620178</option><option value="20170620179">20170620179</option><option value="20170620180">20170620180</option><option value="20170620181">20170620181</option><option value="20170620182">20170620182</option><option value="20170620183">20170620183</option><option value="20170620184">20170620184</option><option value="20170620185">20170620185</option><option value="20170620186">20170620186</option><option value="20170620187">20170620187</option><option value="20170620188">20170620188</option><option value="20170620189">20170620189</option><option value="20170620190">20170620190</option><option value="20170620191">20170620191</option><option value="20170620192">20170620192</option><option value="20170620193">20170620193</option><option value="20170620194">20170620194</option><option value="20170620195">20170620195</option><option value="20170620196">20170620196</option><option value="20170620197">20170620197</option><option value="20170620198">20170620198</option><option value="20170620199">20170620199</option><option value="20170620200">20170620200</option><option value="20170620201">20170620201</option><option value="20170620202">20170620202</option><option value="20170620203">20170620203</option><option value="20170620204">20170620204</option><option value="20170620205">20170620205</option><option value="20170620206">20170620206</option><option value="20170620207">20170620207</option><option value="20170620208">20170620208</option><option value="20170620209">20170620209</option><option value="20170620210">20170620210</option><option value="20170620211">20170620211</option><option value="20170620212">20170620212</option><option value="20170620213">20170620213</option><option value="20170620214">20170620214</option><option value="20170620215">20170620215</option><option value="20170620216">20170620216</option><option value="20170620217">20170620217</option><option value="20170620218">20170620218</option><option value="20170620219">20170620219</option><option value="20170620220">20170620220</option><option value="20170620221">20170620221</option><option value="20170620222">20170620222</option><option value="20170620223">20170620223</option><option value="20170620224">20170620224</option><option value="20170620225">20170620225</option><option value="20170620226">20170620226</option><option value="20170620227">20170620227</option><option value="20170620228">20170620228</option><option value="20170620229">20170620229</option><option value="20170620230">20170620230</option><option value="20170620231">20170620231</option><option value="20170620232">20170620232</option><option value="20170620233">20170620233</option><option value="20170620234">20170620234</option><option value="20170620235">20170620235</option><option value="20170620236">20170620236</option><option value="20170620237">20170620237</option><option value="20170620238">20170620238</option><option value="20170620239">20170620239</option><option value="20170620240">20170620240</option><option value="20170620241">20170620241</option><option value="20170620242">20170620242</option><option value="20170620243">20170620243</option><option value="20170620244">20170620244</option><option value="20170620245">20170620245</option><option value="20170620246">20170620246</option><option value="20170620247">20170620247</option><option value="20170620248">20170620248</option><option value="20170620249">20170620249</option><option value="20170620250">20170620250</option><option value="20170620251">20170620251</option><option value="20170620252">20170620252</option><option value="20170620253">20170620253</option><option value="20170620254">20170620254</option><option value="20170620255">20170620255</option><option value="20170620256">20170620256</option><option value="20170620257">20170620257</option><option value="20170620258">20170620258</option><option value="20170620259">20170620259</option><option value="20170620260">20170620260</option></select>
+
+                                </li>
+                                <li>
+                                    追号期数： <input id="J-trace-advanced-times" type="text" class="input" value="10" autocomplete="off">&nbsp;&nbsp;期（最多可以追<span id="J-trace-number-max">120</span>期）
+                                </li>
+                                <li>
+                                    起始倍数： <input id="J-trace-advance-multiple" type="text" class="input" value="1" autocomplete="off">&nbsp;&nbsp;倍
+                                </li>
+                            </ul>
+
+                            <div class="title">高级参数</div>
+                            <div id="J-trace-advanced-type-panel" class="high-parameter">
+                                <ul class="tab-title">
+                                    <li class="current">翻倍追号</li>
+                                    
+                                </ul>
+                                <ul class="tab-content">
+                                    <li class="panel-current">
+                                        <p data-type="a">
+                                            <input class="trace-advanced-type-switch" type="radio" name="trace-advanced-type1" checked="checked" autocomplete="off"> 每隔&nbsp;<input id="J-trace-advanced-fanbei-a-jiange" type="text" class="input" value="2" autocomplete="off">&nbsp;期 倍数x<input id="J-trace-advanced-fanbei-a-multiple" type="text" class="input trace-input-multiple" value="2" autocomplete="off">
+                                        </p>
+                                        <p data-type="b">
+                                            <input class="trace-advanced-type-switch" type="radio" name="trace-advanced-type1" autocomplete="off"> 前&nbsp;<input id="J-trace-advanced-fanbei-b-num" type="text" class="input" value="5" disabled="disabled" autocomplete="off">&nbsp;期 倍数=起始倍数，之后倍数=<input id="J-trace-advanced-fanbei-b-multiple" type="text" class="input trace-input-multiple" value="3" disabled="disabled" autocomplete="off">
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p data-type="a">
+                                            <input class="trace-advanced-type-switch" type="radio" name="trace-advanced-type2" checked="checked" autocomplete="off"> 预期盈利金额≥&nbsp;<input id="J-trace-advanced-yingli-a-money" type="text" class="input" value="100" autocomplete="off">&nbsp;元
+                                        </p>
+                                        <p data-type="b">
+                                            <input class="trace-advanced-type-switch" type="radio" name="trace-advanced-type2" autocomplete="off"> 前&nbsp;<input id="J-trace-advanced-yingli-b-num" type="text" class="input" value="2" disabled="disabled" autocomplete="off">&nbsp;期 预期盈利金额≥&nbsp;<input id="J-trace-advanced-yingli-b-money1" type="text" class="input" value="100" disabled="disabled" autocomplete="off">&nbsp;元，之后预期盈利金额≥&nbsp;
+                                            <input id="J-trace-advanced-yingli-b-money2" type="text" class="input" value="50" disabled="disabled" autocomplete="off">&nbsp;元
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p data-type="a">
+                                            <input class="trace-advanced-type-switch" type="radio" name="trace-advanced-type3" checked="checked" autocomplete="off"> 预期盈利率≥&nbsp;<input id="J-trace-advanced-yinglilv-a" type="text" class="input" value="10" autocomplete="off">&nbsp;%
+                                        </p>
+                                        <p data-type="b">
+                                            <input class="trace-advanced-type-switch" type="radio" name="trace-advanced-type3" autocomplete="off"> 前&nbsp;<input id="J-trace-advanced-yinglilv-b-num" type="text" class="input" value="5" disabled="disabled" autocomplete="off">&nbsp;期
+                                            预期盈利率≥&nbsp;<input id="J-trace-advanced-yingli-b-yinglilv1" type="text" class="input" value="30" disabled="disabled" autocomplete="off">&nbsp;%，之后预期盈利率≥&nbsp;<input id="J-trace-advanced-yingli-b-yinglilv2" disabled="disabled" autocomplete="off" type="text" class="input" value="10">&nbsp;%
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="chase-btn">
+                            <input id="J-trace-builddetail" type="button" value="">
+                        </div>
+
+
+                        <div class="chase-table-container">
+                            <table id="J-trace-table-advanced" class="chase-table">
+                                <tbody id="J-trace-table-advanced-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+
+
+                <ul class="bet-statistics">
+                    <li>
+                        共追号 <span id="J-trace-statistics-times">0</span> 期，<em>
+                            <span id="J-trace-statistics-lotterys-num">0</span>
+                        </em>注，
+                    </li>
+                    <li>
+                        总投注金额 <strong class="price">
+                            <dfn>¥</dfn><span id="J-trace-statistics-amount">0.0000</span>
+                        </strong> 元
+                    </li>
+                </ul>
+
+            </div>
+            <!-- 追号结束 -->
+
+
+
+
+
+
+        </div>
+
+
+         <!-- 提交按钮开始 -->
+        <div class="bet-btn">
+            <input name="__RequestVerificationToken" type="hidden" value="2w0f0JJr7mivK8JzdJF1CkKRvHULd9nU9vbuMyWt2goZNige4Fkqslab8tx-yHUMeT8oYXU-K4Fuy55iQqaIKaZ7dZDG0Ut0ud1ZiYwBGZY1">
+            <input type="button" id="J-submit-order" value="">
+        </div>
+        <!-- 提交按钮结束 -->
+    </div>
+
+
+    <div class="program-chase">
+                <ul class="program-chase-title">
+                    <li class="current dianji">我的方案</li>
+                    <li class="dian">我的追号</li>
+                </ul>
+                <ul class="program-chase-content content">
+                    <li class="current">
+
+
+                        <table class="program-chase-table" id="program-user-orders">
+                            <thead>
+                                <tr>
+                                    <th>期号</th>
+                                    <th>投注金额</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+
+                              <tbody><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16906"> 20160827201</a></td><td><span class="price"><dfn>¥</dfn>250.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16870"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16869"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16868"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16867"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16866"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16865"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16864"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16863"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16862"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr></tbody></table>
+                        <!--
+                        <table class="program-chase-table">
+                            <tbody><tr>
+                                <td colspan="3" class="text-right">
+                                    <a href="/gameUserCenter/queryOrders" target="_blank" class="more">更多»</a>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        -->
+                    </li>
+                    <li class="">
+                        <table class="program-chase-table" id="program-user-plans">
+                            <thead>
+                                <tr>
+                                    <th>起始期号</th>
+                                    <th>已追/总</th>
+                                    <th>总金额</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+
+                              <tbody><tr><td colspan="5">您今天暂时没有追号记录！</td>
+                              </tr></tbody></table>
+                     
+                    </li>
+                </ul>
+                  <ul class="program-chase-content baby" >
+                    <li class="">
+
+
+                        <table class="program-chase-table" id="program-user-orders">
+                            <thead>
+                                <tr>
+                                    <th>期号</th>
+                                    <th>投注金额</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+
+                              <tbody><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16906"> 20160827201</a></td><td><span class="price"><dfn>¥</dfn>250.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16870"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16869"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16868"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16867"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16866"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16865"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16864"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16863"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr><tr><td><a target="_black" href="/gameUserCenter/queryOrderDetail?orderId=16862"> 20160820185</a></td><td><span class="price"><dfn>¥</dfn>2.00</span></td><td>未开奖</td></tr></tbody></table>
+                        <!--
+                        <table class="program-chase-table">
+                            <tbody><tr>
+                                <td colspan="3" class="text-right">
+                                    <a href="/gameUserCenter/queryOrders" target="_blank" class="more">更多»</a>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        -->
+                    </li>
+                    <li class="current">
+                        <table class="program-chase-table" id="program-user-plans">
+                            <thead>
+                                <tr>
+                                    <th>起始期号</th>
+                                    <th>已追/总</th>
+                                    <th>总金额</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+
+                              <tbody><tr><td colspan="5">您今天暂时没有追号记录！</td>
+                              </tr></tbody></table>
+                     
+                    </li>
+                </ul>
+            </div>
+   <!-- 底部开始 -->
+    <div class="foot  g_33 ">
+        2010-2016@永利国际娱乐
+提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票！
+    </div>
+    <!-- 底部结束 -->
+    <!-- loading开始 -->
+    <div class="bet-common-loading" id="J-bet-loading-panel" style="display: none;"></div>
+    <!-- loading结束 -->
+    <!-- 漂浮倒计时开始 -->
+    <div class="countdown countdown-current" style="right: 63px; display: none;">
+        <a href="javascript:void(0);"></a>
+        <span>截止时间</span>
+        <strong>02:02</strong>
+    </div>
+    <!-- 漂浮倒计时结束 -->
+
+<script type="text/javascript">
+    $(function(){
+        $('.game-frequency-lost-length a').click(function(){      
+    $(this).addClass("periodcurrentFre current").siblings().removeClass("periodcurrentFre current");
+        })
+
+    $('.game-frequency-type li').click(function(){      
+    $(this).addClass("lost current").siblings().removeClass("lost current");
+     })
+
+     $('.game-frequency-fre-length a').click(function(){      
+    $(this).addClass("current").siblings().removeClass("current");
+     })
+   
+         $('#J-top-userinfo').hover(function(){
+     
+                $(this).find('.menu-nav').css('display','block');
+                 $(this).find('.simazhao').css('display','block');
+            },function(){
+                $(this).find('.menu-nav').css('display','none');
+                 $(this).find('.simazhao').css('display','none');
+      
+    })
+
+       $('.current dl dd').click(function(){
+              $(this).addClass("current").siblings().removeClass("current");
+              $(this).addClass("current").parent().siblings().children().removeClass("current");
+       })
+      
+       $('.clearfix li').click(function(){
+              $(this).addClass("current").siblings().removeClass("current");
+       })
+        $('.program-chase-title li').click(function(){
+
+              $(this).addClass("current").siblings().removeClass("current");
+       })
+          $('.dianji').click(function(){
+              $('.baby').css('display','none');
+             $('.content').css('display','block');
+             
+          })
+          $('.dian').click(function(){
+            $('.content').css('display','none');
+              $('.baby').css('display','block');
+      })
+    })
+</script>
+<style type="text/css">
+    .baby{
+        display: none;
+    }
+</style>
+
+
+
+
+
+

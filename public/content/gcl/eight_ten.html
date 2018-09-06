@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员管理 - 代理团队－金富汇</title>
+<link href="/david.ico" rel="shortcut icon" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="./css/base.css">
+<link rel="stylesheet" type="text/css" href="./css/all.css">
+<link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="./css/dialog.css">
+<link rel="stylesheet" type="text/css" href="./css/modal.css">
+<link rel="stylesheet" type="text/css" href="./css/icon.css">
+<script language="javascript" type="text/javascript" src="./js/jquery-1.8.0.min.js"></script>
+<!--[if IE 9]>
+<script language="javascript" type="text/javascript" src="/template/js/base/html5.js"></script>
+<![endif]-->
+<!--<script language="javascript" type="text/javascript" src="/template/js/base/keyboard.js"></script>-->
+<link type="text/css" rel="stylesheet" href="./css/jquery-ui-1.8.21.custom.css" />
+<script language="javascript" type="text/javascript" src="./js/jquery-ui-1.8.23.custom.min.js"></script>
+<script language="javascript" type="text/javascript" src="./js/gamecommon.js"></script>
+<script language="javascript" type="text/javascript" src="./js/modal.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.cookie.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.messager.js"></script>
+<!--<script language="javascript" type="text/javascript" src="/template/js/base/Array.ext.js"></script>-->
+<script language="javascript" type="text/javascript" src="./js/jquery.ui.datepicker-zh-CN.js"></script>
+<script language="javascript" type="text/javascript" src="./js/load.js"></script>
+<script language="javascript" type="text/javascript" src="./js/Confrim.js"></script>
+
+<script type="text/javascript" src="./js/team.js"></script>
+<!-- <script type="text/javascript">
+$(function(){
+	$('.page_search select').change(function(){
+		//this.form.submit();
+		$(this).closest('form').submit();
+	});
+	$('.btn_search').click(function(){
+		$(this).closest('form').submit();
+	});
+	
+	$('.page_search input[name=username]')
+	.focus(function(){
+		if(this.value=='用户名') this.value='';
+	})
+	.blur(function(){
+		if(this.value=='') this.value='用户名';
+	})
+	.keypress(function(e){
+		if(e.keyCode==13) $(this).closest('form').submit();
+	});
+	
+	$('.bottompage a[href], .caozuo').live('click', function(){
+		$('.page_list').load($(this).attr('href'));
+		return false;
+	});
+	
+	$('.sure[id]').click(function(){
+		var $this=$(this),
+		cashId=$this.attr('id'),
+		
+		call=function(err, data){
+			if(err){
+				davidError(err);
+			}else{
+				this.parent().text('已到帐');
+			}
+		}
+		
+		$.ajax('/index.php?tnt=ctcs?id='+cashId,{
+			dataType:'json',
+			
+			error:function(xhr, textStatus, errThrow){
+				call.call($this, errThrow||textStatus);
+			},
+			
+			success:function(data, textStatus, xhr){
+				var errorMessage=xhr.getResponseHeader('X-Error-Message');
+				if(errorMessage){
+					call.call($this, decodeURIComponent(errorMessage), data);
+				}else{
+					call.call($this, null, data);
+				}
+			}
+		});
+	});
+});
+function teamBeforeSearchMember(){}
+function teamSearchMember(err, data){
+	if(err){
+		davidError(err);
+	}else{
+		$('.page_list').html(data);
+	}
+}
+</script> -->
+</head> 
+<body>
+<header class="header" style=" margin-bottom:38px;">
+<script type="text/javascript">
+function indexSign(err, data){
+	// if(err){
+	// 	davidError(err);
+	// }else{
+	// 	reloadMemberInfo();
+	// 	davidOk(data);
+	// }
+	alert('签到成功');
+} 
+</script>
+<div class="header-top-wapper">
+      <ul class="top-user userInfo">
+          <li>您好，<a href="nine_one.html" id="nickname" title="点击修改昵称">abc123</a></li>
+          <li>金额: <span class="color-1 font-weight" id="usermoney">￥12133.0000</span>&nbsp;&nbsp;<a style=" cursor: pointer;" href="javascript:void(0)" onclick="reloadMemberInfo();" class="fa fa-refresh fa-lg color-0"></a></li>
+		  <li>冻结购彩金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+		  <li>证券金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+          <li>金币: <span class="color-1 font-weight" id="usermoney">＄86</span>&nbsp;&nbsp;</li>
+          <li><a class="color-0" href="/index.php?tnt=ds"  dataType="json" call="indexSign" target="ajax" >签到就送</a></li>
+          <li><a class="color-0" href="login.html" target="_top">安全退出</a></li>
+      </ul>
+</div>                        <div class="header-navbg">
+                            <div class="wrapper">
+                                <a href="/" ><div class="logo"></div></a>
+                                <div id="dd" class="header-nav-game" tabindex="1">全部游戏
+                                    <ul class="dropdown"> 
+										<li><a href="four.html"><span class='fa fa-chevron-circle-right fa-lg'></span>重庆时时彩</a></li>
+          								<li><a href="five.html"><span class='fa fa-chevron-circle-right fa-lg'></span>北京PK拾</a></li>
+                         </ul>
+                     </div>
+                      <ul class="header-nav-user">                
+                              <li><a class="default_home" href="index.html" ><div class="fa fa-home fa-2x"></div>网站首页</a></li>
+                              <li><a class="account_autosave" href="six_one.html" ><div class="fa fa-cny fa-2x"></div>充值提现</a></li>
+                              <li><a class="history_playlist" href="seven_one.html" ><div class="fa fa-gamepad fa-2x"></div>游戏报表</a></li>
+                              <li><a class="users_list" href="eight_one.html" ><div class="fa fa-users fa-2x"></div>代理中心</a></li>
+                              <img src="./images/5-130H21SH5.gif" alt="/" style="position:absolute;z-index:1001;margin-left:-40px;margin-top:-6px;"></li></li>
+                              <li><a class="users_info" href="nine_one.html" ><div class="fa fa-cogs fa-2x"></div>账户中心</a></li>
+                              <li><a class="promotion_center" href="one_one.html" ><div class="fa fa-bullhorn  fa-2x"></div>证券中心</a></li>
+                              <li><a class="account_autosave" href="eleven_one.html" ><div class="fa fa-fire  fa-2x"></div>金币兑换</a></li>
+                              <li><a class="csonline_list" href="#000" ><div class="fa fa-wechat fa-2x"></div>在线客服</a></li>
+                              <li><a class="help_general" href="thirteen_one.html" ><div class="fa fa-question fa-2x"></div>常见问题</a></li>
+                         </ul>
+                            </div>
+                        </div>
+                    </header>
+<!-- <script type='text/javascript'>
+function kf(){
+ //客服是否开启 个人客服是否开启
+	var iTop = (window.screen.availHeight-30-570)/2; //获得窗口的垂直位置;
+	var iLeft = (window.screen.availWidth-10-750)/2; //获得窗口的水平位置;
+	var url = 'http://api1.pop800.com/web800/c.do?l=cn&type=0&n=262889&w=0';
+	var winOption = "height=570,width=750,top="+iTop+",left="+iLeft+",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,fullscreen=1";
+	var newWin = window.open(url,window, winOption);
+		return false;
+}
+function down(){
+    window.location="/template/down/inst.php";
+}
+</script> -->
+<div id="rightcon">
+            <div class="head-box">
+                <div class="haed-box-wrapper">
+                    <div class="head-box-bg1" id="transform"></div>
+                    <div class="head-box-bg2" id="transform"></div>
+                    <div class="head-box-bg3"></div>
+                </div>
+            </div>
+            <div class="wrapper bigbox">
+<div class="page-wrapper">
+    <p id="page-title"><span class="fa fa-users"></span>会员管理</p>
+    <div class="top_menu">
+         <a class="act" href="eight_one.html">会员管理</a>
+        <a href="eight_two.html">游戏记录</a>
+        <a href="eight_three.html">盈亏报表</a>
+        <a href="eight_four.html">团队统计</a>
+        <a href="eight_five.html">帐变记录</a>
+        <a href="eight_six.html">提现记录</a>
+        <a href="eight_eight.html">推广链接</a>
+    </div>
+    <div class="page-info">
+	 <div class="page_search">
+  		<form action="/index.php?tnt=tsmr" dataType="html" target="ajax" method="get" onajax="teamBeforeSearchMember" call="teamSearchMember">
+		 <table border="0" cellspacing="0" cellpadding="0">
+		 <tr><td>
+		 <select name="type">
+		   <option value="0">所有人</option>
+		   <option value="1">我自己</option>
+		   <option value="2" selected>直属下线</option>
+		   <option value="3">所有下线</option>
+		 </select>
+		 <input height="20" value="用户名" name="username" type="text"/>         
+		 <input type="button" value="查 询" class="btn_search btn btn-action "/>
+		 <input type="button" value="添加会员" class="btn_search btn btn-action"  onclick="window.location='/index.php?tnt=tam'"/>
+		 </td></tr></table>
+  		</form> 
+    </div>
+	
+        <div class="clear"></div>
+        <div class="page_list">
+         <table width="100%" class='table_b'>
+	<thead>
+		<tr class="table_b_th">
+			<td>用户名</td>
+            <td>用户类型</td>
+            <td>账号来源</td>
+            <td>返点</td>
+			<td>不定位返点</td>
+			<td>余额</td>
+			<td>状态</td>
+			<td>在线</td>
+			
+			<td>注册时间</td>
+			<td width="17%">操作</td>
+		</tr>
+	</thead>
+	<tbody class="table_b_tr">
+		 		<tr>
+			<td>abc123</td>
+            <td>代理</td>
+            <td>后台添加</td>
+            <td>10.0%</td>
+			<td>3.0%</td>
+			<td>12133.0000</td>
+			
+			<td>正常</td>
+            <td><font color="#FF0000">在线</font></td>
+			
+			<td>2017-02-18</td>
+                        <td><a class="caozuo" href="/index.php?tnt=tsmr&type=2&uid=368">查看下级</a></td>
+            		</tr>
+		</tbody>
+</table>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="userUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" style="width:800px;  margin-left:-100px;">
+        
+      </div><!-- /.modal-content -->
+   </div><!-- modal-dialog -->
+</div><!-- /.modal -->
+<div class="bottompage">
+	
+			<a class="disabled">首页</a>&nbsp;
+        <a class="disabled">上一页</a>&nbsp;
+		
+	<a href="/index.php?tnt=tsmr&txpgs=1?tnt=tml&type=1" class="pagecurrent">1</a>&nbsp;
+
+	
+		<a class="disabled">下一页</a>&nbsp;
+	<a class="disabled">尾页</a>
+		<span class="disabled">第1页/共1页</span>
+</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</div>
+</div><footer class="footer">
+    <div class="wrapper">
+        <div class="footer-box1">
+            <h2><span class="fa fa-question fa-2x"></span>帮助</h2>
+            <ul>
+                                <li><a href="/index.php?tnt=gn" title="平台功能介绍">功能介绍</a></li>
+                                <li><a href="/index.php?tnt=help" title="常见问题说明">常见问题</a></li>
+          </ul>
+        </div>
+        <div class="footer-box1 footer-box2">
+            <h2><span class="fa fa-gamepad fa-2x"></span>玩法介绍</h2>
+            <ul>
+                                <li><a href="/index.php?tnt=wf" title="时时彩">时时彩</a></li>
+                                <li><a href="/index.php?tnt=wf" title="11选5">11选5</a></li>
+                                <li><a href="/index.php?tnt=wf" title="快三">快三</a></li>
+                                <li><a href="/index.php?tnt=wf" title="排列三/五">排列三/五</a></li>
+                                <li><a href="/index.php?tnt=wf" title="3D">3D</a></li>
+          </ul>
+        </div>
+        <div class="footer-box1">
+            <h2><span class="fa fa-credit-card fa-2x"></span>支持主流银行</h2>
+            <img src="/template/images/comm/yh.png" alt="主流银行">        </div>
+        <a href="/app.apk" class="fa fa-cloud-download fa-3x footer-bt" onclick="down()"> <span class="footer-bt-style">下载手机APP</span></a>    </div>
+    <div class="footnotice">充值卡号会频繁更换，请一定要复制最新卡号信息,不可直接用上次充值的卡号信息,否则充到错误的卡号而产生的损失平台一律不负责！</div>
+</footer>
+<div id="wanjinDialog"></div></body>
+</html>

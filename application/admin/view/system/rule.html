@@ -1,0 +1,327 @@
+<include file="Public/Base" />
+<script src='__CONTENT__/bootstrapvalidator/dist/js/bootstrapValidator.js' language='JavaScript'></script>
+
+<link rel="stylesheet" href="__CONTENT__/bootstrapvalidator/dist/css/bootstrapValidator.css" />
+
+<style type="text/css">
+	.formInput {
+		width: 66px;
+	}
+</style>
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+
+		<ul class="breadcrumb">
+			<li><i class="icon-home home-icon"></i>后台管理</li>
+			<span id="span_dh">&nbsp;>&nbsp;&nbsp;系统管理&nbsp;&nbsp;>&nbsp;&nbsp;奖金参数设置
+			</span>
+		</ul>
+		<!-- .breadcrumb -->
+
+	</div>
+
+	<!-- 内容 -->
+	<div class="page-content" id="app">
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+			<div class="tabbable">
+				<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+					<li class="active">
+						<a data-toggle="tab" href="#RuleConfig">奖金参数</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div id="RuleConfig" class="tab-pane in active">
+						<div class="alert alert-danger">系统提示：如有需要用分隔符，请用英文状态下的分号 “ ; ”，否则，系统将不识别该规则
+						</div>
+						<form id="Form1" class="form-horizontal" role="form" method="post">
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">会员设置 ：</label>
+
+								<div class="col-sm-9">
+									激活会员：激活会员需要消耗<input type="text" id="txtZCXHZCB" class="formInput" v-model="jihuoma_num" />个<input type="text" class="formInput" v-model="jihuoma_name" />， 每天可激活人数
+									<input type="text" id="txtMTZCRSXZ" class="formInput" v-model="jihuoren_num" />人， 每天激活时间
+									<input type="text" id="txtJHHYSTART" class="formInput" v-model="jihuotime_begin" />点 至
+									<input type="text" id="txtJHHYEND" class="formInput" v-model="jihuotime_end" />点<span class="red">(24小时制)</span>
+									<br/> 排单设置：
+									<br/> 排
+									<input type="text" id="txtPDGZ_ED" style="width:210px;" v-model="paidan_money" />金额的单子<br/>消耗<input type="text" class="formInput" id="txtPDGZ_ED" v-model="paidanbi_name" /> <input type="text" id="txtPDGZ_PDB" style="width: 210px;" v-model="paidanbi_num" />个<br/> 转账设置：激活码和排单币最低
+
+									<input type="text" id="txtPD_ZZMIN" class="formInput" v-model="zhuanzeng_num" />个起转赠
+									<br/> 预约排单设置： 预约排单间隔时间分别为
+									<input type="text" id="txtYYPD_SJJG" v-model="paidan_day" />天（用英文分号 ";" 分隔），且每次预约的金额必须大于上次金额
+									<br/> 自动冻结： 新会员
+									<input type="text" id="txtYYPD_XHYBPDDJ" class="formInput" v-model="dongjie_day" />天不排单自动冻结
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">排单规则 ：</label>
+
+								<div class="col-sm-9">
+									抢单完成打款$自动返还到抢单静态钱包 ， 直推
+
+									<input type="text" id="txtPD_ZTRS" class="formInput" v-model="zhitui_num" />个人（包括）以下可以抢<input type="text" id="txtPD_ZTJEXZ" class="formInput" v-model="zhitui_money"/>以内订单， 以上可以抢随意金额订单
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">利息设定 ：</label>
+
+								<div class="col-sm-9">
+									周一至周日每天生成利息百分比<input type="text" id="txtLX_PDQ" class="" v-model="meitianlixi" />%
+
+									<!--<span class="red">(从周一开始，中间用英文分号隔开，如：1;2;3;4;5;6;7)</span><br/> 每轮抢单进场后最多放<input type="text" id="txtLX_SZTS" class="formInput"  />小时，结束后可以再额外获得本息总和的<input type="text" id="txtLX_EWJL" class="formInput" value="5" />%奖励<br/> 打款确认成功后每隔-->
+<!--<input type="text" id="txtLX_SCZQ" class="formInput" value="20" />小时后生成一次利息-->
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">匹配与打款 ：</label>
+
+								<div class="col-sm-9">
+									匹配后打款时间为<input type="text" id="txtPPCG_DK" class="formInput" v-model="dakuan_time"/>小时，超时不打款封号处理<span class="red"></span>。 收款人
+									<input type="text" id="txtPPCG_QR" class="formInput" v-model="shoukuan_time" />小时不确认系统封号<span class="red"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">提现设定 ：</label>
+								<div class="col-sm-9">
+									抢单静态钱包提现必须<input type="text" id="txtTX_JTZSB" class="formInput" v-model="jingtai_beishu" />的整数倍，最低<input type="text" id="txtTX_JTMIN" class="formInput" v-model="jingtai_min" />起提；抢单动态钱包提现必须<input type="text" id="txtTX_DTZSB" class="formInput" v-model="dongtai_beishu" />的整数倍，最低
+									<input type="text" id="txtTX_DTMIN" class="formInput" v-model="dongtai_min" />起提<br/> 打款确认成功
+									<input type="text" id="txtTX_QRHOUR" class="formInput" v-model="tixian_time" />小时后方可申请提现
+									<br/> 每天最多只能提
+									<input type="text" id="txtTX_MAXCOUNT" class="formInput"v-model="tixian_num" />次，每天限额最高只能提<input type="text" id="txtTX_MAXMONEY" class="formInput" v-model="tixian_max"/>，只允许在每天<input type="text" id="txtTX_STARTHOUR" class="formInput" v-model="tixian_time_begin" />点到
+									<input type="text" id="txtTX_ENDHOUR" class="formInput"v-model="tixian_time_end" />点申请提现（24小时制）
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">奖金参数设置 ：</label>
+
+								<div class="col-sm-9">
+
+									静态利息： 打完全款后一次性结清利息， 利息
+									<input type="text" id="txtPDGZ_LX" class="formInput" v-model="jingtai_lixi"/>%，
+
+									<input type="text" id="txtPDGZ_BTGHYSJ" class="formInput"v-model="jingtai_max_day" />天一个有效会员不推广 利息为
+									<input type="text" id="txtPDGZ_BTGHYLX" class="formInput"v-model="jingtai_min_lixi" />%，重新推广有效会员后返还之前所有的冻结奖金
+									<br/> 动态奖金：
+									<br/> &nbsp;&nbsp;&nbsp;&nbsp;直推
+
+									<input type="text" id="txtTJJ_JB" style="width: 210px;"v-model="dongtai_people" />人<br/> &nbsp;&nbsp;&nbsp;&nbsp;团队
+									<input type="text" id="txtTJJ_TD" style="width: 210px;"v-model="dongtai_tuandui"/>人<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拿
+									<input type="text" id="txtTJJ_DS" style="width: 210px;"v-model="dongtai_lev"/>代 <span class=" red"></span><br/> 援助金
+									<input type="text" id="txtTJJ_BL" style="width: 210px;"v-model="dongtai_money"/>%<br/>
+									<!-- 新增业绩的<input
+                                        type="text" id="txtTJJ_ZHB" style="width: 210px;"
+                                        value="" />%<br /> -->
+									<input type="text" id="txtTJJ_ZTTS" class="formInput" v-model="dongtai_max_day" />天不发展一个直推，领导奖减半
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">排单与匹配规则设置 ：</label>
+
+								<div class="col-sm-9">
+									进场控制： 排队期
+
+									<input type="text" id="txtHZ_PDQSJ" class="formInput" v-model="paidui_time" />个小时， 排队期结束先匹配
+									<input type="text" id="txtHZ_PDYFJBL" class="formInput"v-model="yufu_money"/>% 预付金， 冻结期
+
+									<input type="text" id="txtHZ_DJSJ" class="formInput"v-model="dongjie_time" />小时，冻结期结束后本金+利息即可到账。<br> 冻结期排除时间
+
+									<input type="text" id="txtHZ_DJSJPC" style="width:70%;" v-model="dongjie_exp" /><span class="red">（请填所有需要排除的日期，格式为xxxx-xx-xx，并且用英文分号“;”分隔）</span>
+
+									<br/> 排单间隔：每个有效账号最小排单间隔时间为
+
+									<input type="text" id="txtHZ_PDJG" class="formInput" v-model="pa" />小时
+
+									<br/> 自动排单：系统每隔
+									<input type="text" id="txtYYPD_XTQZBDJG" class="formInput" value="24" />小时强制为会员排上下一单，金额和上一单相同
+
+									<br/> 匹配规则： 预约匹配执行时间
+
+									<input type="text" id="txtHZ_PPSTART" class="formInput" value="07" />点到
+									<input type="text" id="txtHZ_PPEND" class="formInput" value="18" />点<span class="red">（24小时制）</span>， 每天超过
+
+									<input type="text" id="txtHZ_DKPPCG" class="formInput" value="20" />点之后还未打款系统自动封号，
+
+									<input type="text" id="txtHZ_TQDKXS" class="formInput" value="2" />小时之内打款， 平台奖励投资额度的
+									<input type="text" id="txtHZ_TQDKJLBL" class="formInput" value="1" />%。 收款人
+									<input type="text" id="txtHZ_QRPPCG" class="formInput" value="14" />小时不确认系统封号<span class="red"></span>
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">反哺奖利息设定 ：</label>
+
+								<div class="col-sm-9">
+
+									领导人奖金的<input type="text" id="txtFBJJBL" class="formInput" value="10" />%
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">提现设定 ：</label>
+
+								<div class="col-sm-9">
+
+									静态设置：静态钱包提现必须<input type="text" id="txtHZTX_JTZSB" class="formInput" value="100" />的整数倍，最低<input type="text" id="txtHZTX_JTMIN" class="formInput" value="100" />起提。<br/> 动态设置：动态钱包提现必须
+
+									<input type="text" id="txtHZTX_DTZSB" class="formInput" value="500" />的整数倍，最低
+									<input type="text" id="txtHZTX_DTMIN" class="formInput" value="500" />起提， 动态奖金冻结
+
+									<input type="text" id="txtHZTX_DTDJQ" class="formInput" value="1" />个小时，每次最高不能超过排单金额的
+
+									<input type="text" id="txtHZTX_DTMAXBS" class="formInput" value="0.5" />倍，每次最多提钱包余额<input type="text" id="txtHZTX_PERCENT" class="formInput" value="5" />%。
+
+									<br/> 静态+动态：每天最多只能提
+
+									<input type="text" id="txtHZTX_MAXCOUNT" class="formInput" value="1" />次，每天限额最高只能提<input type="text" id="txtHZTX_MAXMONEY" class="formInput" value="1000000" />， 只允许在每天
+
+									<input type="text" id="txtHZTX_STARTHOUR" class="formInput" value="01" />点到
+									<input type="text" id="txtHZTX_ENDHOUR" class="formInput" value="24" />点申请提现（24小时制）
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">自动升级 ：</label>
+
+								<div class="col-sm-9">
+
+									&nbsp;&nbsp;&nbsp;&nbsp;团队<input type="text" id="txtTJJ_TDZDSJ" style="width: 410px;" value="0;9;27;81;243;729;2187;4374;6561;8529" />人<br/> 自动升级为
+									<input type="text" id="txtTJJ_DJ" style="width: 410px;" value="01;02;03;04;05;06;07;08;09;10" /><span class="red">
+
+										(01=LV1;02=LV2;03=LV3;...;09=LV9;10=LV10)
+										</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">抽奖设置 ：</label>
+
+								<div class="col-sm-9">
+									<span class="red">所有奖项概率之和必须等于 100% ！！！</span><br/> 一等奖：<input type="text" id="txtCJ_ONEV" class="" value="现金5888元" />概率： <input type="text" id="txtCJ_ONEG" class="formInput" value="0" />% <br/> 二等奖：
+									<input type="text" id="txtCJ_TWOV" class="" value="现金4888元" />概率： <input type="text" id="txtCJ_TWOG" class="formInput" value="0" />% <br/> 三等奖：
+
+									<input type="text" id="txtCJ_THREEV" class="" value="现金3888元" />概率： <input type="text" id="txtCJ_THREEG" class="formInput" value="0" />% <br/> 四等奖：
+
+									<input type="text" id="txtCJ_FOURV" class="" value="现金2888元" />概率： <input type="text" id="txtCJ_FOURG" class="formInput" value="20" />% <br/> 五等奖：
+
+									<input type="text" id="txtCJ_FIVEV" class="" value="现金1888元" />概率： <input type="text" id="txtCJ_FIVEG" class="formInput" value="20" />% <br/> 六等奖：
+
+									<input type="text" id="txtCJ_SIXV" class="" value="现金888元" />概率： <input type="text" id="txtCJ_SIXG" class="formInput" value="25" />% <br/> 七等奖：
+
+									<input type="text" id="txtCJ_SEVENV" class="" value="现金88元" />概率： <input type="text" id="txtCJ_SEVENG" class="formInput" value="35" />% <br/>
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 会员前台设置：</label>
+
+								<div class="col-sm-9">
+
+									显示总人数：<input type="text" id="txtQT_ZRS" class="" value="10590" /><br/> 显示新增人数：
+									<input type="text" id="txtQT_XZRS" class="" value="10580" /><br/> 客服微信：
+									<input type="text" id="txtQT_KFWX" class="" value="132323" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-1">复利功能设置 ：</label>
+
+								<div class="col-sm-9">
+
+									最低投注金额：<input type="text" id="txtFL_TZMIN" class="formInput" value="500" /> ，最高投注金额：
+									<input type="text" id="txtFL_TZMAX" class="formInput" value="3000" />， 每天生成利息：
+									<input type="text" id="txtFL_LX" class="formInput" value="1" />%， 最多可以放
+									<input type="text" id="txtFL_MAXDAY" class="formInput" value="20" />天， 提现金额最低
+									<input type="text" id="txtFL_TXMIN" class="formInput" value="500" />， 必须按照
+									<input type="text" id="txtFL_TXBS" class="formInput" value="500" />的倍数
+								</div>
+							</div>
+
+							<div class="clearfix form-actions">
+								<div class="col-md-offset-3 col-md-9">
+									<button class="btn btn-info" type="submit" onclick="SaveForm();">
+                                        <i class="icon-ok bigger-110"></i> 保存
+                                    </button>
+
+								</div>
+							</div>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<load href="__STATIC__/assets/js/vue.js" />
+<script>
+	var app = new Vue({
+		el: "#app",
+		data: {
+			"jihuoma_num": 1,
+			"jihuoma_name": "激活码",
+			"jihuoren_num": 10,
+			"jihuotime_begin": "10",
+			"jihuotime_end": "24",
+			"paidan_money": "2000;4000;6000",
+			"paidanbi_name": "排单币",
+			"paidanbi_num": "2;4;6",
+			"zhuanzeng_num": 5,
+			"paidan_day": "2;4;7",
+			"dongjie_day": 3,
+			"zhitui_num": 1,
+			"zhitui_money": 3000,
+			"meitianlixi": "1;2;3;4;5;6;7",
+			"dakuan_time": 1,
+			"shoukuan_time": 1,
+			"jingtai_beishu": 10,
+			"jingtai_min": 100,
+			"dongtai_beishu": 20,
+			"dongtai_min": 200,
+			"tixian_time": 1,
+			"tixian_num": 32,
+			"tixian_max": 5000,
+			"tixian_time_begin": 9,
+			"tixian_time_end": 23,
+			"jingtai_lixi": 10,
+			"jingtai_max_day": 60,
+			"jingtai_min_lixi": 5,
+			"dongtai_people": "1;3;5",
+			"dongtai_tuandui": "1;3;5",
+			"dongtai_lev": "1;2;3",
+			"dongtai_money": "5;3;1",
+			"dongtai_max_day": 2,
+			"paidui_time": 0,
+			"yufu_money": 20,
+			"dongjie_time": 0,
+			"dongjie_exp": "2018-01-01",
+			"paidanjiange": 0,
+			"auto_paidan": 24,
+			"auto_time_begin": "07",
+			"auto_time_end": "18",
+			"auto_time_over": "20",
+			"dakuai_jiangli": 2,
+			"dakuan_jiangli_money": 1,
+			"shoukuanchaoshi": 14,
+			"fanbu": "10"
+		},
+	});
+
+	$.post("<{:url('System/getrule')}>", {}, function(e) {
+		// app.data.config = e;
+		console.log(e);
+	}, "json");
+</script>

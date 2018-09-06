@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页－金富汇</title>
+<!-- <link href="david.ico" rel="shortcut icon" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="./css/one.css">
+<link rel="stylesheet" type="text/css" href="./css/base.css">
+<link rel="stylesheet" type="text/css" href="./css/all_one.css">
+<link rel="stylesheet" type="text/css" href="./css/all.css">
+<link rel="stylesheet" type="text/css" href="./css/dialog.css">
+<link rel="stylesheet" type="text/css" href="./css/modal.css">
+<link href="./css/home.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./css/index.css">
+<link rel="stylesheet" type="text/css" href="./css/icon.css">
+ -->
+
+
+<link href="./css/home.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./css/base.css">
+<link rel="stylesheet" type="text/css" href="./css/all_one.css">
+<link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="./css/dialog.css">
+<link rel="stylesheet" type="text/css" href="./css/modal.css">
+<link rel="stylesheet" type="text/css" href="./css/index.css">
+<link rel="stylesheet" type="text/css" href="./css/icon.css">
+<link type="text/css" rel="stylesheet" href="./js/jquery-ui-1.8.21.custom.css" />
+<script language="javascript" type="text/javascript" src="./js/jquery-1.8.0.min.js"></script>
+<!--[if IE 9]>
+<script language="javascript" type="text/javascript" src="/template/js/base/html5.js"></script>
+<![endif]-->
+<!--<script language="javascript" type="text/javascript" src="/template/js/base/keyboard.js"></script>-->
+<script language="javascript" type="text/javascript" src="./js/jquery-ui-1.8.23.custom.min.js"></script>
+<script language="javascript" type="text/javascript" src="./js/gamecommon.js"></script>
+<script language="javascript" type="text/javascript" src="./js/modal.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.cookie.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jquery.messager.js"></script>
+<script language="javascript" type="text/javascript" src="./js/jqueryui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+<script language="javascript" type="text/javascript" src="./js/load.js"></script>
+<script language="javascript" type="text/javascript" src="./js/Confrim.js"></script>
+<style type="text/css">
+  .fa-lock{
+    width: 40px;
+    height: 40px;
+    border: 3px solid #90EE90;
+    border-radius: 40px;
+    background: #828282;
+    text-align: center;
+    line-height: 1.7em;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+  }
+  .fa-cny{
+      width: 40px;
+      height: 40px;
+      border: 3px solid #90EE90;
+      border-radius: 40px;
+      background: #828282;
+      text-align: center;
+      line-height: 1.7em;
+      -webkit-transition: all .5s ease-in-out;
+      -moz-transition: all .5s ease-in-out;
+      -o-transition: all .5s ease-in-out;
+      transition: all .5s ease-in-out;
+      -ms-transition: all .5s ease-in-out;
+  }
+     .modal-body {height:270px; font-size:14px;}
+      .modal-body ul{ position:absolute;width:800px;}
+      .modal-body li{ float:left; margin:10px 30px 10px 30px;}
+      @keyframes mymove
+      {
+      from {top:0px;}
+      to {top:150px;}
+      }
+
+      @-webkit-keyframes mymove 
+      {
+      from {top:0px;}
+      to {top:150px;}
+      }
+	  .homelist {
+    
+    padding-top: 10px;
+}
+</style>
+</head>
+<body ondrag="return false;">
+<div id="mainbody"> 
+<header class="header" style=" margin-bottom:38px;">
+<script type="text/javascript">
+function indexSign(err, data){
+	// if(err){
+	// 	davidError(err);
+	// }else{
+	// 	reloadMemberInfo();
+	// 	davidOk(data);
+	// }
+  alert('签到成功');
+} 
+</script>
+<div class="header-top-wapper">
+      <ul class="top-user userInfo">
+          <li>您好，<a href="nine_one.html" id="nickname" title="点击修改昵称">abc123</a></li>
+          <li>金额: <span class="color-1 font-weight" id="usermoney">￥12133.0000</span>&nbsp;&nbsp;<a style=" cursor: pointer;" href="javascript:void(0)" onclick="reloadMemberInfo();" class="fa fa-refresh fa-lg color-0"></a></li>
+    		  <li>冻结购彩金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+    		  <li>证券金额: <span class="color-1 font-weight" id="usermoney">￥0.00</span>&nbsp;&nbsp;</li>
+          <li>金币: <span class="color-1 font-weight" id="usermoney">＄86</span>&nbsp;&nbsp;</li>
+          <li><a class="color-0" href="/index.php?tnt=ds"  dataType="json" call="indexSign" target="ajax" >签到就送</a></li>
+          <li><a class="color-0" href="login.html" target="_top">安全退出</a></li>
+      </ul>
+</div>                        <div class="header-navbg">
+                            <div class="wrapper">
+                                <a href="index.html" ><div class="logo"></div></a>
+                                <div id="dd" class="header-nav-game" tabindex="1">全部游戏
+                                    <ul class="dropdown"> 
+          										<li><a href="four.html"><span class='fa fa-chevron-circle-right fa-lg'></span>重庆时时彩</a></li>
+          									  <li><a href="five.html"><span class='fa fa-chevron-circle-right fa-lg'></span>北京PK拾</a></li>
+				      
+                         </ul>
+                     </div>
+                      <ul class="header-nav-user">                
+                              <li><a class="default_home" href="index.html" ><div class="fa fa-home fa-2x"></div>网站首页</a></li>
+                              <li><a class="account_autosave" href="six_one.html" ><div class="fa fa-cny fa-2x"></div>充值提现</a></li>
+                              <li><a class="history_playlist" href="seven_one.html" ><div class="fa fa-gamepad fa-2x"></div>游戏报表</a></li>
+                              <li><a class="users_list" href="eight_one.html" ><div class="fa fa-users fa-2x"></div>代理中心</a></li>
+                              <img src="./images/5-130H21SH5.gif" alt="/" style="position:absolute;z-index:1001;margin-left:-40px;margin-top:-6px;"></li></li>
+                              <li><a class="users_info" href="nine_one.html" ><div class="fa fa-cogs fa-2x"></div>账户中心</a></li>
+                              <li><a class="promotion_center" href="one_one.html" ><div class="fa fa-bullhorn  fa-2x"></div>证券中心</a></li>
+                              <li><a class="account_autosave" href="eleven_one.html" ><div class="fa fa-fire  fa-2x"></div>金币兑换</a></li>
+                              <li><a class="csonline_list" href="#000" ><div class="fa fa-wechat fa-2x"></div>在线客服</a></li>
+                              <li><a class="help_general" href="thirteen_one.html" ><div class="fa fa-question fa-2x"></div>常见问题</a></li>
+                         </ul>
+                            </div>
+                        </div>
+                    </header>
+                  <div class="header_one"></div>
+                  <div class="pagetop"></div>
+                  <div class="pagemain">
+                      <div class="homelayout">
+                          <div class="homelist">
+                              <ul class="clist" >
+                  			               <li style="list-style: none;float: left;width: 110px;margin-left: 20px;margin-right: 20px;"><a href="one.html">
+                                       <img alt="" src="./images/99.png"><span>抢券先息</span></a></li> 
+                                       <li style="list-style: none;float: left;width: 110px;margin-left: 20px;margin-right: 20px;"><a href="four.html">
+                                       <img alt="" src="./images/c1.png"><span>重庆时时彩 </span></a></li>  
+                                       <li style="list-style: none;float: left;width: 110px;margin-left: 20px;margin-right: 20px;"><a href="five.html">
+                                       <img alt="" src="./images/10.png"><span>北京PK10</span></a></li>	
+                                    <!--    *用户信息	 -->		 
+                                 <td class="hd1bg">
+                                      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                          <tr>
+                                              <td valign="top" class="padding_left10 lineheight28">                
+                                              <div id="rightcon">
+                                                          <div class="head-box" style="width: 950px;">
+                                                
+                                                              </div>
+                                                          </div>
+                                              <div class="wrapper bigbox " style="width: 950px;">
+                                              <div class="page-wrapper">
+                                                  <p id="page-title"><span class="fa fa-lock"></span>账户信息</p>
+                                                  <div class="clear"></div>
+                                                  <div class="top_menu" >
+                                                      <a class="act"  >账户信息</a>
+                                                  </div>
+                                                      <div class="page-info">
+                                                       <div class="page_list">
+                                                         <div class="page-title">一、账户信息</div>
+                                                        <table width="100%" border="0" cellspacing="1" cellpadding="4" >
+                                                        <tr>
+                                                          <td class="tdtitle">登陆账号：</td>
+                                                          <td>abc123</td> 
+                                                           <td class="tdtitle">会员编号：</td>
+                                                          <td>368</td> 
+                                                        </tr> 
+                                                        <tr>
+                                                           <td class="tdtitle">金币：</td>
+                                                          <td>86</td>
+                                                           <td class="tdtitle">等级：</td>
+                                                          <td>VIP1</td>
+                                                        </tr> 
+                                                        <tr>
+                                                           <td class="tdtitle">会员类型：</td>
+                                                          <td>代理</td>
+                                                           <td class="tdtitle">上级代理：</td>
+                                                          <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                           <td class="tdtitle">返点：</td>
+                                                          <td>10.0%</td>
+                                                           <td class="tdtitle">不定位返点：</td>
+                                                          <td>3.0%</td>
+                                                        </tr> 
+                                                        <tr>
+                                                           <td class="tdtitle">证券资金：</td>
+                                                          <td>0.00</td>
+                                                           <td class="tdtitle">冻结投注资金：</td>
+                                                          <td>0.00 元</td>
+                                                        </tr> 
+                                                       <tr>
+                                                           <td class="tdtitle">可用购彩资金：</td>
+                                                          <td>12133.0000 元</td>
+                                                           <td class="tdtitle">全部资金：</td>
+                                                          <td>12133 元  <span>（证券资金+冻结投注资金+可用购彩资金）</span></td>
+                                                        </tr>
+
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                              </div>
+                                              </div>
+                                              </div>                           
+                                              </td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                            <!--     站内公告 -->
+                                <div id="rightcon">
+                                            <div class="head-box" style="width: 950px;">
+                                                <div class="haed-box-wrapper">
+                                                    <div class="head-box-bg1" id="transform"></div>
+                                                    <div class="head-box-bg2" id="transform"></div>
+                                                </div>
+                                            </div>
+                                            <div class=" bigbox">
+                                <div class="page-wrapper">
+                                    <p id="page-title"><span class="fa fa-cny"></span>站内公告</p>
+                                    <div class="top_menu">     
+                                        <a class="act" >站内公告</a>
+                                    </div>
+                                    <div class="page-info">
+                                    <div class="page_list">
+                                     <table width="100%" class='table_b'>
+                                        <thead>
+                                            <thead>
+                                            <tr class="table_b_th">
+                                                <td width="10%">编号</td>
+                                                <td align="left">公告标题</td>
+                                                <td width="20%" align="center">发布时间</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="table_b_tr">
+                                                       <tr>
+                                              <td>64</td>
+                                              <td class="t2"><a data-target="#notice" data-toggle="modal" id="one"  title="优惠福利"  style="cursor: pointer;">优惠福利</a></td>
+                                              <td align="center" class="tl">2017-03-13 00:00:00</td>
+                                            </tr>
+                                                        <tr>
+                                              <td>61</td>
+                                              <td class="t2"><a data-target="#notice" data-toggle="modal"  id="two" title="为防止内招禁止解绑银行"  style="cursor: pointer;">为防止内招禁止解绑银行</a></td>
+                                              <td align="center" class="tl">2017-02-18 00:00:00</td>
+                                            </tr>
+                                                        <tr>
+                                              <td>52</td>
+                                              <td class="t2"><a data-target="#notice" data-toggle="modal"  id="three"   title="充值需知"  style="cursor: pointer;">充值需知</a></td>
+                                              <td align="center" class="tl">2017-02-18 00:00:00</td>
+                                            </tr>
+                                                        <tr>
+                                              <td>43</td>
+                                              <td class="t2"><a data-target="#notice" data-toggle="modal"  id="four"  title="常见问题"  style="cursor: pointer;">常见问题</a></td>
+                                              <td align="center" class="tl">2017-02-18 00:00:00</td>
+                                            </tr>
+                                                        </tbody>
+                                            
+                                        </table>
+                                        <div class="bottompage">
+                                  
+                                                  <a class="disabled">首页</a>&nbsp;
+                                                    <a class="disabled">上一页</a>&nbsp;
+                                                
+                                              <a href="/index.php?tnt=nio&txpgs=1" class="pagecurrent">1</a>&nbsp;
+
+                                              
+                                                <a class="disabled">下一页</a>&nbsp;
+                                              <a class="disabled">尾页</a>
+                                                <span class="disabled">第1页/共1页</span>
+                                            </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                             <!-- 模态框（Modal） -->
+                                               <div class="modal fade" id="notice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog">
+                                                     <div class="modal-content" style="width:800px; margin: 0 auto;margin-top: 30px; animation:mymove 1s forwards;-webkit-animation:mymove 1s forwards;">
+                                            <!-- 优惠福利 -->
+                                            <div class="iphone" style="display: none;" >
+                                             <div class="modal-header">
+                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                 <h4 class="modal-title" id="myModalLabel">优惠福利</h4>
+                                               </div>
+                                               <div class="modal-body" >
+                                                <ul>
+                                                <li>
+                                                  <em>公告内容：</em><br /><br />
+                                                  <span class="red" style="word-break:break-all">即日起，出局对刷流水双重福利！<br />
+                                                  ️1.对刷流水达到证劵的百分之三十，且全部亏损在GCL，可立即提款出局！<br />
+                                                  2.对刷流水达到证劵的百分之四十，且全部输在GCL，可申请享受对打平台的亏损赔率差额部分！<br />
+                                                  如：GCL一万证券，出局对刷流水亏损三千，即可直接申请提现！对刷四千，对方平台赔率的亏损部分可申请客服补足！<br />
+                                                  注：必须提供对刷平台的投注记录！核对后生效！</span><br />
+                                                </li>
+                                                 <li style="float:right; margin-right:100px;">
+                                                  <em>发布日期：</em><span class="green">2017-03-13</span>
+                                                </li>
+                                                </ul>
+                                               </div>
+                                               <div class="modal-footer">
+                                                 <button type="button" class="btn btn-action" data-dismiss="modal">关闭</button>
+                                               <!--<button type="button" class="btn btn-primary">提交更改</button>-->
+                                               </div>  
+                                            </div>
+
+                                            <!-- 为防止内招禁止解绑银行 -->
+                                            <div class="iphone_one" style="display: none;">
+                                             <div class="modal-header">
+                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                 <h4 class="modal-title" id="myModalLabel">为防止内招禁止解绑银行</h4>
+                                               </div>
+                                               <div class="modal-body">
+                                                <ul>
+                                                <li>
+                                                  <em>公告内容：</em><br><br>
+                                                  <span class="red" style="word-break: break-all;">尊敬的客户：<br>
+                                                    <br>
+                                                    为防止内招，自2017年2月18日03:00起，平台禁止解绑银行卡。<br>
+                                                    <br>
+                                                    给您带来不便请谅解，如有任何问题请联系在线客服。<br>
+                                                    <br>
+                                                    </span><br>
+                                                </li>
+                                                 <li style="float: right; margin-right: 100px;">
+                                                  <em>发布日期：</em><span class="green">2017-02-18</span>
+                                                </li>
+                                                </ul>
+                                               </div>
+                                               <div class="modal-footer">
+                                                 <button type="button" class="btn btn-action" data-dismiss="modal">关闭</button>
+                                               <!--<button type="button" class="btn btn-primary">提交更改</button>-->
+                                               </div>  
+                                            </div>
+
+                                            <!-- 充值需知 -->
+                                            <div class="iphone_two" style="display: none;">
+                                             <div class="modal-header">
+                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                 <h4 class="modal-title" id="myModalLabel">充值需知</h4>
+                                               </div>
+                                               <div class="modal-body">
+                                                <ul>
+                                                <li>
+                                                  <em>公告内容：</em><br><br>
+                                                  <span class="red" style="word-break: break-all;">支付宝&lt;付款说明&gt;*必须添加用户编号,否则无法自动到帐！充值3分钟内到账，如未及时入账，请联系客服为您补单。</span><br>
+                                                </li>
+                                                 <li style="float: right; margin-right: 100px;">
+                                                  <em>发布日期：</em><span class="green">2017-02-18</span>
+                                                </li>
+                                                </ul>
+                                               </div>
+                                               <div class="modal-footer">
+                                                 <button type="button" class="btn btn-action" data-dismiss="modal">关闭</button>
+                                               <!--<button type="button" class="btn btn-primary">提交更改</button>-->
+                                               </div>  
+                                            </div>
+
+                                            <!-- 常见问题 -->
+                                            <div class="iphone_three" style="display: none;">
+                                             <div class="modal-header">
+                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                 <h4 class="modal-title" id="myModalLabel">常见问题</h4>
+                                               </div>
+                                               <div class="modal-body">
+                                                <ul>
+                                                <li>
+                                                  <em>公告内容：</em><br><br>
+                                                  <span class="red" style="word-break: break-all;">1.用户名输入错误导致。 <br>
+                                                        2.帐号不存在。 <br>
+                                                        3.当前域名为非系统指定域名，请联系上级或客服获取最新域名。 为什么充值没有即时到帐？ 以下几点都会引起您的充值不能到账，如果出现以下问题，请及时联系在线客服并提供银行回单截图。<br>
+                                                        -1.汇款时未使用平台提供的最新银行信息；- 2.汇款时附言（充值编号）填写错误或者未填写；-3.平台填写金额与实际汇款金额不一致； <br>
+                                                        4.充值时间在平台服务时间外。<br>
+                                                        <br>
+                                                         <br>
+                                                 </span><br>
+                                                </li>
+                                                 <li style="float: right; margin-right: 100px;">
+                                                  <em>发布日期：</em><span class="green">2017-02-18</span>
+                                                </li>
+                                                </ul>
+                                               </div>
+                                               <div class="modal-footer">
+                                                 <button type="button" class="btn btn-action" data-dismiss="modal">关闭</button>
+                                               <!--<button type="button" class="btn btn-primary">提交更改</button>-->
+                                               </div>  
+                                            </div>
+                                                     </div><!-- /.modal-content -->
+                                                  </div><!-- modal-dialog -->
+                                               </div><!-- /.modal -->
+                                               <!-- 模态框（Modal）结束 -->
+                                            </div>
+                                            </ul>
+                                            </div>
+                                       </div>
+<!--  站内公告的js代码  -->                                          
+<script type="text/javascript">
+
+  $(function(){
+
+   $('#one').click(function(){
+
+    $('.iphone').css('display','block');
+    $('#notice').css("animation","anim 2s");
+    $('.iphone_one').css('display','none');
+    $('.iphone_three').css('display','none'); 
+    $('.iphone_four').css('display','none');  
+   })
+
+  
+  $('#two').click(function(){
+
+    
+    $('.iphone_one').css('display','block');
+    $('#notice').css("animation","anim 2s");
+    $('.iphone').css('display','none'); 
+    $('.iphone_two').css('display','none');  
+    $('.iphone_three').css('display','none'); 
+ 
+
+   })
+
+
+   $('#three').click(function(){
+
+    $('.iphone_two').css('display','block');
+    $('#notice').css("animation","anim 2s");
+     $('.iphone').css('display','none'); 
+     $('.iphone_one').css('display','none'); 
+     $('.iphone_three').css('display','none');
+
+   })
+
+
+  $('#four').click(function(){
+
+    $('.iphone_three').css('display','block');
+    $('#notice').css("animation","anim 2s");
+    $('.iphone').css('display','none');
+    $('.iphone_one').css('display','none'); 
+    $('.iphone_two').css('display','none');  
+
+   })
+
+  })
+</script>
+</body>
+</html>
+
+

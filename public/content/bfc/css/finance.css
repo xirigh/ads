@@ -1,0 +1,181 @@
+i{
+    font-style: normal;
+}
+body {
+  font-size:12px;
+}
+.blog{
+    width:100%;
+}
+.items{
+    width: 100%;
+    padding: 3%;
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+}
+.genre{
+    width:40%;
+}
+.where{
+    width: 20%;
+}
+.where button{
+    border-radius:2px;
+    border:none;
+    background: orange;
+    color: #fff;
+    width: 100%;
+    padding:8%;
+}
+.lists{
+    width:100%;
+}
+.lists-group{
+    width: 100%;
+    display: inline-block;
+    border:1px solid #f2ebd8;
+    margin:2% 0;
+}
+.lists-group p{
+    padding:2%;
+    background:#fbf9e4;
+    color: #816d4a;
+    border:1px solid #f2ebd8;
+}
+.lists-group p i{
+    text-align: left;
+    font-style:normal;
+}
+.lists-group p strong{
+    float: right;
+}
+.group-message{
+    width:100%;
+    padding:5%;
+    display: flex;
+    flex-direction:row;
+    align-items:left;
+}
+.group-message span{
+    color:#000;
+    width: 50%;
+}
+.group-message span i{
+    font-style: normal;
+}
+
+.group-message .icon-shangzhang{
+    color: red;
+}
+.group-message  .icon-xiadie-decline{
+    color: green;
+}
+
+/*数字资产页面*/
+.math{
+    width:100%;
+    background:#ebebeb;
+}
+.property{
+    width: 100%;
+    background: #fff;
+    margin-bottom:3%;
+    padding:4%;
+}
+.property p{
+    font-weight: bold;
+    color: #949494;
+}
+.property p i{
+    color: black;
+}
+.property .adress{
+    color: #949494;
+    font-weight: bold;
+}
+.adress button{
+    background:#29a7e2;
+    color: #fff;
+    border:none;
+    padding: 2%;
+    border-radius: 2px;
+    float: right;
+}
+.property .math-ma{
+    border-bottom:1px solid #dedede;
+    padding:3%;
+    color:#000;
+}
+.data-type{
+    width:100%;
+    padding:2%;
+    border-bottom:1px solid #f4efd2;
+}
+.data-type a{
+    display: inline-block;
+    width: 32%;
+    text-align: center;
+    color:#000;
+}
+.data-type a img{
+    width:33%;
+}
+.data-type .iconfont{
+    font-size:34px;
+}
+.data-type .icon-zaishouxiangmuzhongchou{
+    color:#272636;
+}
+.data-type .icon-woshou{
+    color: #62879a;
+}
+.Professional{
+    background:#ebebeb;
+    width:100%;
+    padding:2%;
+    margin-bottom:15%;
+}
+.item-list{
+    width:100%;
+    background: #fff;
+    border-radius:7px;
+    padding:2%;
+    /*margin: 3% 0%;*/
+    margin-bottom:5%;
+}
+.item-list h4{
+    width:60%;
+}
+.item-list img{
+    width:10%;
+}
+.item .data{
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+}
+.data span{
+    display:inline-block;
+    width: 24%;
+    text-align: center;
+    font-size: 16px;
+    overflow: hidden;
+    padding:1%;
+}
+.data .iconfont{
+    font-size:36px;
+}
+.data .icon-icon{
+    color: #679e1c;
+}
+.data .icon-woshou{
+    color:#5f889c;
+}
+
+
+
+
+
+
