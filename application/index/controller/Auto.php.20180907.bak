@@ -26,6 +26,16 @@ class Auto extends Common
 		}
        
    }
+   
+/*   public function act(){
+       Debug::remark('begin');
+//        $this->remove_wait();
+        $this->daycount2();
+       Debug::remark('end');
+       $runtime = Debug::getRangeTime('begin','end');
+       return json("OK:".$runtime);
+   }
+   */
 
     //对订单进行取消冻结
    private function remove_wait(){
@@ -45,10 +55,35 @@ class Auto extends Common
    //每日进行分红
     private function daycount(){
        //给一个小时结算时间
+//        list($beginTime, $endTime) = Time::today();
+//        if(!(time() > $beginTime+config('mydefind.jiesuan_time')*3600 && time() < $beginTime+(config('mydefind.jiesuan_time')+1)*3600)){
+//            return false;
+//        }
+/*
+        list($beginTime, $endTime) = Time::today();
+
+        $num = date("H")*3600;
+        $filename = dirname(dirname(dirname(dirname(__FILE__)))) . "/public/uploads/core/file/".date('YmdH').".lock";
+        if(file_exists($filename)){
+            //今日任务完成，不用你了
+            return false;
+        }
+        //获取所有结算时间是昨天且状态为正在分红的订单，进行分红
+        $model = model("core_zichan");
+        $list = $model->where(['cz_state'=>0])->alias("z")->whereTime('cz_count_time', 'between', [$beginTime+$num-3600+1800,$beginTime+$num+1800])->fetchSql(false)->join("core_goods g","g.cg_id = z.cz_cg_id")->select();
+		
+        if(empty($list->toArray())){
+            //如果一条都没有查到，今天不用你工作了
+            $f = fopen($filename,"a+");
+            fwrite($f,date("Y-m-d H:i:s")."执行完成");
+            fclose($f);
+            return false;
+        }
+		*/
 		$model = model("core_zichan");
         $list = $model->where(['cz_state'=>0])->alias("z")->fetchSql(false)->join("core_goods g","g.cg_id = z.cz_cg_id")->select();
-        $list = array_unique($list->toArray(),SORT_REGULAR);
         //查到了数据，结算一下
+		//dump($list);
         //收益=数量*价格/100*利率 =
         foreach ($list as $v){
             //直接算收益
@@ -86,9 +121,7 @@ class Auto extends Common
             //根据id获取用户的邀请码
             $recomm = model("vip_user")->where(['v_id'=>$v['cz_uid']])->field('v_recomm_code')->find()['v_recomm_code'];
             $parentlist = $this->get_parent($recomm);
-            //拿出父链以后，要给父链分红。怎么分？
-            $countSaveData = [];
-            $parentSaveData = [];
+			//dump($parentlist);
             if($parentlist){
                 foreach ($parentlist as $key=>$val){
                     $parentSaveData[$key] = [
@@ -97,7 +130,7 @@ class Auto extends Common
                     ];
                     $countSaveData[$key] = [
                         "ub_uid"=>$val['uid'],
-                        "ub_msg"=>"来自用户：".uid2uname($v['cz_uid'])."(".$v['cg_title'].")",
+                        "ub_msg"=>"来自用户：".uid2uname($v['cz_uid']),
                         "ub_money"=>($savedata['cz_day_money']*$val['lev_money']/100),
                         "ub_type"=>"2",
                         "ub_state"=>"1",
@@ -107,49 +140,148 @@ class Auto extends Common
                 }
 
             }
+			//dump("------------");
+
             if(!@$parentSaveData){
                 $parentSaveData = [];
             }
             if(!@$countSaveData){
                 $countSaveData = [];
             }
-/*
-            //dump($savedata);//用户日收益数据
-            //dump($countdata);//用户日收益写记录库
-            //dump($parentSaveData);//父级收益数据
+			
+			/*
+			dump($v['cz_uid']."---".$v['cz_cg_id']);
+            dump($savedata);//用户日收益数据
+            dump($countdata);//用户日收益写记录库
+            dump($parentSaveData);//父级收益数据
            dump($countSaveData);//父级收益写数据库
 		   dump("------------------------------------------------");
-*/
-
-
-            //$parentSaveData = array_unique($parentSaveData,SORT_REGULAR);
+		   */
+		   //exit;
+		   /*
             Db::transaction(function () use ($savedata,$countdata,$parentSaveData,$countSaveData,$systemdata) {
                 $a = Db::table('core_zichan')->update($savedata);
                 $user = new \app\common\model\VipUser();
-                foreach ($parentSaveData as $kk=>$vv){
-                    //写之前判断一下，是否存在，存在则跳过
-//                    if(!$user->where($vv)->count()){
-                       $user->isUpdate(true)->save($vv);
-//                    }
-                }
-
+                $b = $user->saveAll($parentSaveData);
                 $bank = new \app\common\model\UserBank();
                 if(!$systemdata){
                     $c = $bank->save($systemdata);
                 }
                 $c = $bank->save($countdata);
-                foreach($countSaveData as $kk=>$vv){
-                    //写之前判断一下，是否存在，存在则跳过
-//                    if(!$bank->where($vv)->count()){
-                        $d = $bank->save($vv);
-//                    }
-                }
+                $d = $bank->isUpdate(false)->saveAll($countSaveData);
+//                echo "{$a}-{$b}-{$c}-{$d}";
             });
-
+			*/
+			
         }
         return true;
     }
+/*
+	private function daycount2(){
+       //给一个小时结算时间
+        list($beginTime, $endTime) = Time::today();
+        if(!(time() > $beginTime+config('mydefind.jiesuan_time')*3600 && time() < $beginTime+(config('mydefind.jiesuan_time')+1)*3600)){
+            return false;
+        }
+        $filename = dirname(dirname(dirname(dirname(__FILE__)))) . "/public/uploads/core/file/".date('Ymd').".lock";
+        if(file_exists($filename)){
+            //今日任务完成，不用你了
+            return false;
+        }
+        //获取所有结算时间是昨天且状态为正在分红的订单，进行分红
+        $model = model("core_zichan");
+        $list = $model->where(['cz_state'=>0])->alias("z")->fetchSql(false)->join("core_goods g","g.cg_id = z.cz_cg_id")->select();
+		if(empty($list->toArray())){
+            //如果一条都没有查到，今天不用你工作了
+            $f = fopen($filename,"a+");
+            fwrite($f,date("Y-m-d H:i:s")."执行完成");
+            fclose($f);
+            return false;
+        }
+        //查到了数据，结算一下
+		
+        //收益=数量*价格/100*利率 =
+        foreach ($list as $v){
+            //直接算收益
+            $savedata['cz_day_money'] = $v['cg_money']*$v['cz_num']/100*$v['cg_day']/10000;
+            $savedata['cz_count_money'] = $v['cz_count_money']+$v['cg_money']*$v['cz_num']/100*$v['cg_day']/10000;
+            $savedata['cz_count_time'] = time();
+            $savedata['cz_id'] = $v['cz_id'];
+            $bei = floor($savedata['cz_count_money']/($v['cg_money']/100));
+            $systemdata = [];
+            if($bei > 0){
+                $savedata['cz_count_money'] = $savedata['cz_count_money']-($bei*$v['cg_money']/100);
+                $savedata['cz_auto_num'] = $v['cz_auto_num']+$bei;
+                $savedata['cz_num'] = $v['cz_num']+$bei;
+                //系统兑换的一张券写收益库
+                $systemdata = [
+                    "ub_uid"=>$v['cz_uid'],
+                    "ub_msg"=>"",
+                    "ub_money"=>$bei*$v['cg_money']/100,
+                    "ub_type"=>"8",
+                    "ub_state"=>"1",
+                    "ub_create_user"=>$v['cz_uid'],
+                    "ub_update_user"=>$v['cz_uid'],
+                ];
+            }
+            //写收益库
+            $countdata = [
+                "ub_uid"=>$v['cz_uid'],
+                "ub_msg"=>"",
+                "ub_money"=>$savedata['cz_day_money'],
+                "ub_type"=>"3",
+                "ub_state"=>"1",
+                "ub_create_user"=>$v['cz_uid'],
+                "ub_update_user"=>$v['cz_uid'],
+            ];
+            //根据id获取用户的邀请码
+            $recomm = model("vip_user")->where(['v_id'=>$v['cz_uid']])->field('v_recomm_code')->find()['v_recomm_code'];
+            $parentlist = $this->get_parent($recomm);
+            if($parentlist){
+                foreach ($parentlist as $key=>$val){
+                    $parentSaveData[$key] = [
+                        "v_id"=>$val['uid'],
+                        "v_money2"=>$val['money']+($savedata['cz_day_money']*$val['lev_money']/100),
+                    ];
+                    $countSaveData[$key] = [
+                        "ub_uid"=>$val['uid'],
+                        "ub_msg"=>"来自用户：".uid2uname($v['cz_uid']),
+                        "ub_money"=>($savedata['cz_day_money']*$val['lev_money']/100),
+                        "ub_type"=>"2",
+                        "ub_state"=>"1",
+                        "ub_create_user"=>$v['cz_uid'],
+                        "ub_update_user"=>$val['uid'],
+                    ];
+                }
 
+            }
+
+            if(!@$parentSaveData){
+                $parentSaveData = [];
+            }
+            if(!@$countSaveData){
+                $countSaveData = [];
+            }
+//            dump($savedata);//用户日收益数据
+//            dump($countdata);//用户日收益写记录库
+//            dump($parentSaveData);//父级收益数据
+//            dump($countSaveData);//父级收益写数据库
+            Db::transaction(function () use ($savedata,$countdata,$parentSaveData,$countSaveData,$systemdata) {
+                $a = Db::table('core_zichan')->update($savedata);
+                $user = new \app\common\model\VipUser();
+                $b = $user->saveAll($parentSaveData);
+                $bank = new \app\common\model\UserBank();
+                if(!$systemdata){
+                    $c = $bank->save($systemdata);
+                }
+                $c = $bank->save($countdata);
+                $d = $bank->isUpdate(false)->saveAll($countSaveData);
+//                echo "{$a}-{$b}-{$c}-{$d}";
+            });
+        }
+        return true;
+    }
+	*/
     private function get_parent($recomm){
        $model = model("vip_user");
        $list = $model->field('v_id,v_re_recomm_code,v_recomm_code,v_money2')->select()->toArray();

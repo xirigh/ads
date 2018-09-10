@@ -141,12 +141,12 @@ class Bank extends Base
         if(!$data){
             $this->error("E该申请不存在");
         }
-        if($data['ub_state'] != 0){
+        if($data['ub_state'] != "待审核"){
             $this->error("E该申请已处理，请勿重复处理");
         }
         if($type == 1){
             $rs = Db::transaction(function() use ($data){
-                Db::table("vip_user")->where(['v_id'=>$data['ub_uid']])->setInc('v_money2',$data['ub_money']);
+//                Db::table("vip_user")->where(['v_id'=>$data['ub_uid']])->setInc('v_money2',$data['ub_money']);
                 $rs = Db::table("user_bank")->where(['ub_id'=>$data['ub_id']])->update(['ub_state'=>1]);
                 return $rs;
             });
@@ -156,7 +156,11 @@ class Bank extends Base
                 $this->error("E通过失败");
             }
         }else{
-            $rs = Db::table("user_bank")->where(['ub_id'=>$data['ub_id']])->update(['ub_state'=>2]);
+            $rs = Db::transaction(function() use ($data){
+                Db::table("vip_user")->where(['v_id'=>$data['ub_uid']])->setDec('v_money2',$data['ub_money']);
+                $rs = Db::table("user_bank")->where(['ub_id'=>$data['ub_id']])->update(['ub_state'=>2]);
+                return $rs;
+            });
 
             if($rs){
                 $this->success("S拒绝成功");
@@ -165,5 +169,4 @@ class Bank extends Base
             }
         }
     }
-
 }

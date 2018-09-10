@@ -5,6 +5,9 @@ use think\console\Input;
 use think\helper\Time;
 use think\Session;
 use think\Validate;
+use think\Db;
+use app\common\model\UserBank;
+
 class User extends Index
 {
     //注册
@@ -506,7 +509,7 @@ class User extends Index
         $uid = session('home.uid');
         //获取我的提现列表
         $model = model("user_bank");
-        $list = $model->where(['ub_type'=>5])->order(['ub_create_time'=>"desc"])->paginate(config("mydefind.pagenum"));
+        $list = $model->where(['ub_type'=>5,"ub_uid"=>$uid])->order(['ub_create_time'=>"desc"])->paginate(config("mydefind.pagenum"));
         $usermodel = model("vip_user");
         $ethaddress = $usermodel->find($uid)['v_alipay'];
         $this->assign("list",$list);
@@ -544,8 +547,14 @@ class User extends Index
         if(!$vali->check($savedata)){
             $this->error($vali->getError());
         }
-        $model = model("user_bank");
-        if($model->save($savedata)){
+        //扣除钱包金额
+        $rs = Db::transaction(function() use ($savedata){
+			$vipuser = new UserBank;
+            Db::table("vip_user")->where(['v_id'=>$savedata['ub_uid']])->setInc('v_money2',$savedata['ub_money']);
+            $rs = $vipuser->save($savedata);
+            return $rs;
+        });
+        if($rs){
             $this->success("提交成功");
         }else{
             $this->error("提交失败");

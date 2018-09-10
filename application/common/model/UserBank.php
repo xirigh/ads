@@ -53,6 +53,9 @@ class UserBank extends Model
             case "1":
                 return "已完成";
                 break;
+            case "2":
+                return "审核失败";
+                break;
             default:
                 return "";
                 break;
